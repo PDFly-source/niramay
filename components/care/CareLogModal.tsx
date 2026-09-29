@@ -15,6 +15,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { EmergencySpeedDial } from "@/components/emergency/EmergencySpeedDial";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface Props {
   isOpen: boolean;
@@ -41,6 +42,8 @@ export const CareLogModal: React.FC<Props> = ({
   );
   const [checkinNote, setCheckinNote] = useState("");
 
+  useBodyScrollLock(isOpen);
+
   if (!isOpen || !mounted) return null;
 
   const activeLog = careLogs.find((l) => l.id === selectedLogId) || careLogs[0];
@@ -53,7 +56,7 @@ export const CareLogModal: React.FC<Props> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/70 backdrop-blur-xs animate-in fade-in">
-      <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden flex flex-col niramay-modal-fit-90">
         {/* Header */}
         <div className="p-5 bg-gradient-to-r from-amber-800 to-stone-900 text-onbrand flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">

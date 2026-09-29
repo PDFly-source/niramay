@@ -43,6 +43,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  // Enables env(safe-area-inset-*) on notch / gesture-bar devices
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -110,7 +112,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${sourceSans3.variable} ${notoSerifBengali.variable}`}>
-      <body className="min-h-screen flex flex-col bg-parchment text-ink font-sans selection:bg-amber-200 selection:text-amber-900 pb-16 md:pb-0" suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col bg-parchment text-ink font-sans selection:bg-amber-200 selection:text-amber-900 pb-[var(--niramay-content-inset)] transition-[padding-bottom] duration-300" suppressHydrationWarning>
         <DisclaimerModal />
         <ThemeSync />
         <Header />

@@ -170,7 +170,7 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
 
       {/* Floating or Docked Bottom Soundscape Bar - only when active or expanded */}
       {!inlineOnly && (isPlaying || isExpanded) && (
-        <div className="fixed bottom-20 left-4 sm:bottom-24 sm:left-6 z-40 pointer-events-auto">
+        <div className="fixed bottom-[var(--niramay-float-lift)] left-4 sm:left-6 z-40 pointer-events-auto">
         {!isExpanded ? (
           /* Minimized Floating Audio Pill */
           <button

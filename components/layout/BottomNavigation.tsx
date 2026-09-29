@@ -59,9 +59,9 @@ export const BottomNavigation: React.FC = () => {
   return (
     <nav
       aria-label="Bottom Navigation"
-      className="fixed bottom-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-md border-t border-amber-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-2 sm:px-6 py-1.5 transition-all no-print select-none md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-md border-t border-amber-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-2 sm:px-6 pt-0 pb-[env(safe-area-inset-bottom,0px)] transition-all no-print select-none md:hidden"
     >
-      <div className="max-w-md mx-auto flex items-center justify-around">
+      <div className="max-w-md mx-auto flex items-center justify-around h-[var(--niramay-nav-height)]">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = tab.exact

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NiramayLogo } from "@/components/brand/NiramayLogo";
@@ -51,6 +52,7 @@ export const Header: React.FC = () => {
   const { savedRemedyIds, languageMode, setLanguageMode, setAssistantOpen } =
     useNiramayStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  useBodyScrollLock(drawerOpen);
   const mounted = useMounted();
 
   const currentMode = mounted ? languageMode : "bilingual";
@@ -168,20 +170,20 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-amber-200/60 bg-cream/95 backdrop-blur-md transition-all">
+      <header className="sticky top-0 z-40 w-full border-b border-amber-200/60 bg-cream/95 backdrop-blur-md transition-all pt-[env(safe-area-inset-top,0px)]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between">
           {/* Brand Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-xl p-1 shrink-0"
+            className="flex items-center gap-2 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-xl p-1 shrink-0"
           >
             <NiramayLogo size={40} className="transition-transform group-hover:scale-105" />
             <div className="flex flex-col">
               <div className="flex items-baseline gap-1.5">
-                <span className="text-xl sm:text-2xl font-serif font-black tracking-tight text-stone-900">
+                <span className="text-lg sm:text-2xl font-serif font-black tracking-tight text-stone-900">
                   Niramay
                 </span>
-                <span className="text-sm font-semibold text-emerald-800">
+                <span className="hidden sm:inline text-sm font-semibold text-emerald-800">
                   নিৰাময়
                 </span>
               </div>
@@ -192,7 +194,7 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Primary Nav Bar */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-1">
             {primaryDesktopLinks.map((item) => {
               const Icon = item.icon;
               const isActive = pathname.startsWith(item.href);
@@ -239,7 +241,7 @@ export const Header: React.FC = () => {
           {/* Right Controls: Language Selector + Menu Trigger */}
           <div className="flex items-center gap-2">
             {/* 3-Way Language Toggle */}
-            <div className="flex items-center bg-stone-100/90 p-0.5 rounded-xl border border-stone-200 text-[11px] font-bold">
+            <div className="flex items-center bg-stone-100/90 p-0.5 rounded-xl border border-stone-200 text-[10px] sm:text-[11px] font-bold shrink-0">
               <button
                 type="button"
                 onClick={() => handleLanguageSelect("en")}
@@ -298,7 +300,7 @@ export const Header: React.FC = () => {
 
       {/* Slide-out Navigation Drawer (Sheet) */}
       {drawerOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-[60] flex justify-end animate-in fade-in duration-200">
           {/* Backdrop */}
           <div
             className="fixed inset-0 bg-stone-950/60 backdrop-blur-xs transition-opacity"

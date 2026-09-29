@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useNiramayStore } from "@/lib/store";
 import { useMounted } from "@/hooks/useMounted";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { analyzeUserQuery, AssistantAnalysisResult } from "@/lib/assistant";
 import { Remedy } from "@/lib/schema";
 import { extractString } from "@/lib/utils";
@@ -190,11 +191,13 @@ export const NiramayAssistantModal: React.FC = () => {
     setInput("");
   };
 
+  useBodyScrollLock(isAssistantOpen);
+
   if (!isAssistantOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-900/60 backdrop-blur-xs animate-in fade-in">
-      <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-amber-200 flex flex-col h-[85vh] max-h-[700px] overflow-hidden">
+      <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-amber-200 flex flex-col niramay-modal-fit-85 overflow-hidden">
         {/* Header */}
         <div className="px-5 py-4 bg-gradient-to-r from-amber-800 to-emerald-900 text-onbrand flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">

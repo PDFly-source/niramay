@@ -3,6 +3,7 @@
 import React from "react";
 import { useNiramayStore } from "@/lib/store";
 import { useMounted } from "@/hooks/useMounted";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { NiramayLogo } from "@/components/brand/NiramayLogo";
 import { ShieldCheck, AlertTriangle, HeartPulse, X } from "lucide-react";
 
@@ -18,7 +19,10 @@ export const DisclaimerModal: React.FC = () => {
   const currentMode = mounted ? languageMode : "bilingual";
   const isAs = currentMode === "as";
 
-  if (!mounted || hasAcceptedDisclaimer) return null;
+  const disclaimerVisible = mounted && !hasAcceptedDisclaimer;
+  useBodyScrollLock(disclaimerVisible);
+
+  if (!disclaimerVisible) return null;
 
   return (
     <div
@@ -27,7 +31,7 @@ export const DisclaimerModal: React.FC = () => {
       aria-modal="true"
       aria-label="Educational disclaimer"
     >
-      <div className="max-w-md w-full bg-cream rounded-3xl shadow-2xl border border-amber-200/80 overflow-hidden max-h-[90vh] overflow-y-auto">
+      <div className="max-w-md w-full bg-cream rounded-3xl shadow-2xl border border-amber-200/80 overflow-hidden niramay-modal-fit-90 overflow-y-auto">
         <div className="px-6 pt-6 pb-2 flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
             <NiramayLogo size={40} />

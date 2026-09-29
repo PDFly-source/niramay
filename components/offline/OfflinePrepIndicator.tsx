@@ -52,7 +52,7 @@ export const OfflinePrepIndicator: React.FC = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-20 left-4 right-4 sm:left-auto sm:right-6 sm:w-96 z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
+    <div className="fixed bottom-[calc(var(--niramay-float-lift)+var(--niramay-assistant-space))] left-4 right-4 sm:left-auto sm:right-6 sm:w-96 z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
       <div className="bg-stone-900/95 backdrop-blur-md text-onbrand rounded-2xl p-4 shadow-2xl border border-stone-700">
         <div className="flex items-center gap-3">
           {isDone ? (

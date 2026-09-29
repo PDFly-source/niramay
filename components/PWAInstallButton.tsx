@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { Download, Share2, X, Smartphone } from "lucide-react";
 
 interface PWAInstallButtonProps {
@@ -13,6 +14,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
 }) => {
   const { isInstallable, isInstalled, isIOS, install } = usePWAInstall();
   const [showIOSGuide, setShowIOSGuide] = useState(false);
+  useBodyScrollLock(showIOSGuide);
 
   // If already running as an installed PWA, hide the button
   if (isInstalled) {
@@ -26,10 +28,10 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
         <button
           onClick={install}
           aria-label="Install Niramay App"
-          className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 hover:bg-amber-700 text-onbrand px-3 py-1.5 text-xs font-semibold shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+          className="hidden sm:inline-flex items-center justify-center gap-1.5 rounded-full bg-amber-600 hover:bg-amber-700 text-onbrand sm:h-auto sm:px-3 sm:py-1.5 text-xs font-semibold shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/40"
         >
-          <Download className="w-3.5 h-3.5" />
-          <span>Install App</span>
+          <Download className="w-4 h-4" />
+          <span className="hidden sm:inline">Install App</span>
         </button>
       );
     }
@@ -74,7 +76,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
             role="dialog"
             aria-modal="true"
           >
-            <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl border border-stone-200 text-stone-900">
+            <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl border border-stone-200 text-stone-900 niramay-modal-fit-90 overflow-y-auto">
               <div className="flex items-center justify-between pb-3 border-b border-stone-100">
                 <h3 className="text-base font-bold text-stone-900">Install on iPhone / iPad</h3>
                 <button

@@ -91,6 +91,86 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   VIEWPORT-SAFE OVERLAY LAYOUT SYSTEM
+   One shared calculation for every fixed/floating element, so
+   nothing ever stacks by magic numbers.
+
+    content (body padding reserves:  --niramay-content-inset)
+    → install banner            (--niramay-banner-lift)
+    → floating controls (AI / soundscapes)  (--niramay-float-lift)
+    → bottom navigation          (h = --niramay-nav-height, md:hidden)
+
+   z-index scale (do not invent new values):
+     (none)  base content
+     z-10    sticky section headers
+     z-40    floating controls (AI trigger · soundscapes · install banner)
+     z-50    bottom nav · modals · sheets · toasts (nav always precedes
+             modals in DOM order so open modals paint above it)
+     z-[60]  header drawer (rendered before the nav in the DOM)
+     z-[90]  system-level disclaimer
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Occupied height of the mobile bottom navigation (matches the
+     nav's inner row height exactly; nav is hidden at ≥768px). */
+  --niramay-nav-height: 3.8125rem; /* 60px row + 1px hairline border */
+
+  /* Device safe areas (0 in normal browsers; real values on
+     notch/gesture-bar devices once viewportFit=cover is set). */
+  --niramay-safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Breathing room between stacked overlays. */
+  --niramay-float-gap: 0.75rem;
+
+  /* Total height that must stay clear above the viewport bottom
+     (nav + safe area) so no content hides behind fixed UI. */
+  --niramay-bottom-clearance: calc(var(--niramay-nav-height) + var(--niramay-safe-bottom));
+
+  /* Space reserved for the install banner while it is visible.
+     Written at runtime by FloatingInstallBanner (height + gap),
+     so the page can reserve its occupied space and the floating
+     controls can reposition above it — one source of truth. */
+  --niramay-dynamic-inset: 0px;
+
+  /* Bottom offset of the install banner itself (clears nav + safe area). */
+  --niramay-banner-lift: calc(var(--niramay-bottom-clearance) + var(--niramay-float-gap));
+
+  /* Bottom offset of floating controls (clears nav, safe area AND
+     the live banner footprint; collapses when the banner is gone). */
+  --niramay-float-lift: calc(var(--niramay-bottom-clearance) + var(--niramay-dynamic-inset) + var(--niramay-float-gap));
+
+  /* Page-content bottom padding: nav + safe area + live banner space. */
+  --niramay-content-inset: calc(var(--niramay-bottom-clearance) + var(--niramay-dynamic-inset));
+
+  /* Footprint of the AI trigger (for right-side toasts stacking above it). */
+  --niramay-assistant-space: 3.5rem;
+}
+
+/* Desktop: bottom nav is hidden — no reserved space needed. */
+@media (min-width: 768px) {
+  :root {
+    --niramay-nav-height: 0rem;
+    --niramay-safe-bottom: 0px;
+    --niramay-bottom-clearance: 0px;
+    --niramay-banner-lift: 1.5rem;
+    --niramay-float-lift: calc(1.5rem + var(--niramay-dynamic-inset) + var(--niramay-float-gap));
+    /* Reserve the desktop banner lift (1.5rem) + its height: the mobile
+       --niramay-dynamic-inset already contains height + one float-gap. */
+    --niramay-content-inset: calc(1.5rem + var(--niramay-dynamic-inset));
+  }
+}
+
+/* Mobile-safe modal heights: dvh tracks the dynamic viewport
+   (URL bar / keyboard) with a vh fallback for older browsers. */
+.niramay-modal-fit-85 { height: 85vh; max-height: 700px; }
+@supports (height: 1dvh) {
+  .niramay-modal-fit-85 { height: 85dvh; }
+}
+.niramay-modal-fit-90 { max-height: 90vh; }
+@supports (height: 1dvh) {
+  .niramay-modal-fit-90 { max-height: 90dvh; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    BASE
    ═══════════════════════════════════════════════════════════════ */
 @layer base {

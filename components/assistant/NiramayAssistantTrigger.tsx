@@ -8,12 +8,8 @@ import { NiramayLogo } from "@/components/brand/NiramayLogo";
 
 export const NiramayAssistantTrigger: React.FC = () => {
   const mounted = useMounted();
-  const {
-    isAssistantOpen,
-    setAssistantOpen,
-    languageMode,
-    installBannerVisible,
-  } = useNiramayStore();
+  const { isAssistantOpen, setAssistantOpen, languageMode } =
+    useNiramayStore();
   const currentMode = mounted ? languageMode : "bilingual";
   const isAs = currentMode === "as";
 
@@ -21,11 +17,7 @@ export const NiramayAssistantTrigger: React.FC = () => {
 
   return (
     <div
-      className={`fixed right-4 sm:right-6 z-40 no-print pointer-events-auto transition-all duration-300 ${
-        installBannerVisible
-          ? "bottom-[8.5rem] sm:bottom-[9.5rem]"
-          : "bottom-20 sm:bottom-24"
-      }`}
+      className="fixed right-4 sm:right-6 bottom-[var(--niramay-float-lift)] z-40 no-print pointer-events-auto transition-all duration-300"
     >
       <button
         type="button"

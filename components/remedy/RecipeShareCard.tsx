@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { Remedy } from "@/lib/schema";
 import { extractString } from "@/lib/utils";
 import { NiramayLogo } from "@/components/brand/NiramayLogo";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { Share2, Download, Check, X, Sparkles, AlertTriangle, ShieldCheck } from "lucide-react";
 
 interface Props {
@@ -17,6 +18,7 @@ export const RecipeShareCard: React.FC<Props> = ({
 }) => {
   const [generating, setGenerating] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
+  useBodyScrollLock(previewOpen);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [shared, setShared] = useState(false);
 

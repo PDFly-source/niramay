@@ -5,6 +5,7 @@ import { Remedy } from "@/lib/schema";
 import { extractString } from "@/lib/utils";
 import { useMounted } from "@/hooks/useMounted";
 import { LanguageMode } from "@/lib/i18n";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import {
   Mic,
   MicOff,
@@ -244,6 +245,8 @@ export const KitchenCookingMode: React.FC<Props> = ({
     const s = totalSecs % 60;
     return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
+
+  useBodyScrollLock(mounted);
 
   if (!mounted) return null;
 
