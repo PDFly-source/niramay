@@ -300,7 +300,9 @@ export default function SymptomsPage() {
                   )}
 
                   <p className="text-xs text-stone-600 mt-2 line-clamp-2 leading-relaxed">
-                    {symptom.description}
+                    {isAs
+                      ? symptom.description_assamese || symptom.description
+                      : symptom.description}
                   </p>
 
                   {/* Common Spices Preview */}

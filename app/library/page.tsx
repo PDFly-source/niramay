@@ -300,7 +300,7 @@ export default function LibraryPage() {
                       {rTitle}
                     </h4>
                     <div className="text-xs font-semibold text-emerald-800 mt-0.5">
-                      {rem.name_assamese}
+                      {isAs ? extractString(rem.name) : rem.name_assamese}
                     </div>
                     <div className="text-[11px] text-stone-500 mt-2 font-medium">
                       ~{rem.prepTimeMinutes} mins • {rem.difficulty || "Easy"}
