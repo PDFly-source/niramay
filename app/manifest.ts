@@ -2,32 +2,36 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
+// Base path injected by CI when deploying to GitHub Pages.
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    id: "/",
+    id: `${BASE_PATH}/`,
     name: "Niramay — Traditional Kitchen Remedies",
     short_name: "Niramay",
-    description: "Traditional Assamese & Desi kitchen-remedy assistant with age dosage and safety warnings.",
-    start_url: "/",
-    scope: "/",
+    description:
+      "Traditional Assamese & Desi kitchen-remedy companion with age-group dosage guidance, ingredient checker, and safety warnings.",
+    start_url: `${BASE_PATH}/`,
+    scope: `${BASE_PATH}/`,
     display: "standalone",
     background_color: "#FFF8F0",
-    theme_color: "#D97706",
+    theme_color: "#1B4332",
     icons: [
       {
-        src: "/icon.svg",
+        src: `${BASE_PATH}/icon.svg`,
         sizes: "any",
         type: "image/svg+xml",
         purpose: "any",
       },
       {
-        src: "/icon-192.png",
+        src: `${BASE_PATH}/icon-192.png`,
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/icon-512.png",
+        src: `${BASE_PATH}/icon-512.png`,
         sizes: "512x512",
         type: "image/png",
         purpose: "any",

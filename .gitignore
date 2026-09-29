@@ -1,7 +1,19 @@
+# dependencies
 node_modules/
+
+# next.js builds
 .next/
+.next_dev/
+out/
+
+# misc
 coverage/
 .DS_Store
 *.log
+__pycache__/
+*.pyc
+
+# env
 .env*
 !.env.example
+*.tsbuildinfo

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { SYMPTOM_CATEGORIES, symptomCategories } from "@/lib/data/symptoms";
 import { REMEDIES } from "@/lib/data/remedies";
@@ -59,6 +59,16 @@ const iconMap: Record<string, React.ElementType> = {
 export default function SymptomsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  // Honor ?category= deep-links (e.g. from the Interactive Body Map on Home).
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("category");
+    if (param && symptomCategories.some((c) => c.id === param)) {
+      // One-time deep-link sync; the URL is only readable post-hydration.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSelectedCategory(param);
+    }
+  }, []);
   const { languageMode } = useNiramayStore();
   const mounted = useMounted();
 

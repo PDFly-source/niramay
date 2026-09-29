@@ -31,7 +31,7 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     id: "stomach_pain",
     canonicalEn: "Stomach Pain & Abdominal Colic",
     canonicalAs: "পেটৰ বিষ আৰু কামোৰণি",
-    symptomSlug: "stomach-ache",
+    symptomSlug: "stomach-cramps",
     keywords: [
       // Romanized Assamese
       "pet", "pet tu", "petor", "pet bikh", "pet tu bikh", "petor bikh", "bikh hoi ase",
@@ -49,7 +49,7 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     id: "fever",
     canonicalEn: "Fever, Body Heat & Chills",
     canonicalAs: "জ্বৰ, গাৰ উত্তাপ আৰু কঁপনি",
-    symptomSlug: "fever",
+    symptomSlug: "mild-fever",
     keywords: [
       // Romanized Assamese
       "jor", "jwor", "jor hoi ase", "ga topa", "ga gorom", "koponi", "thanda laga",
@@ -81,7 +81,7 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     id: "cough",
     canonicalEn: "Cough & Chest Congestion",
     canonicalAs: "কাহ আৰু বুকুৰ কফ",
-    symptomSlug: "cough",
+    symptomSlug: "cough-dry",
     keywords: [
       // Romanized Assamese
       "kaha", "kaah", "kahi", "kah", "kahi thoka", "koph", "buku koph", "khok",
@@ -114,7 +114,7 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     id: "headache",
     canonicalEn: "Headache & Migraine",
     canonicalAs: "মূৰৰ বিষ আৰু আধকপালী",
-    symptomSlug: "headache",
+    symptomSlug: "headache-tension",
     keywords: [
       // Romanized Assamese
       "mur", "muror", "mur bikh", "muror bikh", "mur kamoroni", "adhmuriya",
@@ -163,7 +163,7 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     id: "skin_itch",
     canonicalEn: "Skin Itching, Rashes & Boils",
     canonicalAs: "ছালৰ খজুৱতি আৰু ফোঁহা",
-    symptomSlug: "skin-rashes",
+    symptomSlug: "dry-skin",
     keywords: [
       // Romanized Assamese
       "chali", "sal", "chalar", "khajuwati", "chokola", "foha", "khujuti",

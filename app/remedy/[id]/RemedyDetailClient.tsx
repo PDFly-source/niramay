@@ -1,6 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
+
+const RecipeShareCard = dynamic(
+  () => import("@/components/remedy/RecipeShareCard").then((m) => m.RecipeShareCard),
+  { ssr: false }
+);
 import Link from "next/link";
 import { Remedy } from "@/lib/schema";
 import { useNiramayStore } from "@/lib/store";
@@ -33,7 +39,6 @@ import {
 } from "lucide-react";
 import { UI_TRANSLATIONS, getLocalizedText, getDualText } from "@/lib/i18n";
 import { AudioReadout } from "@/components/remedy/AudioReadout";
-import { RecipeShareCard } from "@/components/remedy/RecipeShareCard";
 import { ServingAdjuster, scaleQuantity } from "@/components/remedy/ServingAdjuster";
 import { FamilyProfileSelector } from "@/components/family/FamilyProfileSelector";
 import { EmergencySpeedDial } from "@/components/emergency/EmergencySpeedDial";

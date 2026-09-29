@@ -236,7 +236,7 @@ export default function HomePage() {
               {isAs
                 ? "দৈনন্দিন ৰোগ আৰু শাৰীৰিক সমস্যাৰ বাবে প্ৰাচীন অসমীয়া আৰু ভাৰতীয় ঘৰুৱা নিৰাময়। আপোনাৰ পাকঘৰত মজুত থকা মছলা পৰীক্ষা কৰক, ৫-৮ খোজৰ প্ৰস্তুত প্ৰণালী আৰু বয়স অনুযায়ী সুৰক্ষিত মাত্ৰা জানক।"
                 : isEn
-                ? "Traditional Assamese & Indian kitchen remedies for everyday ailments. Check the ingredients you have at home, discover instant preparations, and follow clinically mindful age-group dosages."
+                ? "Traditional Assamese & Indian kitchen remedies for everyday ailments. Check the ingredients you have at home, discover instant preparations, and follow age-group dosage guidance."
                 : "Traditional Assamese & Indian kitchen remedies for everyday ailments with live pantry matching, 5–8 granular preparation steps, and clinical age-group dosages. (অসমীয়া আৰু ভাৰতীয় ঘৰুৱা চিকিৎসা)"}
             </p>
 

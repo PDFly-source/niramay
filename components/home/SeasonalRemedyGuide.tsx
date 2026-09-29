@@ -52,7 +52,7 @@ const SEASONS: SeasonData[] = [
       { nameEn: "Sewali Leaves", nameAs: "শেৱালী পাত", useEn: "Joint inflammation & seasonal fever", useAs: "বাত বিষ আৰু ঋতুজনিত জ্বৰ উপশম" },
       { nameEn: "Kaji Nemu", nameAs: "কাজী নেমু", useEn: "Alkalizing vitamin C hydration", useAs: "শৰীৰ শীতল ৰখা আৰু পাচন বৃদ্ধি" },
     ],
-    targetSymptomSlug: "low-immunity-frequent-illness",
+    targetSymptomSlug: "low-immunity",
   },
   {
     id: "barsha",

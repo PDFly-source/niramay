@@ -122,7 +122,7 @@ export const SeasonalHealthRadar: React.FC = () => {
   let alertTitleAs = "ঋতুজনিত প্ৰতিৰোধমূলক যত্ন";
   let alertDescEn = "Moderate ambient humidity. Maintain good hydration with tulsi and coriander.";
   let alertDescAs = "সাধাৰণ বতৰ। তুলসী আৰু ধনীয়া পানীৰে পাচন সবল ৰাখক।";
-  let targetSlug = "low-immunity-frequent-illness";
+  let targetSlug = "low-immunity";
   let isSevereAlert = false;
 
   if (weather.rain > 1 || weather.humidity > 80) {
@@ -133,7 +133,7 @@ export const SeasonalHealthRadar: React.FC = () => {
       "High atmospheric dampness elevates risk of amoebiasis, loose motions, and water-borne dysentery. Boil all drinking water; drink warm Paederia (Bhedailota) or ginger broth.";
     alertDescAs =
       "সেমেকা বতৰ আৰু বৰষুণে ঘোলা পানীৰ আমাশয় আৰু পেটৰ বিষ বৃদ্ধি কৰে। সদায় উতলোৱা পানী খাওক; ভেদাইলতাৰ পাতল ঝোল আৰু আদা-জৱাইনৰ পানী উপকাৰী।";
-    targetSlug = "stomach-ache";
+    targetSlug = "stomach-cramps";
   } else if (weather.temperature < 18) {
     isSevereAlert = true;
     alertTitleEn = "Winter Bronchial & Sinus Chill Alert";

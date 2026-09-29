@@ -63,6 +63,7 @@ interface NiramayState {
   familyProfile: FamilyProfileType;
   servingCount: number;
   isAssistantOpen: boolean;
+  installBannerVisible: boolean;
   completedHabitsByDate: Record<string, string[]>;
 
   // New Feature 3: Dosha / Prakriti Profile
@@ -92,6 +93,7 @@ interface NiramayState {
   setFamilyProfile: (profile: FamilyProfileType) => void;
   setServingCount: (count: number) => void;
   setAssistantOpen: (open: boolean) => void;
+  setInstallBannerVisible: (visible: boolean) => void;
   toggleHabitForDate: (dateStr: string, habitId: string) => void;
 
   setDoshaProfile: (profile: string | null, scores?: DoshaScores) => void;
@@ -142,11 +144,12 @@ export const useNiramayStore = create<NiramayState>()(
         "assamese-tulsi-ginger-black-pepper-kadha",
         "ginger-ajwain-acidity-water",
       ],
-      hasAcceptedDisclaimer: true,
+      hasAcceptedDisclaimer: false,
       searchQuery: "",
       familyProfile: "adult",
       servingCount: 1,
       isAssistantOpen: false,
+      installBannerVisible: false,
       completedHabitsByDate: {},
 
       doshaProfile: null,
@@ -229,6 +232,10 @@ export const useNiramayStore = create<NiramayState>()(
 
       setAssistantOpen: (open: boolean) => {
         set({ isAssistantOpen: open });
+      },
+
+      setInstallBannerVisible: (visible: boolean) => {
+        set({ installBannerVisible: visible });
       },
 
       toggleHabitForDate: (dateStr: string, habitId: string) => {

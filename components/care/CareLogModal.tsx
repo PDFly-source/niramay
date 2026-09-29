@@ -14,7 +14,6 @@ import {
   ShieldAlert,
   ArrowRight,
 } from "lucide-react";
-import { generateDoctorSummaryPdf } from "@/components/care/DoctorSummaryPdf";
 import { EmergencySpeedDial } from "@/components/emergency/EmergencySpeedDial";
 
 interface Props {
@@ -130,7 +129,12 @@ export const CareLogModal: React.FC<Props> = ({
 
                 <button
                   type="button"
-                  onClick={() => generateDoctorSummaryPdf(activeLog)}
+                  onClick={async () => {
+                    const { generateDoctorSummaryPdf } = await import(
+                      "@/components/care/DoctorSummaryPdf"
+                    );
+                    generateDoctorSummaryPdf(activeLog);
+                  }}
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-white shadow-xs transition self-start sm:self-center"
                 >
                   <Download className="w-3.5 h-3.5" />

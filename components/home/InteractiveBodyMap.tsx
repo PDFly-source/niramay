@@ -35,7 +35,7 @@ const BODY_REGIONS: BodyRegion[] = [
     nameEn: "Head, Mind & Sinus",
     nameAs: "মূৰ, মগজু আৰু চাইনাছ",
     symptomSlug: "headache-tension",
-    categoryFilter: "mental-sleep",
+    categoryFilter: "sleep-stress",
     descriptionEn: "Headaches, migraines, sinusitis block, brain fog, and tension relief.",
     descriptionAs: "মূৰৰ বিষ, আধকপালী, চাইনাছ আৰু মানসিক ক্লান্তিৰ প্ৰাকৃতিক উপশম।",
     commonAilments: [
@@ -82,8 +82,8 @@ const BODY_REGIONS: BodyRegion[] = [
     id: "skin",
     nameEn: "Skin, Scalp & Wounds",
     nameAs: "ছাল, চুলি আৰু ক্ষতস্থান",
-    symptomSlug: "skin-itching-rashes",
-    categoryFilter: "skin-hair",
+    symptomSlug: "dry-skin",
+    categoryFilter: "skin",
     descriptionEn: "Allergic rashes, eczema, cuts, minor burns, boils, and dandruff.",
     descriptionAs: "খজুৱতি, ফোহা, সামান্য পোৰা ঘা আৰু ছালৰ পৰিষ্কাৰক লেপ।",
     commonAilments: [
@@ -99,7 +99,7 @@ const BODY_REGIONS: BodyRegion[] = [
     nameEn: "Joints, Spine & Muscles",
     nameAs: "গাঁঠি, কঁকাল আৰু পেশী",
     symptomSlug: "joint-pain",
-    categoryFilter: "joint-muscle",
+    categoryFilter: "pain",
     descriptionEn: "Arthritis, knee pain, lower backache, sprains, and stiffness.",
     descriptionAs: "গাঁঠিৰ বিষ, আঠুৰ বিষ, কঁকালৰ বিষ আৰু পেশীৰ মচকা খোৱা।",
     commonAilments: [
@@ -114,8 +114,8 @@ const BODY_REGIONS: BodyRegion[] = [
     id: "immunity",
     nameEn: "Vitality, Fever & Immunity",
     nameAs: "সামগ্ৰিক স্বাস্থ্য আৰু ৰোগ প্ৰতিৰোধ",
-    symptomSlug: "low-immunity-frequent-illness",
-    categoryFilter: "immunity-seasonal",
+    symptomSlug: "low-immunity",
+    categoryFilter: "seasonal",
     descriptionEn: "Mild seasonal fever, chronic fatigue, low vitality, and detox.",
     descriptionAs: "মৃদু জ্বৰ, শৰীৰৰ দুৰ্বলতা আৰু ঋতুজনিত প্ৰতিৰোধ ক্ষমতা।",
     commonAilments: [

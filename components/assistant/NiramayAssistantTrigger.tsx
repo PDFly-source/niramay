@@ -7,14 +7,25 @@ import { Bot, Sparkles } from "lucide-react";
 
 export const NiramayAssistantTrigger: React.FC = () => {
   const mounted = useMounted();
-  const { isAssistantOpen, setAssistantOpen, languageMode } = useNiramayStore();
+  const {
+    isAssistantOpen,
+    setAssistantOpen,
+    languageMode,
+    installBannerVisible,
+  } = useNiramayStore();
   const currentMode = mounted ? languageMode : "bilingual";
   const isAs = currentMode === "as";
 
   if (!mounted || isAssistantOpen) return null;
 
   return (
-    <div className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-40 no-print pointer-events-auto">
+    <div
+      className={`fixed right-4 sm:right-6 z-40 no-print pointer-events-auto transition-all duration-300 ${
+        installBannerVisible
+          ? "bottom-[8.5rem] sm:bottom-[9.5rem]"
+          : "bottom-20 sm:bottom-24"
+      }`}
+    >
       <button
         type="button"
         onClick={() => setAssistantOpen(true)}

@@ -46,7 +46,7 @@ export const Footer: React.FC = () => {
               {isAs
                 ? "“ঘৰৰ মছলাত, স্বস্তি নিৰাময়” — অসমীয়া আৰু ভাৰতীয় পৰম্পৰাগত পাকঘৰৰ চিকিৎসা জ্ঞান, বয়স অনুযায়ী মাত্ৰা আৰু বিপদ সংকেতৰ সৈতে।"
                 : currentMode === "en"
-                ? "“Ghoror mosolat, sasti niramoy” — Rediscover centuries-old Assamese and Indian kitchen wisdom with clinically validated age dosages, spice safety warnings, and live pantry matching."
+                ? "“Ghoror mosolat, sasti niramoy” — Rediscover centuries-old Assamese and Indian kitchen wisdom with age-group dosage guidance, spice safety warnings, and live pantry matching."
                 : "“Ghoror mosolat, sasti niramoy” (ঘৰৰ মছলাত, স্বস্তি নিৰাময়) — Centuries-old Assamese and Indian kitchen wisdom with age dosages, safety warnings, and pantry matching."}
             </p>
             <div className="flex items-center gap-2 text-xs text-amber-400/90 pt-1">

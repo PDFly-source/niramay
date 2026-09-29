@@ -8,8 +8,12 @@ import { NiramayLogo } from "@/components/brand/NiramayLogo";
 
 export const FloatingInstallBanner: React.FC = () => {
   const mounted = useMounted();
-  const { languageMode, pwaBannerDismissedUntil, dismissPwaBanner } =
-    useNiramayStore();
+  const {
+    languageMode,
+    pwaBannerDismissedUntil,
+    dismissPwaBanner,
+    setInstallBannerVisible,
+  } = useNiramayStore();
   const isAs = mounted && languageMode === "as";
 
   const [installPrompt, setInstallPrompt] = useState<any>(null);
@@ -17,11 +21,6 @@ export const FloatingInstallBanner: React.FC = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-
-    // Check if dismissed recently
-    if (pwaBannerDismissedUntil && Date.now() < pwaBannerDismissedUntil) {
-      return;
-    }
 
     const handler = (e: any) => {
       e.preventDefault();
@@ -45,6 +44,11 @@ export const FloatingInstallBanner: React.FC = () => {
       clearTimeout(timer);
     };
   }, [pwaBannerDismissedUntil]);
+
+  useEffect(() => {
+    setInstallBannerVisible(mounted && isVisible);
+    return () => setInstallBannerVisible(false);
+  }, [mounted, isVisible, setInstallBannerVisible]);
 
   const handleInstallClick = async () => {
     if (installPrompt) {

@@ -1,11 +1,20 @@
 import type { NextConfig } from "next";
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
+// Base path is empty for local development and "/niramay" when the site is
+// deployed to GitHub Pages (project site). The CI workflow injects the env var.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function nextConfig(phase: string): NextConfig {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
   return {
-    output: "standalone",
+    // Static export: the site is served from GitHub Pages (no Node.js server).
+    output: "export",
+    basePath,
+    // GitHub Pages serves static files; trailing slashes keep directory-style
+    // routing consistent and avoid 404s on direct navigation.
+    trailingSlash: true,
     distDir: isDev ? ".next_dev" : ".next",
     reactStrictMode: true,
     devIndicators: false,
@@ -15,20 +24,13 @@ export default function nextConfig(phase: string): NextConfig {
     typescript: {
       ignoreBuildErrors: false,
     },
+    // GitHub Pages cannot run the Next.js image optimization server.
     images: {
-      remotePatterns: [
-        {
-          protocol: "https",
-          hostname: "picsum.photos",
-          port: "",
-          pathname: "/**",
-        },
-      ],
+      unoptimized: true,
     },
     transpilePackages: ["motion"],
     webpack: (config, { dev }) => {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modify—file watching is disabled to prevent flickering during agent edits.
       if (dev && process.env.DISABLE_HMR === "true") {
         config.watchOptions = {
           ignored: /.*/,
@@ -38,4 +40,3 @@ export default function nextConfig(phase: string): NextConfig {
     },
   };
 }
-

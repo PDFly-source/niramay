@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { toPng } from "html-to-image";
 import { Remedy } from "@/lib/schema";
 import { extractString } from "@/lib/utils";
 import { NiramayLogo } from "@/components/brand/NiramayLogo";
@@ -32,6 +31,8 @@ export const RecipeShareCard: React.FC<Props> = ({
     setGenerating(true);
 
     try {
+      // Lazy-load the imaging library only when a share is requested.
+      const { toPng } = await import("html-to-image");
       // Generate PNG data URL
       const dataUrl = await toPng(cardRef.current, {
         cacheBust: true,
