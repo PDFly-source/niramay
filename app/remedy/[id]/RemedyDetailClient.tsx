@@ -246,7 +246,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
                 setIsCareLogOpen(true);
               }}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-200 transition"
-              title="Track progress and export clinical summary"
+              title="Track progress and export a symptom summary"
             >
               <FileText className="w-4 h-4 text-stone-600" />
               <span>{isAs ? "স্বাস্থ্য দিনলিপি" : "Care Log"}</span>
