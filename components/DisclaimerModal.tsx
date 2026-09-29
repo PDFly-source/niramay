@@ -69,7 +69,7 @@ export const DisclaimerModal: React.FC = () => {
               </span>
             </p>
             <p className="flex items-start gap-2.5">
-              <HeartPulse className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+              <HeartPulse className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
               <span>
                 {isAs
                   ? "গৰ্ভাৱস্থা, শিশু, বয়স্ক আৰু ৰোগীৰ বাবে প্ৰতিটো উপচাৰৰ সতৰ্কতা ভালকৈ পঢ়ি লওক।"

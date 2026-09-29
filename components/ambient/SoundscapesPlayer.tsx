@@ -131,16 +131,16 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
     <>
       {/* Contextual Suggestion Banner for Insomnia/Stress Remedy Pages */}
       {suggestedAilment && !isPromptDismissed && !isPlaying && (
-        <div className="my-6 p-4 rounded-3xl bg-gradient-to-r from-indigo-900 to-stone-900 text-onbrand shadow-lg border border-indigo-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in">
+        <div className="my-6 p-4 rounded-3xl bg-gradient-to-r from-amber-900 to-stone-900 text-onbrand shadow-lg border border-amber-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-indigo-500/30 text-indigo-300 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-amber-500/30 text-amber-300 flex items-center justify-center shrink-0">
               <Sparkles className="w-5 h-5 text-amber-300" />
             </div>
             <div>
               <div className="text-xs sm:text-sm font-bold text-amber-200">
                 {isAs ? "শান্ত নিদ্ৰাৰ বাবে প্ৰাকৃতিক শব্দপট" : "Calming Sleep Soundscape"}
               </div>
-              <p className="text-xs text-indigo-200/90 mt-0.5">
+              <p className="text-xs text-amber-200/90 mt-0.5">
                 {isAs
                   ? "টোপনি আৰু মানসিক চাপৰ উপশমৰ বাবে বৰষুণ বা বাঁহীৰ মৃদু সুৰ শুনক।"
                   : "Play gentle monsoon rain, Brahmaputra stream, or bamboo flute while this remedy takes effect."}
@@ -159,7 +159,7 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
             </button>
             <button
               onClick={() => setIsPromptDismissed(true)}
-              className="p-2 text-indigo-300 hover:text-onbrand rounded-xl transition"
+              className="p-2 text-amber-300 hover:text-onbrand rounded-xl transition"
               title="Dismiss"
             >
               <X className="w-4 h-4" />

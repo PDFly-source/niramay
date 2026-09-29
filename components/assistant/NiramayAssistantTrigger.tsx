@@ -3,7 +3,8 @@
 import React from "react";
 import { useNiramayStore } from "@/lib/store";
 import { useMounted } from "@/hooks/useMounted";
-import { Bot, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import { NiramayLogo } from "@/components/brand/NiramayLogo";
 
 export const NiramayAssistantTrigger: React.FC = () => {
   const mounted = useMounted();
@@ -32,9 +33,7 @@ export const NiramayAssistantTrigger: React.FC = () => {
         className="group relative flex items-center gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-onbrand rounded-2xl shadow-xl hover:shadow-2xl border border-amber-300/40 transition-all transform hover:-translate-y-0.5 active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus:ring-2 focus:ring-amber-500"
         aria-label="Open Niramay AI Assistant"
       >
-        <div className="w-7 h-7 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
-          <Bot className="w-4 h-4 text-amber-100 group-hover:scale-110 transition-transform" />
-        </div>
+        <NiramayLogo size={28} className="group-hover:scale-110 transition-transform ring-amber-300/40" />
         <div className="text-left">
           <div className="text-xs font-serif font-black leading-tight flex items-center gap-1">
             <span>Niramay AI</span>

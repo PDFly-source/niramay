@@ -144,14 +144,14 @@ function AmbientSoundsMenuRow() {
           <div
             className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
               isPlaying
-                ? "bg-indigo-600 text-onbrand shadow-sm ring-2 ring-indigo-400/50"
-                : "bg-indigo-50 text-indigo-700"
+                ? "bg-amber-600 text-onbrand shadow-sm ring-2 ring-amber-400/50"
+                : "bg-amber-50 text-amber-700"
             }`}
           >
             <Music className={`w-4 h-4 ${isPlaying ? "animate-pulse" : ""}`} />
           </div>
           <div>
-            <div className="text-sm font-bold text-stone-900 group-hover:text-indigo-800 flex items-center gap-2">
+            <div className="text-sm font-bold text-stone-900 group-hover:text-amber-800 flex items-center gap-2">
               <span>{isAs ? "🎵 শান্ত শব্দপট (Ambient Sounds)" : "🎵 Ambient Sounds"}</span>
               {isPlaying && (
                 <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full border border-emerald-300 animate-pulse">
@@ -502,7 +502,7 @@ export default function MenuPage() {
             className="flex items-center justify-between py-3 hover:text-amber-800 group"
           >
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
                 <BookHeart className="w-4 h-4" />
               </div>
               <div>

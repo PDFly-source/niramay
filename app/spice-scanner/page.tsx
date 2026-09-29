@@ -264,8 +264,8 @@ export default function SpiceScannerPage() {
 
       {/* Header */}
       <div className="max-w-2xl mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-950 text-xs font-bold mb-2">
-          <Sparkles className="w-3.5 h-3.5 text-orange-700" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-950 text-xs font-bold mb-2">
+          <Sparkles className="w-3.5 h-3.5 text-amber-700" />
           <span>{isAs ? "১০০% ডিভাইচতে এআই চিনাক্তকৰণ" : "100% On-Device AI Vision"}</span>
         </div>
         <h1 className="text-2xl sm:text-4xl font-serif font-black text-stone-900">

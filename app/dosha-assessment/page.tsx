@@ -254,12 +254,12 @@ export default function DoshaAssessmentPage() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-center">
-                  <div className="text-xs font-bold text-rose-900 flex items-center justify-center gap-1">
-                    <Flame className="w-3.5 h-3.5 text-rose-700" />
+                <div className="p-3.5 rounded-2xl bg-red-50 border border-red-200 text-center">
+                  <div className="text-xs font-bold text-red-900 flex items-center justify-center gap-1">
+                    <Flame className="w-3.5 h-3.5 text-red-700" />
                     <span>Pitta (অগ্নি)</span>
                   </div>
-                  <div className="text-2xl font-mono font-black text-rose-800 mt-1">
+                  <div className="text-2xl font-mono font-black text-red-800 mt-1">
                     {doshaScores.pitta}/10
                   </div>
                 </div>

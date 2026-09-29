@@ -8,13 +8,13 @@ import { analyzeUserQuery, AssistantAnalysisResult } from "@/lib/assistant";
 import { Remedy } from "@/lib/schema";
 import { extractString } from "@/lib/utils";
 import { EmergencySpeedDial } from "@/components/emergency/EmergencySpeedDial";
+import { NiramayLogo } from "@/components/brand/NiramayLogo";
 import {
   Mic,
   MicOff,
   Send,
   X,
   Sparkles,
-  Bot,
   AlertTriangle,
   ArrowRight,
   ShieldAlert,
@@ -198,9 +198,7 @@ export const NiramayAssistantModal: React.FC = () => {
         {/* Header */}
         <div className="px-5 py-4 bg-gradient-to-r from-amber-800 to-emerald-900 text-onbrand flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-              <Bot className="w-5 h-5 text-amber-200" />
-            </div>
+            <NiramayLogo size={40} className="ring-amber-300/40" />
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-serif font-black text-base">

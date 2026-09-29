@@ -50,7 +50,7 @@ export default function LibraryPage() {
       descEn: "Traditional guidelines on diet, bitter tonics (তিতাপাত), and disease prevention throughout the year.",
       descAs: "ব'হাগত তিতা আৰু জেঠত টেঙাৰ পৰম্পৰাগত নিয়ম আৰু ডাকৰ বচন।",
       href: "/ritucharya",
-      color: "from-teal-700 to-emerald-800",
+      color: "from-amber-700 to-emerald-800",
     },
     {
       id: "fg_garden",
@@ -61,7 +61,7 @@ export default function LibraryPage() {
       descEn: "Growing Tulsi, Manimuni, Tengesi, and Pasotia in pots or dooryard mounds with zero chemical pesticides.",
       descAs: "তুলসীৰ ভেটি, মানিমুনিৰ সেমেকা মাটি আৰু পচতীয়াৰ যত্নৰ ব্যৱহাৰিক নিৰ্দেশনা।",
       href: "/kitchen-garden",
-      color: "from-emerald-800 to-lime-800",
+      color: "from-emerald-500 to-emerald-700",
     },
     {
       id: "fg_habits",
@@ -72,7 +72,7 @@ export default function LibraryPage() {
       descEn: "Warm water ritual (Ushnodaka), tongue scraping, and post-dinner 100-step stroll (Shatapadi).",
       descAs: "কুহুমীয়া পানী, জিভা পৰিষ্কাৰ আৰু নিশাচৰ্যাৰ ফলপ্ৰসূ দৈনন্দিন অভ্যাস।",
       href: "/daily-habits",
-      color: "from-amber-700 to-orange-800",
+      color: "from-amber-500 to-amber-700",
     },
   ];
 

@@ -18,7 +18,7 @@ export const EmergencySpeedDial: React.FC<Props> = ({ compact = false, className
 
   return (
     <div
-      className={`bg-gradient-to-r from-red-600 to-rose-700 text-onbrand rounded-2xl ${
+      className={`bg-gradient-to-r from-red-600 to-red-800 text-onbrand rounded-2xl ${
         compact ? "p-2.5 sm:p-3" : "p-4 sm:p-5"
       } shadow-md border border-red-500/80 ${className}`}
     >

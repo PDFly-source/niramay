@@ -70,8 +70,8 @@ export const metadata: Metadata = {
     title: "Niramay",
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/apple-touch-icon.png",
+    icon: `${BASE_PATH}/icon-192.png`,
+    apple: `${BASE_PATH}/apple-touch-icon.png`,
   },
   openGraph: {
     title: "Niramay — Traditional Kitchen Remedies Hub",

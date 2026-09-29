@@ -604,10 +604,10 @@ export const RemedyDetailClient: React.FC<Props> = ({
 
           {/* Maternal Warning when Pregnancy profile is active */}
           {familyProfile === "pregnancy" && (
-            <div className="mb-6 p-4 rounded-2xl bg-pink-50 border-2 border-pink-300 text-pink-950 flex items-start gap-3">
+            <div className="mb-6 p-4 rounded-2xl bg-red-50 border-2 border-red-300 text-red-950 flex items-start gap-3">
               <span className="text-xl">🤰</span>
               <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-pink-900">
+                <div className="text-xs font-bold uppercase tracking-wider text-red-900">
                   {isAs ? "মাতৃ আৰু গৰ্ভাৱস্থাৰ বিশেষ সাৱধানতা" : "Maternal & Pregnancy Safety Notice"}
                 </div>
                 <p className="text-xs text-stone-800 mt-1 leading-relaxed">

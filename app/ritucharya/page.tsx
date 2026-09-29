@@ -86,7 +86,7 @@ const RITUCHARYA_SEASONS: SeasonDetail[] = [
     },
     recommendedSymptomSlugs: ["common-cold", "seasonal-allergies", "skin-rashes"],
     featuredRemedyIds: ["assamese-tulsi-ginger-black-pepper-kadha", "turmeric-milk-respiratory"],
-    accentColor: "from-emerald-700 to-teal-800",
+    accentColor: "from-emerald-600 to-emerald-800",
     icon: Sparkles,
   },
   {
@@ -127,7 +127,7 @@ const RITUCHARYA_SEASONS: SeasonDetail[] = [
     },
     recommendedSymptomSlugs: ["acidity", "indigestion", "headache-tension"],
     featuredRemedyIds: ["ginger-ajwain-acidity-water", "cumin-coriander-fennel-ccf-tea"],
-    accentColor: "from-amber-600 to-orange-700",
+    accentColor: "from-amber-500 to-amber-700",
     icon: Sun,
   },
   {
@@ -168,7 +168,7 @@ const RITUCHARYA_SEASONS: SeasonDetail[] = [
     },
     recommendedSymptomSlugs: ["diarrhea-dysentery", "indigestion", "bloating-gas"],
     featuredRemedyIds: ["bhedailota-fish-broth-gut-repair", "ajwain-black-salt-digestive-water"],
-    accentColor: "from-blue-700 to-indigo-900",
+    accentColor: "from-emerald-800 to-emerald-950",
     icon: CloudRain,
   },
   {
@@ -209,7 +209,7 @@ const RITUCHARYA_SEASONS: SeasonDetail[] = [
     },
     recommendedSymptomSlugs: ["joint-pain", "fever-viral", "skin-rashes"],
     featuredRemedyIds: ["haldi-salt-warm-gargle", "spiced-nutmeg-cardamom-bedtime-milk"],
-    accentColor: "from-teal-700 to-emerald-900",
+    accentColor: "from-amber-700 to-emerald-900",
     icon: Wind,
   },
   {
@@ -252,7 +252,7 @@ const RITUCHARYA_SEASONS: SeasonDetail[] = [
     },
     recommendedSymptomSlugs: ["common-cold", "sore-throat", "joint-pain", "headache-tension"],
     featuredRemedyIds: ["assamese-tulsi-ginger-black-pepper-kadha", "spiced-nutmeg-cardamom-bedtime-milk"],
-    accentColor: "from-sky-800 to-indigo-950",
+    accentColor: "from-stone-700 to-emerald-950",
     icon: ThermometerSnowflake,
   },
 ];
@@ -461,7 +461,7 @@ export default function RitucharyaPage() {
 
         {/* Column 3: Shielding Herbs & Teas */}
         <div className="bg-white rounded-3xl p-6 border border-amber-200/80 shadow-xs">
-          <div className="w-10 h-10 rounded-2xl bg-rose-100 text-rose-800 flex items-center justify-center font-bold mb-4">
+          <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold mb-4">
             🫖
           </div>
           <h3 className="text-base font-bold text-stone-900 mb-2">

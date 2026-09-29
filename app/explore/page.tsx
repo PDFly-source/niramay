@@ -39,7 +39,7 @@ export default function ExplorePage() {
       descAs: "কেমেৰাৰে মছলাৰ ফটো লওক; একেলগে একাধিক মছলা চিনাক্ত কৰি তৎকালীন বিধান জানক।",
       badgeEn: "New AI Tool",
       badgeAs: "নতুন এআই",
-      accent: "from-amber-600 to-orange-700",
+      accent: "from-amber-600 to-amber-800",
       isNew: true,
     },
     {
@@ -52,7 +52,7 @@ export default function ExplorePage() {
       descAs: "১০টা প্ৰশ্নৰ আয়ুৰ্বেদিক কুইজেৰে আপোনাৰ বাত, পিত্ত বা কফ প্ৰকৃতি জানক।",
       badgeEn: doshaProfile ? `Dominant: ${doshaProfile}` : "Personalize",
       badgeAs: doshaProfile ? `প্ৰকৃতি: ${doshaProfile}` : "পৰীক্ষা কৰক",
-      accent: "from-emerald-700 to-teal-800",
+      accent: "from-emerald-700 to-emerald-900",
       isNew: true,
     },
     {
@@ -65,7 +65,7 @@ export default function ExplorePage() {
       descAs: "অসমৰ ৫২+ বিধ থলুৱা বনৌষধিৰ পাত স্কেন কৰি পৰম্পৰাগত প্ৰয়োগ আৰু বিধান পঢ়ক।",
       badgeEn: "52+ Species",
       badgeAs: "৫২+ বনৌষধি",
-      accent: "from-emerald-600 to-green-700",
+      accent: "from-emerald-600 to-emerald-800",
     },
     {
       id: "assistant",
@@ -78,7 +78,7 @@ export default function ExplorePage() {
       descAs: "কণ্ঠ আৰু পাঠ্যৰে আপোনাৰ সমস্যা বৰ্ণনা কৰক; পলকতে সঠিক উপচাৰ জানক।",
       badgeEn: "100% Local",
       badgeAs: "১০০% অফলাইন",
-      accent: "from-amber-700 to-yellow-800",
+      accent: "from-amber-500 to-amber-700",
     },
     {
       id: "body_map",
@@ -90,7 +90,7 @@ export default function ExplorePage() {
       descAs: "শৰীৰৰ অংশত স্পৰ্শ কৰি পোনে পোনে সম্পৰ্কিত লক্ষণ আৰু উপচাৰ বিচাৰক।",
       badgeEn: "Visual Triage",
       badgeAs: "দৰ্শনভিত্তিক",
-      accent: "from-blue-600 to-indigo-700",
+      accent: "from-emerald-800 to-amber-900",
     },
     {
       id: "ritucharya",
@@ -102,7 +102,7 @@ export default function ExplorePage() {
       descAs: "অসমৰ ঋতু অনুসাৰে পথ্য, ডাকৰ বচন আৰু সংক্ৰমণ প্ৰতিৰোধী বনৌষধি নিৰ্দেশনা।",
       badgeEn: "Seasonal",
       badgeAs: "ঋতু অনুযায়ী",
-      accent: "from-teal-700 to-cyan-800",
+      accent: "from-amber-700 to-emerald-800",
     },
     {
       id: "kitchen_garden",
@@ -114,7 +114,7 @@ export default function ExplorePage() {
       descAs: "বাৰীৰ চুকত বা টাবত ঔষধীয় গছ ৰোপণ আৰু জৈৱিক যত্নৰ ব্যৱহাৰিক দিহা।",
       badgeEn: "Home Planting",
       badgeAs: "ঘৰুৱা বাগিচা",
-      accent: "from-emerald-800 to-lime-800",
+      accent: "from-emerald-500 to-emerald-700",
     },
     {
       id: "aitas_diha",
@@ -126,7 +126,7 @@ export default function ExplorePage() {
       descAs: "আইতা বা বয়োবৃদ্ধৰ কণ্ঠস্বৰ আৰু পুৰণি দিহা সাঁচি ৰখাৰ ব্যক্তিগত দিনলিপি।",
       badgeEn: "Voice Notes",
       badgeAs: "কণ্ঠলিপি",
-      accent: "from-rose-700 to-red-800",
+      accent: "from-amber-700 to-amber-900",
     },
     {
       id: "fridge_card",
@@ -138,7 +138,7 @@ export default function ExplorePage() {
       descAs: "পাকঘৰৰ ফ্ৰিজত লগাই থব পৰা জৰুৰীকালীন প্ৰাথমিক উপচাৰ কাৰ্ড।",
       badgeEn: "Printable PDF",
       badgeAs: "প্ৰিণ্টযোগ্য",
-      accent: "from-stone-700 to-stone-900",
+      accent: "from-red-700 to-red-900",
     },
   ];
 

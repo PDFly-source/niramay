@@ -32,7 +32,7 @@ export const ActiveTreatmentCourseWidget: React.FC = () => {
   );
 
   return (
-    <div className="bg-gradient-to-br from-amber-50 to-orange-50/80 border-2 border-amber-300 rounded-3xl p-5 sm:p-6 shadow-md mb-8 animate-in fade-in">
+    <div className="bg-gradient-to-br from-amber-50 to-amber-100/80 border-2 border-amber-300 rounded-3xl p-5 sm:p-6 shadow-md mb-8 animate-in fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-amber-200">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-2xl bg-amber-600 text-onbrand flex items-center justify-center font-bold shadow-xs">

@@ -93,7 +93,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
                   </div>
                   <p>
                     Tap the <strong className="text-stone-900">Share</strong> button{" "}
-                    <Share2 className="w-4 h-4 inline-block text-blue-600" /> in the Safari navigation bar.
+                    <Share2 className="w-4 h-4 inline-block text-amber-700" /> in the Safari navigation bar.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">

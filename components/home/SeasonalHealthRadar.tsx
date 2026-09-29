@@ -195,7 +195,7 @@ export const SeasonalHealthRadar: React.FC = () => {
             💧 {weather.humidity}%
           </span>
           {weather.rain > 0 && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-blue-100 text-blue-900 text-xs font-bold font-mono">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-stone-100 text-stone-800 text-xs font-bold font-mono">
               🌧️ {weather.rain}mm
             </span>
           )}
