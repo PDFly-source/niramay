@@ -333,7 +333,7 @@ export default function RitucharyaPage() {
               onClick={() => setSelectedSeasonId(season.id)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer border ${
                 isSelected
-                  ? "bg-amber-700 text-white border-amber-800 shadow-md ring-2 ring-amber-600/30"
+                  ? "bg-amber-700 text-onbrand border-amber-800 shadow-md ring-2 ring-amber-600/30"
                   : "bg-white text-stone-700 border-amber-200 hover:bg-amber-50"
               }`}
             >
@@ -357,7 +357,7 @@ export default function RitucharyaPage() {
 
       {/* Hero Banner for Selected Season */}
       <div
-        className={`bg-gradient-to-r ${currentSeason.accentColor} text-white rounded-3xl p-6 sm:p-10 shadow-xl mb-10 border border-white/10 relative overflow-hidden`}
+        className={`bg-gradient-to-r ${currentSeason.accentColor} text-onbrand rounded-3xl p-6 sm:p-10 shadow-xl mb-10 border border-white/10 relative overflow-hidden`}
       >
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div className="space-y-2 max-w-2xl">
@@ -376,12 +376,12 @@ export default function RitucharyaPage() {
               {isAs ? currentSeason.nameAs : currentSeason.nameEn}
             </h2>
 
-            <p className="text-sm sm:text-base text-white/90 leading-relaxed font-sans">
+            <p className="text-sm sm:text-base text-onbrand/90 leading-relaxed font-sans">
               {isAs ? currentSeason.nature.as : currentSeason.nature.en}
             </p>
 
             <div className="pt-2 text-xs font-semibold text-amber-200 flex items-center gap-2">
-              <span className="font-bold text-white">
+              <span className="font-bold text-onbrand">
                 {isAs ? "প্ৰভাৱিত দোষ:" : "Dosha Dynamics:"}
               </span>
               <span>{isAs ? currentSeason.dosha.as : currentSeason.dosha.en}</span>
@@ -394,10 +394,10 @@ export default function RitucharyaPage() {
               <Sparkles className="w-3.5 h-3.5" />
               <span>{isAs ? "পৰম্পৰাগত ডাকৰ বচন" : "Heritage Dakor Boson"}</span>
             </div>
-            <p className="text-xs sm:text-sm font-serif font-bold text-white leading-snug">
+            <p className="text-xs sm:text-sm font-serif font-bold text-onbrand leading-snug">
               &ldquo;{currentSeason.proverb.text}&rdquo;
             </p>
-            <p className="text-[11px] text-white/80 mt-1.5 leading-relaxed font-sans">
+            <p className="text-[11px] text-onbrand/80 mt-1.5 leading-relaxed font-sans">
               {isAs
                 ? currentSeason.proverb.meaningAs
                 : currentSeason.proverb.meaningEn}

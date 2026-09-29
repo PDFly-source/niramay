@@ -144,7 +144,7 @@ function AmbientSoundsMenuRow() {
           <div
             className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
               isPlaying
-                ? "bg-indigo-600 text-white shadow-sm ring-2 ring-indigo-400/50"
+                ? "bg-indigo-600 text-onbrand shadow-sm ring-2 ring-indigo-400/50"
                 : "bg-indigo-50 text-indigo-700"
             }`}
           >
@@ -180,7 +180,7 @@ function AmbientSoundsMenuRow() {
       </button>
 
       {isOpen && (
-        <div className="mt-3 p-4 bg-stone-900 text-white rounded-2xl border border-stone-700 shadow-md animate-in fade-in duration-200">
+        <div className="mt-3 p-4 bg-night text-onbrand rounded-2xl border border-night-line shadow-md">
           <div className="flex items-center justify-between pb-3 border-b border-stone-800">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-amber-400" />
@@ -203,8 +203,8 @@ function AmbientSoundsMenuRow() {
                   onClick={() => handleTrackSelect(track.id)}
                   className={`flex flex-col items-center text-center p-2.5 rounded-xl border transition cursor-pointer ${
                     isCur
-                      ? "bg-amber-700/80 border-amber-400 text-white shadow-sm ring-1 ring-amber-400/40"
-                      : "bg-stone-800/80 border-stone-700 text-stone-300 hover:bg-stone-800"
+                      ? "bg-amber-700/80 border-amber-400 text-onbrand shadow-sm ring-1 ring-amber-400/40"
+                      : "bg-night-soft/80 border-night-line text-onbrand/75 hover:bg-night-soft"
                   }`}
                 >
                   <span className="text-xl mb-1">{track.icon}</span>
@@ -222,7 +222,7 @@ function AmbientSoundsMenuRow() {
               : SOUND_TRACKS.find((t) => t.id === currentTrack)?.descEn}
           </p>
 
-          <div className="mt-3.5 flex items-center justify-between gap-3 bg-stone-800/90 p-3 rounded-xl border border-stone-700">
+          <div className="mt-3.5 flex items-center justify-between gap-3 bg-night-soft/90 p-3 rounded-xl border border-night-line">
             <button
               type="button"
               onClick={handleTogglePlay}
@@ -271,8 +271,8 @@ function AmbientSoundsMenuRow() {
                   onClick={() => setTimer(mins)}
                   className={`px-2.5 py-1 rounded-lg text-[10px] font-bold border transition cursor-pointer ${
                     timerMinutes === mins
-                      ? "bg-amber-600 text-white border-amber-400"
-                      : "bg-stone-800 text-stone-300 border-stone-700 hover:text-white"
+                      ? "bg-amber-600 text-onbrand border-amber-400"
+                      : "bg-night-soft text-onbrand/75 border-night-line hover:text-onbrand"
                   }`}
                 >
                   {mins}m
@@ -300,6 +300,8 @@ export default function MenuPage() {
   const {
     languageMode,
     setLanguageMode,
+    themeMode,
+    setThemeMode,
     familyProfile,
     setFamilyProfile,
     savedRemedyIds,
@@ -327,7 +329,7 @@ export default function MenuPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 pb-28">
       {/* Friendly Non-Account Header */}
-      <div className="bg-gradient-to-br from-amber-800 via-amber-900 to-emerald-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl mb-6 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-amber-800 via-amber-900 to-emerald-950 text-onbrand rounded-3xl p-6 sm:p-8 shadow-xl mb-6 relative overflow-hidden">
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <NiramayLogo size={48} />
@@ -386,11 +388,38 @@ export default function MenuPage() {
                 onClick={() => setLanguageMode(lang.id)}
                 className={`py-2 px-3 rounded-xl text-xs font-bold transition border ${
                   languageMode === lang.id
-                    ? "bg-amber-700 text-white border-amber-800 shadow-2xs"
+                    ? "bg-amber-700 text-onbrand border-amber-800 shadow-2xs"
                     : "bg-stone-50 text-stone-700 border-stone-200 hover:bg-stone-100"
                 }`}
               >
                 {lang.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Appearance: Light / System / Dark */}
+        <div>
+          <label className="text-xs font-bold text-stone-700 block mb-2">
+            {isAs ? "ৰূপ (পোহৰ / অন্ধকাৰ মোড):" : "Appearance (Light / Dark):"}
+          </label>
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { id: "light" as const, label: "Light", labelAs: "পোহৰ" },
+              { id: "system" as const, label: "System", labelAs: "ছিষ্টেম" },
+              { id: "dark" as const, label: "Dark", labelAs: "অন্ধকাৰ" },
+            ].map((mode) => (
+              <button
+                key={mode.id}
+                type="button"
+                onClick={() => setThemeMode(mode.id)}
+                className={`py-2 px-3 rounded-xl text-xs font-bold transition border ${
+                  themeMode === mode.id
+                    ? "bg-emerald-700 text-onbrand border-emerald-800 shadow-2xs"
+                    : "bg-stone-50 text-stone-700 border-stone-200 hover:bg-stone-100"
+                }`}
+              >
+                {isAs ? mode.labelAs : mode.label}
               </button>
             ))}
           </div>
@@ -409,7 +438,7 @@ export default function MenuPage() {
                 onClick={() => setFamilyProfile(p.id)}
                 className={`py-2 px-3 rounded-xl text-xs font-bold transition border text-left flex flex-col justify-between ${
                   familyProfile === p.id
-                    ? "bg-emerald-700 text-white border-emerald-800 shadow-2xs"
+                    ? "bg-emerald-700 text-onbrand border-emerald-800 shadow-2xs"
                     : "bg-stone-50 text-stone-700 border-stone-200 hover:bg-stone-100"
                 }`}
               >
@@ -541,7 +570,7 @@ export default function MenuPage() {
               <button
                 type="button"
                 onClick={handleClearData}
-                className="px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-red-600 hover:bg-red-700 transition"
+                className="px-3 py-1.5 rounded-xl text-xs font-bold text-onbrand bg-red-600 hover:bg-red-700 transition"
               >
                 {isAs ? "হয়, সকলো মচক" : "Yes, reset everything"}
               </button>

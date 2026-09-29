@@ -236,7 +236,7 @@ export default function KitchenGardenPage() {
             onClick={() => setFilterDifficulty("all")}
             className={`px-3 py-1 rounded-lg font-bold transition ${
               filterDifficulty === "all"
-                ? "bg-amber-700 text-white"
+                ? "bg-amber-700 text-onbrand"
                 : "bg-stone-100 text-stone-700 hover:bg-stone-200"
             }`}
           >
@@ -246,7 +246,7 @@ export default function KitchenGardenPage() {
             onClick={() => setFilterDifficulty("easy")}
             className={`px-3 py-1 rounded-lg font-bold transition ${
               filterDifficulty === "easy"
-                ? "bg-emerald-700 text-white"
+                ? "bg-emerald-700 text-onbrand"
                 : "bg-stone-100 text-stone-700 hover:bg-stone-200"
             }`}
           >
@@ -256,7 +256,7 @@ export default function KitchenGardenPage() {
             onClick={() => setFilterDifficulty("medium")}
             className={`px-3 py-1 rounded-lg font-bold transition ${
               filterDifficulty === "medium"
-                ? "bg-amber-800 text-white"
+                ? "bg-amber-800 text-onbrand"
                 : "bg-stone-100 text-stone-700 hover:bg-stone-200"
             }`}
           >

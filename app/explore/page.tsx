@@ -174,7 +174,7 @@ export default function ExplorePage() {
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">
                   <div
-                    className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${t.accent} text-white flex items-center justify-center shadow-xs transition-transform group-hover:scale-105`}
+                    className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${t.accent} text-onbrand flex items-center justify-center shadow-xs transition-transform group-hover:scale-105`}
                   >
                     <Icon className="w-6 h-6" />
                   </div>

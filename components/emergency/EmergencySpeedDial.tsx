@@ -18,14 +18,14 @@ export const EmergencySpeedDial: React.FC<Props> = ({ compact = false, className
 
   return (
     <div
-      className={`bg-gradient-to-r from-red-600 to-rose-700 text-white rounded-2xl ${
+      className={`bg-gradient-to-r from-red-600 to-rose-700 text-onbrand rounded-2xl ${
         compact ? "p-2.5 sm:p-3" : "p-4 sm:p-5"
       } shadow-md border border-red-500/80 ${className}`}
     >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
-            <ShieldAlert className="w-5 h-5 text-white" />
+            <ShieldAlert className="w-5 h-5 text-onbrand" />
           </div>
           <div>
             <div className="text-xs sm:text-sm font-bold tracking-tight">
@@ -54,7 +54,7 @@ export const EmergencySpeedDial: React.FC<Props> = ({ compact = false, className
 
           <a
             href="tel:112"
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-950/80 hover:bg-red-950 active:scale-95 text-white border border-red-400/50 font-black text-xs sm:text-sm shadow-xs transition cursor-pointer"
+            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-950/80 hover:bg-red-950 active:scale-95 text-onbrand border border-red-400/50 font-black text-xs sm:text-sm shadow-xs transition cursor-pointer"
             title="Call 112 National Emergency Helpline"
           >
             <PhoneCall className="w-4 h-4 text-amber-300 shrink-0" />

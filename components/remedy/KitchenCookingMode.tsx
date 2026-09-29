@@ -248,7 +248,7 @@ export const KitchenCookingMode: React.FC<Props> = ({
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#1C1917] text-white flex flex-col justify-between p-4 sm:p-8 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 bg-night text-onbrand flex flex-col justify-between p-4 sm:p-8 animate-in fade-in duration-200">
       {/* Top Bar: Remedy Name + Mic State + Exit */}
       <div className="flex items-center justify-between pb-4 border-b border-stone-800">
         <div className="flex items-center gap-3">
@@ -319,7 +319,7 @@ export const KitchenCookingMode: React.FC<Props> = ({
             </div>
             <button
               onClick={cancelTimer}
-              className="px-2.5 py-1 text-xs font-bold text-stone-400 hover:text-white"
+              className="px-2.5 py-1 text-xs font-bold text-stone-400 hover:text-onbrand"
             >
               Reset
             </button>
@@ -362,7 +362,7 @@ export const KitchenCookingMode: React.FC<Props> = ({
             type="button"
             disabled={currentStepIdx === 0}
             onClick={() => setCurrentStepIdx((prev) => Math.max(0, prev - 1))}
-            className="py-4 px-6 rounded-2xl bg-stone-800 hover:bg-stone-700 disabled:opacity-30 disabled:hover:bg-stone-800 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition"
+            className="py-4 px-6 rounded-2xl bg-stone-800 hover:bg-stone-700 disabled:opacity-30 disabled:hover:bg-stone-800 text-onbrand font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>{isAs ? "পূৰ্বৱৰ্তী পদক্ষেপ" : "Previous Step"}</span>
@@ -377,7 +377,7 @@ export const KitchenCookingMode: React.FC<Props> = ({
                 onClose();
               }
             }}
-            className="py-4 px-6 rounded-2xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg transition"
+            className="py-4 px-6 rounded-2xl bg-amber-600 hover:bg-amber-500 text-onbrand font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg transition"
           >
             <span>
               {currentStepIdx === steps.length - 1

@@ -134,7 +134,7 @@ export const RemedyResultsClient: React.FC<Props> = ({
             onClick={() => setFilterMode("all")}
             className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition shrink-0 ${
               filterMode === "all"
-                ? "bg-stone-900 text-white shadow-xs"
+                ? "bg-night text-onbrand shadow-xs"
                 : "bg-stone-100 text-stone-600 hover:bg-stone-200"
             }`}
           >
@@ -144,7 +144,7 @@ export const RemedyResultsClient: React.FC<Props> = ({
             onClick={() => setFilterMode("ready")}
             className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition shrink-0 flex items-center gap-1.5 ${
               filterMode === "ready"
-                ? "bg-emerald-700 text-white shadow-xs"
+                ? "bg-emerald-700 text-onbrand shadow-xs"
                 : "bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100"
             }`}
           >
@@ -155,7 +155,7 @@ export const RemedyResultsClient: React.FC<Props> = ({
             onClick={() => setFilterMode("missing_one")}
             className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition shrink-0 flex items-center gap-1.5 ${
               filterMode === "missing_one"
-                ? "bg-amber-700 text-white shadow-xs"
+                ? "bg-amber-700 text-onbrand shadow-xs"
                 : "bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100"
             }`}
           >
@@ -179,7 +179,7 @@ export const RemedyResultsClient: React.FC<Props> = ({
           </p>
           <button
             onClick={() => setFilterMode("all")}
-            className="mt-4 px-4 py-2 bg-amber-700 text-white rounded-xl text-xs font-semibold"
+            className="mt-4 px-4 py-2 bg-amber-700 text-onbrand rounded-xl text-xs font-semibold"
           >
             {isAs ? "সকলো উপচাৰ দেখুৱাওক" : "Show All Remedies"}
           </button>
@@ -298,7 +298,7 @@ export const RemedyResultsClient: React.FC<Props> = ({
                 <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
                   <Link
                     href={`/remedy/${remedy.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-amber-700 hover:bg-amber-800 text-white text-xs font-bold transition shadow-xs"
+                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-amber-700 hover:bg-amber-800 text-onbrand text-xs font-bold transition shadow-xs"
                   >
                     <span>{isAs ? "সম্পূৰ্ণ প্ৰস্তুত প্ৰণালী চাওক" : "View Step-by-Step Recipe"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />

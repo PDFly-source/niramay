@@ -80,7 +80,7 @@ export default function SavedRemediesPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-3">
             <Link
               href="/symptoms"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white text-xs sm:text-sm font-bold shadow-xs transition"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-amber-600 hover:bg-amber-700 text-onbrand text-xs sm:text-sm font-bold shadow-xs transition"
             >
               <Layers className="w-4 h-4" />
               <span>{isAs ? "লক্ষণ অনুসৰি চাওক" : "Browse by Symptom"}</span>
@@ -168,7 +168,7 @@ export default function SavedRemediesPage() {
                 <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
                   <Link
                     href={`/remedy/${remedy.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition shadow-xs group"
+                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-onbrand text-xs font-bold transition shadow-xs group"
                   >
                     <span>{isAs ? "প্ৰস্তুত প্ৰণালী চাওক" : "View Preparation Guide"}</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition" />

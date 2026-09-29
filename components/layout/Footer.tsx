@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               <NiramayLogo size={36} />
               <div>
-                <span className="text-xl font-serif font-bold text-white">Niramay</span>
+                <span className="text-xl font-serif font-bold text-onbrand">Niramay</span>
                 <span className="ml-2 text-xs font-semibold text-emerald-400">নিৰাময়</span>
               </div>
             </div>

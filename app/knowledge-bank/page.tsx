@@ -118,7 +118,7 @@ export default function KnowledgeBankPage() {
 
         {/* Feature 1: Did You Mean Suggestion */}
         {didYouMean && (
-          <div className="mt-2.5 text-xs flex items-center gap-1.5 text-stone-600 animate-in fade-in">
+          <div className="mt-2.5 text-xs flex items-center gap-1.5 text-stone-600">
             <span className="text-amber-800 font-semibold">
               {isAs ? "আপুনি এইটো বিচাৰিছে নেকি?" : "Did you mean:"}
             </span>
@@ -144,7 +144,7 @@ export default function KnowledgeBankPage() {
               onClick={() => setSelectedSpice("all")}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
                 selectedSpice === "all"
-                  ? "bg-amber-700 text-white"
+                  ? "bg-amber-700 text-onbrand"
                   : "bg-stone-100 text-stone-700 hover:bg-stone-200"
               }`}
             >
@@ -158,8 +158,8 @@ export default function KnowledgeBankPage() {
                   onClick={() => setSelectedSpice(active ? "all" : spice)}
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition ${
                     active
-                      ? "bg-amber-700 text-white ring-2 ring-amber-600/30"
-                      : "bg-[#FFF8F0] border border-amber-200 text-stone-800 hover:bg-amber-100/50"
+                      ? "bg-amber-700 text-onbrand ring-2 ring-amber-600/30"
+                      : "bg-parchment border border-amber-200 text-stone-800 hover:bg-amber-100/50"
                   }`}
                 >
                   <SpiceIcon spiceName={spice} size={16} />
@@ -283,7 +283,7 @@ export default function KnowledgeBankPage() {
               <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
                 <Link
                   href={`/remedy/${remedy.id}`}
-                  className="w-full inline-flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-amber-50 group-hover:bg-amber-700 text-amber-900 group-hover:text-white text-xs font-bold transition"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-amber-50 group-hover:bg-amber-700 text-amber-900 group-hover:text-onbrand text-xs font-bold transition"
                 >
                   <span>{isAs ? "সবিশেষ প্ৰণালী আৰু মাত্ৰা" : "View Full Recipe & Dosages"}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

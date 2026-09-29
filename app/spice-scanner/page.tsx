@@ -318,7 +318,7 @@ export default function SpiceScannerPage() {
                 </div>
                 <button
                   type="button"
-                  className="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-700 hover:bg-amber-800 text-white text-xs font-bold shadow-xs transition"
+                  className="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-700 hover:bg-amber-800 text-onbrand text-xs font-bold shadow-xs transition"
                 >
                   <Upload className="w-3.5 h-3.5" />
                   <span>{isAs ? "ফটো বাছক" : "Choose Photo"}</span>
@@ -334,7 +334,7 @@ export default function SpiceScannerPage() {
                     className="w-full h-full object-cover"
                   />
                   {isScanning && (
-                    <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-xs flex flex-col items-center justify-center text-white gap-2">
+                    <div className="absolute inset-0 bg-night/60 backdrop-blur-xs flex flex-col items-center justify-center text-onbrand gap-2">
                       <RefreshCw className="w-6 h-6 animate-spin text-amber-400" />
                       <span className="text-xs font-bold">
                         {isAs ? "মছলাসমূহ বিশ্লেষণ কৰা হৈছে..." : "Detecting multiple spices on device..."}
@@ -369,7 +369,7 @@ export default function SpiceScannerPage() {
         {/* Right Column: Detected Items & Matching Remedies */}
         <div className="lg:col-span-7 space-y-6">
           {detectedSpices.length > 0 ? (
-            <div className="bg-white rounded-3xl p-6 border border-amber-200/80 shadow-md space-y-6 animate-in fade-in">
+            <div className="bg-white rounded-3xl p-6 border border-amber-200/80 shadow-md space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-stone-100">
                 <div>
                   <h3 className="text-base sm:text-lg font-serif font-black text-stone-900">
@@ -390,8 +390,8 @@ export default function SpiceScannerPage() {
                   disabled={confirmedSpices.length === 0}
                   className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition shadow-xs ${
                     addedToPantry
-                      ? "bg-emerald-700 text-white"
-                      : "bg-amber-700 hover:bg-amber-800 text-white"
+                      ? "bg-emerald-700 text-onbrand"
+                      : "bg-amber-700 hover:bg-amber-800 text-onbrand"
                   }`}
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />

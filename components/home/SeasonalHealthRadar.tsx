@@ -213,7 +213,7 @@ export const SeasonalHealthRadar: React.FC = () => {
         <div className="flex items-start gap-3">
           <div
             className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
-              isSevereAlert ? "bg-amber-600 text-white" : "bg-emerald-700 text-white"
+              isSevereAlert ? "bg-amber-600 text-onbrand" : "bg-emerald-700 text-onbrand"
             }`}
           >
             {isSevereAlert ? (
@@ -234,7 +234,7 @@ export const SeasonalHealthRadar: React.FC = () => {
 
         <Link
           href={`/symptoms/${targetSlug}`}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-white shadow-xs transition shrink-0 self-start sm:self-center"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-onbrand shadow-xs transition shrink-0 self-start sm:self-center"
         >
           <span>{isAs ? "উপচাৰ চাওক" : "View Remedies"}</span>
           <ArrowRight className="w-3.5 h-3.5" />

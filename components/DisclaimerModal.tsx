@@ -27,7 +27,7 @@ export const DisclaimerModal: React.FC = () => {
       aria-modal="true"
       aria-label="Educational disclaimer"
     >
-      <div className="max-w-md w-full bg-[#FFFDF9] rounded-3xl shadow-2xl border border-amber-200/80 overflow-hidden max-h-[90vh] overflow-y-auto">
+      <div className="max-w-md w-full bg-cream rounded-3xl shadow-2xl border border-amber-200/80 overflow-hidden max-h-[90vh] overflow-y-auto">
         <div className="px-6 pt-6 pb-2 flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
             <NiramayLogo size={40} />
@@ -81,7 +81,7 @@ export const DisclaimerModal: React.FC = () => {
           <button
             type="button"
             onClick={acceptDisclaimer}
-            className="w-full px-4 py-3 rounded-2xl bg-emerald-800 hover:bg-emerald-900 text-white text-sm font-bold shadow-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+            className="w-full px-4 py-3 rounded-2xl bg-emerald-800 hover:bg-emerald-900 text-onbrand text-sm font-bold shadow-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
           >
             {isAs ? "বুজি পালোঁ — আগম কৰক" : "I understand — Enter Niramay"}
           </button>

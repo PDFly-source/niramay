@@ -131,7 +131,7 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
     <>
       {/* Contextual Suggestion Banner for Insomnia/Stress Remedy Pages */}
       {suggestedAilment && !isPromptDismissed && !isPlaying && (
-        <div className="my-6 p-4 rounded-3xl bg-gradient-to-r from-indigo-900 to-stone-900 text-white shadow-lg border border-indigo-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in">
+        <div className="my-6 p-4 rounded-3xl bg-gradient-to-r from-indigo-900 to-stone-900 text-onbrand shadow-lg border border-indigo-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-indigo-500/30 text-indigo-300 flex items-center justify-center shrink-0">
               <Sparkles className="w-5 h-5 text-amber-300" />
@@ -159,7 +159,7 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
             </button>
             <button
               onClick={() => setIsPromptDismissed(true)}
-              className="p-2 text-indigo-300 hover:text-white rounded-xl transition"
+              className="p-2 text-indigo-300 hover:text-onbrand rounded-xl transition"
               title="Dismiss"
             >
               <X className="w-4 h-4" />
@@ -177,7 +177,7 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
             onClick={() => setIsExpanded(true)}
             className={`inline-flex items-center gap-2 px-3.5 py-2.5 rounded-full shadow-xl border text-xs font-bold transition transform hover:scale-105 active:scale-95 ${
               isPlaying
-                ? "bg-amber-600 text-white border-amber-400 animate-pulse ring-4 ring-amber-500/20"
+                ? "bg-amber-600 text-onbrand border-amber-400 animate-pulse ring-4 ring-amber-500/20"
                 : "bg-white/95 text-stone-800 border-amber-200 hover:bg-amber-50"
             }`}
             title="Open Ambient Soundscapes"
@@ -200,7 +200,7 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
           </button>
         ) : (
           /* Expanded Player Modal/Drawer */
-          <div className="w-[330px] sm:w-[380px] bg-stone-900/95 backdrop-blur-md text-white rounded-3xl p-5 shadow-2xl border border-stone-700 animate-in fade-in slide-in-from-bottom-6">
+          <div className="w-[330px] sm:w-[380px] bg-night/95 backdrop-blur-md text-onbrand rounded-3xl p-5 shadow-2xl border border-night-line animate-in fade-in slide-in-from-bottom-6">
             {/* Player Header */}
             <div className="flex items-center justify-between pb-3 border-b border-stone-800">
               <div className="flex items-center gap-2">
@@ -212,7 +212,7 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => setIsExpanded(false)}
-                  className="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition"
+                  className="p-1.5 rounded-lg text-stone-400 hover:text-onbrand hover:bg-night-soft transition"
                   title="Minimize"
                 >
                   <ChevronDown className="w-4 h-4" />
@@ -230,8 +230,8 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
                     onClick={() => handleTrackChange(t.id)}
                     className={`flex flex-col items-center text-center p-2 rounded-2xl border transition ${
                       isCur
-                        ? "bg-amber-700/80 border-amber-400 text-white shadow-xs"
-                        : "bg-stone-800/80 border-stone-700/70 text-stone-300 hover:bg-stone-800"
+                        ? "bg-amber-700/80 border-amber-400 text-onbrand shadow-xs"
+                        : "bg-night-soft/80 border-night-line/70 text-onbrand/75 hover:bg-night-soft"
                     }`}
                   >
                     <span className="text-lg">{t.icon}</span>
@@ -251,7 +251,7 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
             </p>
 
             {/* Play/Pause & Volume Row */}
-            <div className="mt-4 flex items-center justify-between gap-3 bg-stone-800/80 p-3 rounded-2xl border border-stone-700">
+            <div className="mt-4 flex items-center justify-between gap-3 bg-night-soft/80 p-3 rounded-2xl border border-night-line">
               <button
                 onClick={handleTogglePlay}
                 className="w-10 h-10 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-95 text-stone-950 flex items-center justify-center shrink-0 transition shadow-md"
@@ -295,8 +295,8 @@ export const SoundscapesPlayer: React.FC<Props> = ({ suggestedAilment, inlineOnl
                     onClick={() => setTimer(mins)}
                     className={`px-2 py-0.5 rounded-lg text-[10px] font-bold border transition ${
                       timerMinutes === mins
-                        ? "bg-amber-600 text-white border-amber-400"
-                        : "bg-stone-800 text-stone-300 border-stone-700 hover:text-white"
+                        ? "bg-amber-600 text-onbrand border-amber-400"
+                        : "bg-night-soft text-onbrand/75 border-night-line hover:text-onbrand"
                     }`}
                   >
                     {mins}m

@@ -219,7 +219,7 @@ export default function DailyHabitsPage() {
       {/* Streak and Today's Progress Card */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         {/* Streak Counter Card */}
-        <div className="bg-gradient-to-br from-amber-600 to-amber-800 text-white rounded-3xl p-6 shadow-md flex items-center justify-between">
+        <div className="bg-gradient-to-br from-amber-600 to-amber-800 text-onbrand rounded-3xl p-6 shadow-md flex items-center justify-between">
           <div>
             <div className="text-xs uppercase font-extrabold tracking-wider text-amber-200">
               {isAs ? "বৰ্তমান ধাৰাবাহিকতা" : "Current Streak"}

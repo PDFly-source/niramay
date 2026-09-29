@@ -1,5 +1,24 @@
 import type { Metadata, Viewport } from "next";
+import { Fraunces, Source_Sans_3, Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
+
+// Self-hosted heritage typography (next/font downloads at build time and
+// serves the woff2 files from /_next/static — same-origin, offline-friendly).
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+const sourceSans3 = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-text",
+  display: "swap",
+});
+const notoSerifBengali = Noto_Serif_Bengali({
+  subsets: ["bengali"],
+  variable: "--font-display-bengali",
+  display: "swap",
+});
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
@@ -11,12 +30,16 @@ import { SoundscapesPlayer } from "@/components/ambient/SoundscapesPlayer";
 import { BottomNavigation } from "@/components/layout/BottomNavigation";
 import { FloatingInstallBanner } from "@/components/pwa/FloatingInstallBanner";
 import { DisclaimerModal } from "@/components/DisclaimerModal";
+import { ThemeSync } from "@/components/layout/ThemeSync";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pdfly-source.github.io";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const viewport: Viewport = {
-  themeColor: "#1B4332",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1B4332" },
+    { media: "(prefers-color-scheme: dark)", color: "#0F2318" },
+  ],
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -86,9 +109,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col bg-[#FFF8F0] text-[#292524] selection:bg-amber-200 selection:text-amber-900 pb-16 md:pb-0" suppressHydrationWarning>
+    <html lang="en" className={`${fraunces.variable} ${sourceSans3.variable} ${notoSerifBengali.variable}`}>
+      <body className="min-h-screen flex flex-col bg-parchment text-ink font-sans selection:bg-amber-200 selection:text-amber-900 pb-16 md:pb-0" suppressHydrationWarning>
         <DisclaimerModal />
+        <ThemeSync />
         <Header />
         <main className="flex-1 w-full">{children}</main>
         <Footer />

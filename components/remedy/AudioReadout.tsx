@@ -215,7 +215,7 @@ export const AudioReadout: React.FC<Props> = ({
   return (
     <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-3.5 sm:p-4 my-4 no-print flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-amber-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+        <div className="w-9 h-9 rounded-xl bg-amber-600 text-onbrand flex items-center justify-center shrink-0 shadow-xs">
           <Volume2 className="w-5 h-5" />
         </div>
         <div>
@@ -271,7 +271,7 @@ export const AudioReadout: React.FC<Props> = ({
         {!isPlaying ? (
           <button
             onClick={startAudio}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-white shadow-xs transition"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-onbrand shadow-xs transition"
           >
             <Play className="w-3.5 h-3.5 fill-white" />
             <span>{readoutLang === "as" ? "শুনি লওক" : "Listen"}</span>

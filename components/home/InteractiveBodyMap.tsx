@@ -409,7 +409,7 @@ export const InteractiveBodyMap: React.FC = () => {
 
               <button
                 onClick={() => handleNavigate(activeRegion)}
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-white shadow-xs transition shrink-0"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-onbrand shadow-xs transition shrink-0"
               >
                 <span>{isAs ? "উপচাৰসমূহ খোলক" : "View Remedies"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />

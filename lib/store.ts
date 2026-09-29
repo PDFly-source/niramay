@@ -54,8 +54,11 @@ export interface DoshaScores {
   kapha: number;
 }
 
+export type ThemeMode = "system" | "light" | "dark";
+
 interface NiramayState {
   languageMode: LanguageMode;
+  themeMode: ThemeMode;
   pantry: string[];
   savedRemedyIds: string[];
   hasAcceptedDisclaimer: boolean;
@@ -81,6 +84,7 @@ interface NiramayState {
 
   // Actions
   setLanguageMode: (mode: LanguageMode) => void;
+  setThemeMode: (mode: ThemeMode) => void;
   toggleSaved: (remedyId: string) => void;
   isSaved: (remedyId: string) => boolean;
   togglePantryItem: (item: string) => void;
@@ -129,6 +133,7 @@ export const useNiramayStore = create<NiramayState>()(
   persist(
     (set, get) => ({
       languageMode: "bilingual",
+      themeMode: "system",
       pantry: [
         "Ginger (Aada)",
         "Tulsi (Holy Basil)",
@@ -158,6 +163,9 @@ export const useNiramayStore = create<NiramayState>()(
       activeCourses: [],
       pwaBannerDismissedUntil: null,
 
+      setThemeMode: (mode: ThemeMode) => {
+        set({ themeMode: mode });
+      },
       setLanguageMode: (mode: LanguageMode) => {
         set({ languageMode: mode });
       },
@@ -458,6 +466,7 @@ export const useNiramayStore = create<NiramayState>()(
       }),
       partialize: (state) => ({
         languageMode: state.languageMode,
+        themeMode: state.themeMode,
         pantry: state.pantry,
         savedRemedyIds: state.savedRemedyIds,
         hasAcceptedDisclaimer: state.hasAcceptedDisclaimer,

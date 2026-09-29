@@ -35,7 +35,7 @@ export const ActiveTreatmentCourseWidget: React.FC = () => {
     <div className="bg-gradient-to-br from-amber-50 to-orange-50/80 border-2 border-amber-300 rounded-3xl p-5 sm:p-6 shadow-md mb-8 animate-in fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-amber-200">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-amber-600 text-white flex items-center justify-center font-bold shadow-xs">
+          <div className="w-10 h-10 rounded-2xl bg-amber-600 text-onbrand flex items-center justify-center font-bold shadow-xs">
             <Bell className="w-5 h-5 text-amber-100 animate-bounce" />
           </div>
           <div>
@@ -109,7 +109,7 @@ export const ActiveTreatmentCourseWidget: React.FC = () => {
             <button
               type="button"
               onClick={() => logCourseDose(currentCourse.id, nextPendingDose.doseIndex, true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold shadow-xs transition"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-onbrand text-xs font-bold shadow-xs transition"
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>{isAs ? "হয়, গ্ৰহণ কৰিলোঁ" : "Yes, Took Dose"}</span>

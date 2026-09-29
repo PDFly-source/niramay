@@ -207,7 +207,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
             {/* New Feature 2: Hands-Free Kitchen Cooking Mode */}
             <button
               onClick={() => setIsKitchenModeOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-white shadow-xs transition"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-onbrand shadow-xs transition"
               title="Start hands-free voice guided cooking mode"
             >
               <ChefHat className="w-4 h-4 text-amber-200" />
@@ -266,7 +266,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
 
             <button
               onClick={handleCopyShare}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white shadow-xs transition"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 text-onbrand shadow-xs transition"
               title="Copy text summary to share"
             >
               <Share2 className="w-4 h-4" />
@@ -285,7 +285,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
 
         {/* Course Schedule Feedback Alert */}
         {courseToast && (
-          <div className="mt-4 p-3 bg-amber-50 border border-amber-300 rounded-2xl text-xs text-amber-950 flex items-center justify-between gap-2 no-print animate-in fade-in">
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-300 rounded-2xl text-xs text-amber-950 flex items-center justify-between gap-2 no-print">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-amber-700 shrink-0" />
               <span>
@@ -302,7 +302,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
 
         {/* Copy Feedback Alert */}
         {copied && (
-          <div className="mt-4 p-3 bg-emerald-50 border border-emerald-300 rounded-2xl text-xs text-emerald-900 flex items-center gap-2 no-print animate-in fade-in">
+          <div className="mt-4 p-3 bg-emerald-50 border border-emerald-300 rounded-2xl text-xs text-emerald-900 flex items-center gap-2 no-print">
             <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
             <span>
               {isAs
@@ -474,14 +474,14 @@ export const RemedyDetailClient: React.FC<Props> = ({
                   className={`flex items-start gap-4 p-4 rounded-2xl border transition-all ${
                     isCurrentStep
                       ? "bg-amber-100/90 border-amber-500 shadow-md ring-2 ring-amber-400 scale-[1.01]"
-                      : "bg-[#FFFDF9] border-stone-200/90 shadow-2xs"
+                      : "bg-cream border-stone-200/90 shadow-2xs"
                   }`}
                 >
                   <div
                     className={`w-8 h-8 rounded-xl font-serif font-bold text-sm flex items-center justify-center shrink-0 mt-0.5 shadow-xs transition-colors ${
                       isCurrentStep
-                        ? "bg-amber-800 text-white animate-pulse"
-                        : "bg-amber-600 text-white"
+                        ? "bg-amber-800 text-onbrand animate-pulse"
+                        : "bg-amber-600 text-onbrand"
                     }`}
                   >
                     {idx + 1}
@@ -556,7 +556,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
           {/* New Feature 3: Prakriti / Dosha Personalization Note */}
           {doshaProfile ? (
             <div className="mb-6 p-4 rounded-2xl bg-emerald-50/80 border border-emerald-300 text-emerald-950 flex items-start gap-3">
-              <div className="w-8 h-8 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0 mt-0.5">
+              <div className="w-8 h-8 rounded-xl bg-emerald-700 text-onbrand flex items-center justify-center shrink-0 mt-0.5">
                 <HeartPulse className="w-4 h-4" />
               </div>
               <div className="space-y-1">
@@ -595,7 +595,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
               </div>
               <Link
                 href="/dosha-assessment"
-                className="px-3 py-1.5 rounded-xl bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs shrink-0 transition"
+                className="px-3 py-1.5 rounded-xl bg-amber-700 hover:bg-amber-800 text-onbrand font-bold text-xs shrink-0 transition"
               >
                 {isAs ? "কুইজ লওক" : "Take Quiz"}
               </Link>
@@ -639,7 +639,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
                     </span>
                   </div>
                   {familyProfile === "child" && (
-                    <span className="text-[10px] font-black uppercase tracking-wider bg-amber-800 text-white px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-amber-800 text-onbrand px-2 py-0.5 rounded-full">
                       {isAs ? "নিৰ্বাচিত" : "Selected"}
                     </span>
                   )}
@@ -685,7 +685,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
                     </span>
                   </div>
                   {familyProfile === "adult" && (
-                    <span className="text-[10px] font-black uppercase tracking-wider bg-emerald-800 text-white px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-emerald-800 text-onbrand px-2 py-0.5 rounded-full">
                       {isAs ? "নিৰ্বাচিত" : "Selected"}
                     </span>
                   )}
@@ -731,7 +731,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
                     </span>
                   </div>
                   {familyProfile === "senior" && (
-                    <span className="text-[10px] font-black uppercase tracking-wider bg-stone-800 text-white px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-night-soft text-onbrand px-2 py-0.5 rounded-full">
                       {isAs ? "নিৰ্বাচিত" : "Selected"}
                     </span>
                   )}
@@ -839,7 +839,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
         <section className="my-8">
           <div className="rounded-2xl bg-red-50/90 border-2 border-red-300 p-5 sm:p-6">
             <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-9 h-9 rounded-xl bg-red-600 text-onbrand flex items-center justify-center shrink-0 shadow-xs">
                 <ShieldAlert className="w-5 h-5" />
               </div>
               <div className="space-y-2">

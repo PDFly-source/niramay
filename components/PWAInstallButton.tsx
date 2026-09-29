@@ -26,7 +26,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
         <button
           onClick={install}
           aria-label="Install Niramay App"
-          className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 text-xs font-semibold shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+          className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 hover:bg-amber-700 text-onbrand px-3 py-1.5 text-xs font-semibold shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/40"
         >
           <Download className="w-3.5 h-3.5" />
           <span>Install App</span>
@@ -37,7 +37,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
     return (
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center justify-between gap-4 shadow-sm my-4 no-print">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-amber-600 text-onbrand flex items-center justify-center shrink-0">
             <Smartphone className="w-5 h-5" />
           </div>
           <div>
@@ -47,7 +47,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
         </div>
         <button
           onClick={install}
-          className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold rounded-lg shrink-0 transition"
+          className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-onbrand text-xs font-semibold rounded-lg shrink-0 transition"
         >
           Install
         </button>
@@ -115,7 +115,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
 
               <button
                 onClick={() => setShowIOSGuide(false)}
-                className="mt-5 w-full rounded-xl bg-stone-900 hover:bg-stone-800 py-2.5 text-xs font-semibold text-white transition"
+                className="mt-5 w-full rounded-xl bg-stone-900 hover:bg-stone-800 py-2.5 text-xs font-semibold text-onbrand transition"
               >
                 Got it
               </button>

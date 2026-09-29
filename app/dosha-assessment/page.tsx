@@ -203,7 +203,7 @@ export default function DoshaAssessmentPage() {
 
       {isCompleted && doshaProfile ? (
         /* Results View */
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-emerald-200/90 shadow-lg space-y-6 animate-in fade-in">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-emerald-200/90 shadow-lg space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-100">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
@@ -295,7 +295,7 @@ export default function DoshaAssessmentPage() {
           <div className="pt-2">
             <Link
               href="/categories"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition shadow-xs"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-onbrand text-xs font-bold transition shadow-xs"
             >
               <span>{isAs ? "উপচাৰসমূহ অন্বেষণ কৰক" : "Explore Tailored Remedies"}</span>
               <ArrowRight className="w-4 h-4" />

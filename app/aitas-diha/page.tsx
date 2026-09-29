@@ -236,7 +236,7 @@ export default function AitasDihaPage() {
 
         <button
           onClick={() => setIsFormOpen(!isFormOpen)}
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs sm:text-sm shadow-md transition shrink-0"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-amber-700 hover:bg-amber-800 text-onbrand font-bold text-xs sm:text-sm shadow-md transition shrink-0"
         >
           <Plus className="w-4 h-4" />
           <span>{isAs ? "+ নতুন দিহা যোগ কৰক" : "+ Add Family Remedy"}</span>
@@ -260,7 +260,7 @@ export default function AitasDihaPage() {
       {isFormOpen && (
         <form
           onSubmit={handleSaveEntry}
-          className="bg-white rounded-3xl p-6 sm:p-8 border border-amber-300 shadow-xl mb-10 space-y-4 animate-in fade-in"
+          className="bg-white rounded-3xl p-6 sm:p-8 border border-amber-300 shadow-xl mb-10 space-y-4"
         >
           <h2 className="text-lg font-serif font-black text-stone-900 pb-2 border-b border-stone-100 flex items-center gap-2">
             <span>✍️</span>
@@ -333,7 +333,7 @@ export default function AitasDihaPage() {
                 <button
                   type="button"
                   onClick={startRecording}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-onbrand text-xs font-bold transition"
                 >
                   <Mic className="w-3.5 h-3.5" />
                   <span>{isAs ? "ৰেকৰ্ড আৰম্ভ কৰক" : "Start Recording"}</span>
@@ -342,7 +342,7 @@ export default function AitasDihaPage() {
                 <button
                   type="button"
                   onClick={stopRecording}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition animate-pulse"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-onbrand text-xs font-bold transition animate-pulse"
                 >
                   <Square className="w-3.5 h-3.5" />
                   <span>{isAs ? "ৰেকৰ্ড বন্ধ কৰক" : "Stop Recording"}</span>
@@ -368,7 +368,7 @@ export default function AitasDihaPage() {
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-xl bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs shadow-md transition"
+              className="px-5 py-2 rounded-xl bg-amber-700 hover:bg-amber-800 text-onbrand font-bold text-xs shadow-md transition"
             >
               {isAs ? "দিনলিপিত সংৰক্ষণ কৰক" : "Save to Journal"}
             </button>
@@ -434,7 +434,7 @@ export default function AitasDihaPage() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handlePlayAudio(item)}
-                          className="w-8 h-8 rounded-xl bg-amber-700 text-white flex items-center justify-center transition shadow-2xs hover:bg-amber-800"
+                          className="w-8 h-8 rounded-xl bg-amber-700 text-onbrand flex items-center justify-center transition shadow-2xs hover:bg-amber-800"
                         >
                           {isPlaying ? (
                             <Pause className="w-4 h-4" />

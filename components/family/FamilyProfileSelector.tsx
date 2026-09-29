@@ -90,7 +90,7 @@ export const FamilyProfileSelector: React.FC<Props> = ({ compact = false }) => {
                 onClick={() => setFamilyProfile(p.id)}
                 className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold transition ${
                   isSelected
-                    ? "bg-amber-700 text-white shadow-xs font-bold"
+                    ? "bg-amber-700 text-onbrand shadow-xs font-bold"
                     : "text-stone-600 hover:text-stone-900 hover:bg-white"
                 }`}
                 title={`${p.labelEn} (${p.ageNoteEn})`}
@@ -115,7 +115,7 @@ export const FamilyProfileSelector: React.FC<Props> = ({ compact = false }) => {
             >
               <div
                 className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 ${
-                  isSelected ? "bg-amber-600 text-white" : "bg-stone-100 text-stone-600"
+                  isSelected ? "bg-amber-600 text-onbrand" : "bg-stone-100 text-stone-600"
                 }`}
               >
                 <Icon className="w-4 h-4" />

@@ -196,7 +196,7 @@ export const NiramayAssistantModal: React.FC = () => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-900/60 backdrop-blur-xs animate-in fade-in">
       <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-amber-200 flex flex-col h-[85vh] max-h-[700px] overflow-hidden">
         {/* Header */}
-        <div className="px-5 py-4 bg-gradient-to-r from-amber-800 to-emerald-900 text-white flex items-center justify-between shrink-0">
+        <div className="px-5 py-4 bg-gradient-to-r from-amber-800 to-emerald-900 text-onbrand flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
               <Bot className="w-5 h-5 text-amber-200" />
@@ -220,7 +220,7 @@ export const NiramayAssistantModal: React.FC = () => {
 
           <button
             onClick={() => setAssistantOpen(false)}
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white transition"
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-onbrand transition"
           >
             <X className="w-4 h-4" />
           </button>
@@ -248,7 +248,7 @@ export const NiramayAssistantModal: React.FC = () => {
               <div
                 className={`max-w-[88%] sm:max-w-[80%] rounded-2xl p-4 text-xs sm:text-sm ${
                   msg.sender === "user"
-                    ? "bg-amber-700 text-white rounded-tr-none shadow-xs"
+                    ? "bg-amber-700 text-onbrand rounded-tr-none shadow-xs"
                     : "bg-stone-50 border border-stone-200 text-stone-900 rounded-tl-none shadow-xs"
                 }`}
               >
@@ -383,7 +383,7 @@ export const NiramayAssistantModal: React.FC = () => {
                 onClick={isListening ? handleStopListening : handleStartListening}
                 className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 transition ${
                   isListening
-                    ? "bg-red-600 text-white animate-pulse"
+                    ? "bg-red-600 text-onbrand animate-pulse"
                     : "bg-amber-100 hover:bg-amber-200 text-amber-900"
                 }`}
                 title={isListening ? "Listening... Click to stop" : "Speak your symptoms"}
@@ -413,7 +413,7 @@ export const NiramayAssistantModal: React.FC = () => {
             <button
               type="submit"
               disabled={!input.trim()}
-              className="w-10 h-10 rounded-2xl bg-amber-700 hover:bg-amber-800 disabled:opacity-40 text-white flex items-center justify-center shrink-0 transition"
+              className="w-10 h-10 rounded-2xl bg-amber-700 hover:bg-amber-800 disabled:opacity-40 text-onbrand flex items-center justify-center shrink-0 transition"
             >
               <Send className="w-4 h-4" />
             </button>

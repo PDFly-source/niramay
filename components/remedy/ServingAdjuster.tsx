@@ -130,7 +130,7 @@ export const ServingAdjuster: React.FC<Props> = ({
   return (
     <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-3.5 sm:p-4 my-4 no-print flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-amber-700 text-white flex items-center justify-center shrink-0 shadow-xs">
+        <div className="w-9 h-9 rounded-xl bg-amber-700 text-onbrand flex items-center justify-center shrink-0 shadow-xs">
           <Users className="w-5 h-5" />
         </div>
         <div>
@@ -152,7 +152,7 @@ export const ServingAdjuster: React.FC<Props> = ({
             onClick={() => onServingChange(1)}
             className={`px-3 py-1.5 rounded-lg font-bold transition ${
               servingCount === 1
-                ? "bg-amber-700 text-white shadow-xs"
+                ? "bg-amber-700 text-onbrand shadow-xs"
                 : "text-stone-700 hover:text-stone-900"
             }`}
           >
@@ -162,7 +162,7 @@ export const ServingAdjuster: React.FC<Props> = ({
             onClick={() => onServingChange(2)}
             className={`px-3 py-1.5 rounded-lg font-bold transition ${
               servingCount === 2
-                ? "bg-amber-700 text-white shadow-xs"
+                ? "bg-amber-700 text-onbrand shadow-xs"
                 : "text-stone-700 hover:text-stone-900"
             }`}
           >
@@ -172,7 +172,7 @@ export const ServingAdjuster: React.FC<Props> = ({
             onClick={() => onServingChange(4)}
             className={`px-3 py-1.5 rounded-lg font-bold transition ${
               servingCount === 4
-                ? "bg-amber-700 text-white shadow-xs"
+                ? "bg-amber-700 text-onbrand shadow-xs"
                 : "text-stone-700 hover:text-stone-900"
             }`}
           >

@@ -75,7 +75,7 @@ export const FloatingInstallBanner: React.FC = () => {
   if (!mounted || !isVisible) return null;
 
   return (
-    <div className="fixed bottom-20 sm:bottom-24 left-3 right-3 sm:left-auto sm:right-6 sm:max-w-md z-40 bg-stone-900 text-white rounded-3xl p-4 shadow-2xl border border-stone-700 animate-in slide-in-from-bottom-4 duration-300 no-print">
+    <div className="fixed bottom-20 sm:bottom-24 left-3 right-3 sm:left-auto sm:right-6 sm:max-w-md z-40 bg-night text-onbrand rounded-3xl p-4 shadow-2xl border border-night-line animate-in slide-in-from-bottom-4 duration-300 no-print">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
           <NiramayLogo size={36} />
@@ -88,7 +88,7 @@ export const FloatingInstallBanner: React.FC = () => {
                 ~1MB
               </span>
             </div>
-            <p className="text-[11px] text-stone-300 mt-0.5 leading-snug">
+            <p className="text-[11px] text-onbrand/75 mt-0.5 leading-snug">
               {isAs
                 ? "ইণ্টাৰনেট অবিহনে গাঁৱতো চলিব। ক্ষিপ্ৰতাৰে পাকঘৰৰ উপচাৰ বিচাৰক।"
                 : "Works 100% offline with zero internet in remote villages."}
@@ -98,7 +98,7 @@ export const FloatingInstallBanner: React.FC = () => {
 
         <button
           onClick={handleDismiss}
-          className="text-stone-400 hover:text-white p-1"
+          className="text-stone-400 hover:text-onbrand p-1"
           aria-label="Dismiss"
         >
           <X className="w-4 h-4" />

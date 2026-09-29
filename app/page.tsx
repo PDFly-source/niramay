@@ -187,27 +187,41 @@ export default function HomePage() {
   return (
     <div className="w-full pb-12 sm:pb-16">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#FEF3C7]/60 via-[#FFF8F0] to-[#FFF8F0] pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-amber-200/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100/90 border border-amber-300/80 text-amber-900 text-xs sm:text-sm font-semibold mb-6 shadow-xs">
-              <Sparkles className="w-4 h-4 text-amber-700" />
+      <section className="relative overflow-hidden bg-parchment border-b border-stone-200">
+        {/* Woven gamosa thread motif along the top */}
+        <div aria-hidden="true" className="absolute top-0 inset-x-0">
+          <div className="gamosa-rule opacity-80" />
+        </div>
+        {/* Subtle botanical radial wash */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(70% 60% at 90% 8%, rgba(201,162,75,0.15), transparent 70%), radial-gradient(55% 50% at 0% 100%, rgba(27,67,50,0.10), transparent 70%)",
+          }}
+        />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-14 sm:pt-20 sm:pb-16">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Editorial column */}
+            <div className="lg:col-span-7 hero-rise hero-rise-1">
+            {/* Eyebrow - editorial heritage label */}
+            <div className="section-label">
+              <Sparkles className="w-3.5 h-3.5 text-mugagold" />
               <span>
                 {isAs
-                  ? "ঘৰৰ মছলাত, সুস্থ নিৰাময় — পৰম্পৰাগত জ্ঞান আৰু আধুনিক যত্ন"
+                  ? "ঘৰৰ মছলাত, সুস্থ নিৰাময় — পৰম্পৰাগত জ্ঞান"
                   : isEn
                   ? "Traditional Kitchen Wisdom, Modern Care"
                   : "ঘৰৰ মছলাত, সুস্থ নিৰাময় — Traditional Wisdom, Modern Care"}
               </span>
             </div>
-
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-stone-900 leading-[1.15]">
+            <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.35rem] font-serif font-semibold tracking-tight text-ink leading-[1.08] text-left">
               {isAs ? (
                 <>
                   আপোনাৰ পাকঘৰত থকা মছলাৰে{" "}
-                  <span className="text-amber-700 underline decoration-amber-400 decoration-wavy decoration-2">
+                  <span className="text-amber-700">
                     সুস্থ হৈ উঠক
                   </span>
                   ।
@@ -215,7 +229,7 @@ export default function HomePage() {
               ) : isEn ? (
                 <>
                   Heal with spices already in your{" "}
-                  <span className="text-amber-700 underline decoration-amber-400 decoration-wavy decoration-2">
+                  <span className="text-amber-700 italic">
                     kitchen
                   </span>
                   .
@@ -223,7 +237,7 @@ export default function HomePage() {
               ) : (
                 <>
                   Heal with spices already in your{" "}
-                  <span className="text-amber-700 underline decoration-amber-400 decoration-wavy decoration-2">
+                  <span className="text-amber-700 italic">
                     kitchen
                   </span>
                   . <span className="block text-xl sm:text-2xl text-emerald-900 font-sans font-bold mt-2">ঘৰুৱা মছলাৰে সহজ নিৰাময়</span>
@@ -231,8 +245,9 @@ export default function HomePage() {
               )}
             </h1>
 
+            
             {/* Subheading */}
-            <p className="mt-5 text-base sm:text-xl text-stone-700 leading-relaxed max-w-2xl font-sans">
+            <p className="mt-5 text-base sm:text-lg text-stone-700 leading-relaxed max-w-xl font-sans text-left">
               {isAs
                 ? "দৈনন্দিন ৰোগ আৰু শাৰীৰিক সমস্যাৰ বাবে প্ৰাচীন অসমীয়া আৰু ভাৰতীয় ঘৰুৱা নিৰাময়। আপোনাৰ পাকঘৰত মজুত থকা মছলা পৰীক্ষা কৰক, ৫-৮ খোজৰ প্ৰস্তুত প্ৰণালী আৰু বয়স অনুযায়ী সুৰক্ষিত মাত্ৰা জানক।"
                 : isEn
@@ -240,9 +255,13 @@ export default function HomePage() {
                 : "Traditional Assamese & Indian kitchen remedies for everyday ailments with live pantry matching, 5–8 granular preparation steps, and age-group dosage guidance. (অসমীয়া আৰু ভাৰতীয় ঘৰুৱা চিকিৎসা)"}
             </p>
 
+            
+            </div>
+            {/* Search column */}
+            <div className="lg:col-span-5 lg:pt-10 hero-rise hero-rise-2">
             {/* Search Box */}
-            <div className="w-full max-w-xl mt-8">
-              <div className="relative flex items-center shadow-lg rounded-2xl bg-white border-2 border-amber-300 focus-within:border-amber-600 focus-within:ring-4 focus-within:ring-amber-500/20 transition-all">
+            <div className="w-full mt-2 lg:mt-8">
+              <div className="relative flex items-center rounded-xl bg-white border border-amber-300 shadow-niramay-lg focus-within:border-amber-600 focus-within:ring-4 focus-within:ring-amber-500/20 transition-all">
                 <Search className="w-5 h-5 text-amber-700 ml-4 shrink-0" />
                 <input
                   type="text"
@@ -269,9 +288,10 @@ export default function HomePage() {
               </div>
             </div>
 
+            
             {/* Feature 1: Did You Mean Suggestion */}
             {didYouMean && (
-              <div className="w-full max-w-xl mt-2 text-xs flex items-center justify-center gap-1.5 text-stone-600 animate-in fade-in">
+              <div className="w-full mt-2 text-xs flex items-center justify-start gap-1.5 text-stone-600">
                 <span className="text-amber-800 font-semibold">
                   {isAs ? "আপুনি এইটো বিচাৰিছে নেকি?" : "Did you mean:"}
                 </span>
@@ -284,97 +304,11 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* Quick Signature Features Shortcut Bar */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-5 max-w-4xl mx-auto">
-              {habitStreak > 0 && (
-                <Link
-                  href="/daily-habits"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-500 text-white text-xs font-black shadow-xs hover:bg-orange-600 transition animate-bounce cursor-pointer touch-manipulation"
-                >
-                  <Flame className="w-3.5 h-3.5 fill-white" />
-                  <span>🔥 {habitStreak} {isAs ? "দিনীয়া ধাৰাবাহিকতা!" : "-Day Streak!"}</span>
-                </Link>
-              )}
-
-              <Link
-                href="/spice-scanner"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-100 hover:bg-orange-200 text-orange-950 text-xs font-bold transition shadow-2xs border border-orange-300 cursor-pointer touch-manipulation"
-              >
-                <Camera className="w-3.5 h-3.5 text-orange-700" />
-                <span>{isAs ? "মছলা স্কেনাৰ" : "Spice Box Scanner"}</span>
-                <span className="text-[9px] uppercase px-1 rounded-sm bg-orange-600 text-white font-black">AI</span>
-              </Link>
-
-              <Link
-                href="/dosha-assessment"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100/90 hover:bg-emerald-200 text-emerald-950 text-xs font-bold transition shadow-2xs border border-emerald-300 cursor-pointer touch-manipulation"
-              >
-                <HeartPulse className="w-3.5 h-3.5 text-emerald-700" />
-                <span>{isAs ? "দোষ পৰীক্ষা" : "Dosha Quiz"}</span>
-              </Link>
-
-              <Link
-                href="/plant-scanner"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100/90 hover:bg-emerald-200 text-emerald-950 text-xs font-bold transition shadow-2xs border border-emerald-200 cursor-pointer touch-manipulation"
-              >
-                <Leaf className="w-3.5 h-3.5 text-emerald-700" />
-                <span>{isAs ? "বনৌষধি স্কেনাৰ" : "Plant Scanner"}</span>
-              </Link>
-
-              <button
-                type="button"
-                onClick={() => setAssistantOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-200/90 hover:bg-amber-300 text-amber-950 text-xs font-bold transition shadow-2xs border border-amber-300 cursor-pointer touch-manipulation"
-              >
-                <Bot className="w-3.5 h-3.5 text-amber-800" />
-                <span>{isAs ? "নিৰাময় এআই সহায়ক" : "Niramay AI"}</span>
-              </button>
-
-              <Link
-                href="/ritucharya"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-100/90 hover:bg-teal-200 text-teal-950 text-xs font-bold transition shadow-2xs border border-teal-200 cursor-pointer touch-manipulation"
-              >
-                <Calendar className="w-3.5 h-3.5 text-teal-700" />
-                <span>{isAs ? "ঋতুচৰ্যা" : "Ritucharya"}</span>
-              </Link>
-
-              <Link
-                href="/kitchen-garden"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-lime-100/90 hover:bg-lime-200 text-lime-950 text-xs font-bold transition shadow-2xs border border-lime-200 cursor-pointer touch-manipulation"
-              >
-                <Sprout className="w-3.5 h-3.5 text-lime-800" />
-                <span>{isAs ? "পাকঘৰৰ বাৰী" : "Kitchen Garden"}</span>
-              </Link>
-
-              <Link
-                href="/daily-habits"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-100/90 hover:bg-amber-200 text-amber-950 text-xs font-bold transition shadow-2xs border border-amber-300 cursor-pointer touch-manipulation"
-              >
-                <TrendingUp className="w-3.5 h-3.5 text-amber-700" />
-                <span>{isAs ? "দিনচৰ্যা" : "Daily Habits"}</span>
-              </Link>
-
-              <Link
-                href="/aitas-diha"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-100/90 hover:bg-rose-200 text-rose-950 text-xs font-bold transition shadow-2xs border border-rose-200 cursor-pointer touch-manipulation"
-              >
-                <BookHeart className="w-3.5 h-3.5 text-rose-700" />
-                <span>{isAs ? "আইতাৰ দিহা" : "Aita's Diha"}</span>
-              </Link>
-
-              <Link
-                href="/fridge-card"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-900 text-xs font-bold transition shadow-2xs border border-stone-300 cursor-pointer touch-manipulation"
-              >
-                <FileText className="w-3.5 h-3.5 text-stone-700" />
-                <span>{isAs ? "ফ্ৰিজ কাৰ্ড (PDF)" : "Fridge Card (PDF)"}</span>
-              </Link>
-            </div>
-
+            
             {/* Direct Remedy Search Results Dropdown */}
             {Boolean(query.trim()) && matchingRemedies.length > 0 && (
-              <div className="w-full max-w-xl mt-3 bg-white rounded-2xl border border-amber-200 shadow-xl p-3 text-left animate-in fade-in duration-150">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-amber-800 px-2 py-1">
+              <div className="w-full mt-3 bg-white rounded-2xl border border-amber-200 shadow-xl p-3 text-left">
+                <div className="text-[11px] font-semibold tracking-wider text-amber-800 px-2 py-1">
                   {isAs ? "মিলা উপচাৰসমূহ" : "Matching Kitchen Remedies"} ({matchingRemedies.length})
                 </div>
                 <div className="divide-y divide-stone-100">
@@ -407,9 +341,102 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* Most Searched / Common This Season Curated Section */}
-            <div className="w-full max-w-3xl mt-6">
-              <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-amber-900 mb-2.5">
+            
+            </div>
+          </div>
+          {/* Signature shortcuts */}
+          <div className="hero-rise hero-rise-3">
+          {/* Quick Signature Features Shortcut Bar */}
+            <div className="flex flex-wrap items-center justify-start gap-2 mt-5 flex-wrap">
+              {habitStreak > 0 && (
+                <Link
+                  href="/daily-habits"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-700 text-onbrand text-xs font-black shadow-xs hover:bg-amber-800 transition cursor-pointer touch-manipulation"
+                >
+                  <Flame className="w-3.5 h-3.5 fill-onbrand" />
+                  <span>🔥 {habitStreak} {isAs ? "দিনীয়া ধাৰাবাহিকতা!" : "-Day Streak!"}</span>
+                </Link>
+              )}
+
+              <Link
+                href="/spice-scanner"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 text-xs font-bold transition shadow-2xs border border-amber-300 cursor-pointer touch-manipulation"
+              >
+                <Camera className="w-3.5 h-3.5 text-amber-700" />
+                <span>{isAs ? "মছলা স্কেনাৰ" : "Spice Box Scanner"}</span>
+                <span className="text-[9px] uppercase px-1 rounded-sm bg-amber-700 text-onbrand font-black">AI</span>
+              </Link>
+
+              <Link
+                href="/dosha-assessment"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100/90 hover:bg-emerald-200 text-emerald-950 text-xs font-bold transition shadow-2xs border border-emerald-300 cursor-pointer touch-manipulation"
+              >
+                <HeartPulse className="w-3.5 h-3.5 text-emerald-700" />
+                <span>{isAs ? "দোষ পৰীক্ষা" : "Dosha Quiz"}</span>
+              </Link>
+
+              <Link
+                href="/plant-scanner"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100/90 hover:bg-emerald-200 text-emerald-950 text-xs font-bold transition shadow-2xs border border-emerald-200 cursor-pointer touch-manipulation"
+              >
+                <Leaf className="w-3.5 h-3.5 text-emerald-700" />
+                <span>{isAs ? "বনৌষধি স্কেনাৰ" : "Plant Scanner"}</span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => setAssistantOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-200/90 hover:bg-amber-300 text-amber-950 text-xs font-bold transition shadow-2xs border border-amber-300 cursor-pointer touch-manipulation"
+              >
+                <Bot className="w-3.5 h-3.5 text-amber-800" />
+                <span>{isAs ? "নিৰাময় এআই সহায়ক" : "Niramay AI"}</span>
+              </button>
+
+              <Link
+                href="/ritucharya"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100/90 hover:bg-emerald-200 text-emerald-950 text-xs font-bold transition shadow-2xs border border-emerald-200 cursor-pointer touch-manipulation"
+              >
+                <Calendar className="w-3.5 h-3.5 text-emerald-700" />
+                <span>{isAs ? "ঋতুচৰ্যা" : "Ritucharya"}</span>
+              </Link>
+
+              <Link
+                href="/kitchen-garden"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100/90 hover:bg-emerald-200 text-emerald-950 text-xs font-bold transition shadow-2xs border border-emerald-200 cursor-pointer touch-manipulation"
+              >
+                <Sprout className="w-3.5 h-3.5 text-emerald-700" />
+                <span>{isAs ? "পাকঘৰৰ বাৰী" : "Kitchen Garden"}</span>
+              </Link>
+
+              <Link
+                href="/daily-habits"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-100/90 hover:bg-amber-200 text-amber-950 text-xs font-bold transition shadow-2xs border border-amber-300 cursor-pointer touch-manipulation"
+              >
+                <TrendingUp className="w-3.5 h-3.5 text-amber-700" />
+                <span>{isAs ? "দিনচৰ্যা" : "Daily Habits"}</span>
+              </Link>
+
+              <Link
+                href="/aitas-diha"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-950 text-xs font-bold transition shadow-2xs border border-amber-200 cursor-pointer touch-manipulation"
+              >
+                <BookHeart className="w-3.5 h-3.5 text-amber-800" />
+                <span>{isAs ? "আইতাৰ দিহা" : "Aita's Diha"}</span>
+              </Link>
+
+              <Link
+                href="/fridge-card"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-900 text-xs font-bold transition shadow-2xs border border-stone-300 cursor-pointer touch-manipulation"
+              >
+                <FileText className="w-3.5 h-3.5 text-stone-700" />
+                <span>{isAs ? "ফ্ৰিজ কাৰ্ড (PDF)" : "Fridge Card (PDF)"}</span>
+              </Link>
+            </div>
+
+            
+          {/* Most Searched / Common This Season Curated Section */}
+            <div className="w-full mt-8">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900 mb-2.5">
                 <TrendingUp className="w-3.5 h-3.5 text-amber-700" />
                 <span>
                   {isAs
@@ -419,16 +446,16 @@ export default function HomePage() {
                     : "Common This Season / সততে সন্ধান কৰা:"}
                 </span>
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 {COMMON_THIS_SEASON.map((item) => {
                   const Icon = item.icon;
                   return (
                     <Link
                       key={item.slug}
                       href={`/symptoms/${item.slug}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 hover:bg-amber-700 hover:text-white border border-amber-200 text-stone-700 text-xs font-medium transition shadow-2xs group"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 hover:bg-amber-700 hover:text-onbrand border border-amber-200 text-stone-700 text-xs font-medium transition shadow-2xs group"
                     >
-                      <Icon className="w-3.5 h-3.5 text-amber-700 group-hover:text-white transition-colors" />
+                      <Icon className="w-3.5 h-3.5 text-amber-700 group-hover:text-onbrand transition-colors" />
                       <span>{isAs ? item.assamese : item.label}</span>
                       {isBi && <span className="text-[10px] opacity-75 font-sans">({item.assamese})</span>}
                     </Link>
@@ -437,8 +464,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Key Trust Badges */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-semibold text-stone-600">
+            
+          </div>
+          {/* Key Trust Badges */}
+            <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6 text-xs font-semibold text-stone-600">
               <span className="flex items-center gap-1.5 bg-white/70 px-3 py-1.5 rounded-full border border-stone-200">
                 <ShieldCheck className="w-4 h-4 text-emerald-700" />
                 <span>{isAs ? "বয়স অনুযায়ী মাত্ৰা নিৰ্দেশনা" : "Age Safety Guides"}</span>
@@ -456,7 +485,6 @@ export default function HomePage() {
                 <span>{isAs ? "১০০% অফলাইন আৰু ব্যক্তিগত" : "100% Offline & Private"}</span>
               </span>
             </div>
-          </div>
         </div>
       </section>
 
@@ -496,8 +524,8 @@ export default function HomePage() {
                   onClick={() => togglePantryItem(spice)}
                   className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition cursor-pointer ${
                     inStock
-                      ? "bg-amber-700 text-white font-semibold shadow-xs ring-2 ring-amber-600/30"
-                      : "bg-[#FFF8F0] text-stone-800 border border-amber-200/90 hover:border-amber-400 hover:bg-amber-100/50"
+                      ? "bg-amber-700 text-onbrand font-semibold shadow-xs ring-2 ring-amber-600/30"
+                      : "bg-parchment text-stone-800 border border-amber-200/90 hover:border-amber-400 hover:bg-amber-100/50"
                   }`}
                   aria-pressed={inStock}
                 >
@@ -526,10 +554,10 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <span className="text-xs uppercase tracking-wider font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-full">
+            <span className="section-label">
               {isAs ? "লক্ষণ সূচী" : "Symptom Directory"}
             </span>
-            <h2 className="text-2xl sm:text-4xl font-serif font-black text-stone-900 mt-2">
+            <h2 className="text-2xl sm:text-4xl font-serif font-semibold tracking-tight text-ink mt-2">
               {isAs ? "আপোনাৰ কি সমস্যা হৈছে?" : "What seems to be troubling you?"}
             </h2>
             <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-xl">
@@ -554,7 +582,7 @@ export default function HomePage() {
             onClick={() => setActiveCategoryFilter("all")}
             className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold transition shrink-0 ${
               activeCategoryFilter === "all"
-                ? "bg-amber-700 text-white"
+                ? "bg-amber-700 text-onbrand"
                 : "bg-white text-stone-700 border border-stone-200 hover:bg-amber-50"
             }`}
           >
@@ -566,7 +594,7 @@ export default function HomePage() {
               onClick={() => setActiveCategoryFilter(group.id)}
               className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold transition shrink-0 ${
                 activeCategoryFilter === group.id
-                  ? "bg-amber-700 text-white"
+                  ? "bg-amber-700 text-onbrand"
                   : "bg-white text-stone-700 border border-stone-200 hover:bg-amber-50"
               }`}
             >
@@ -590,11 +618,11 @@ export default function HomePage() {
               <Link
                 key={symptom.slug}
                 href={`/symptoms/${symptom.slug}`}
-                className="group relative bg-white hover:bg-[#FFFDF9] rounded-3xl p-6 border border-amber-200/70 hover:border-amber-500/80 shadow-xs hover:shadow-xl transition-all duration-200 flex flex-col justify-between"
+                className="group relative bg-white hover:bg-cream rounded-3xl p-6 border border-amber-200/70 hover:border-amber-500/80 shadow-xs hover:shadow-xl transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-amber-100 group-hover:bg-amber-600 text-amber-800 group-hover:text-white flex items-center justify-center transition-colors">
+                    <div className="w-12 h-12 rounded-2xl bg-amber-100 group-hover:bg-amber-600 text-amber-800 group-hover:text-onbrand flex items-center justify-center transition-colors">
                       <Icon className="w-6 h-6" />
                     </div>
                     <span className="text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-1 rounded-full">
@@ -648,7 +676,7 @@ export default function HomePage() {
         <div className="mt-10 text-center">
           <Link
             href="/symptoms"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-amber-700 hover:bg-amber-800 text-white font-semibold text-sm shadow-md transition transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-amber-700 hover:bg-amber-800 text-onbrand font-semibold text-sm shadow-md transition transform hover:-translate-y-0.5"
           >
             <span>{isAs ? `সম্পূৰ্ণ ${SYMPTOM_CATEGORIES.length}টা লক্ষণ চাওক` : `Browse Complete ${SYMPTOM_CATEGORIES.length}-Symptom Directory`}</span>
             <ArrowRight className="w-4 h-4" />
@@ -670,10 +698,10 @@ export default function HomePage() {
       <section className="bg-amber-100/40 border-y border-amber-200/60 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs uppercase tracking-wider font-bold text-amber-800">
+            <span className="section-label mx-auto">
               {isAs ? "৩টা সহজ পদক্ষেপ" : "Simple 3-Step Process"}
             </span>
-            <h2 className="text-2xl sm:text-4xl font-serif font-black text-stone-900 mt-1">
+            <h2 className="text-2xl sm:text-4xl font-serif font-semibold tracking-tight text-ink mt-2">
               {isAs ? "নিৰাময় কেনেদৰে ব্যৱহাৰ কৰিব" : "How Niramay Works"}
             </h2>
             <p className="text-sm text-stone-600 mt-2">
@@ -685,7 +713,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-amber-200/70 shadow-xs relative">
-              <div className="w-12 h-12 rounded-2xl bg-amber-600 text-white font-serif font-black text-xl flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-2xl bg-amber-600 text-onbrand font-serif font-black text-xl flex items-center justify-center mb-5">
                 1
               </div>
               <h3 className="text-lg font-bold text-stone-900 mb-2">
@@ -699,7 +727,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-amber-200/70 shadow-xs relative">
-              <div className="w-12 h-12 rounded-2xl bg-amber-700 text-white font-serif font-black text-xl flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-2xl bg-amber-700 text-onbrand font-serif font-black text-xl flex items-center justify-center mb-5">
                 2
               </div>
               <h3 className="text-lg font-bold text-stone-900 mb-2">
@@ -713,7 +741,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-amber-200/70 shadow-xs relative">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-800 text-white font-serif font-black text-xl flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-800 text-onbrand font-serif font-black text-xl flex items-center justify-center mb-5">
                 3
               </div>
               <h3 className="text-lg font-bold text-stone-900 mb-2">
@@ -733,10 +761,10 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
-            <span className="text-xs uppercase tracking-wider font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-full">
+            <span className="section-label">
               {isAs ? "ঐতিহ্যমণ্ডিত উপচাৰ" : "Time-Tested Recipes"}
             </span>
-            <h2 className="text-2xl sm:text-4xl font-serif font-black text-stone-900 mt-2">
+            <h2 className="text-2xl sm:text-4xl font-serif font-semibold tracking-tight text-ink mt-2">
               {isAs ? "বিশেষ পৰম্পৰাগত প্ৰস্তুতিসমূহ" : "Featured Traditional Preparations"}
             </h2>
             <p className="text-xs sm:text-sm text-stone-600 mt-1">
@@ -792,7 +820,7 @@ export default function HomePage() {
 
                   {/* Ingredients Preview */}
                   <div className="mt-4 pt-4 border-t border-stone-100">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block mb-2">
+                    <span className="text-[11px] font-semibold tracking-wider text-stone-500 block mb-2">
                       {isAs ? "প্ৰধান উপাদানসমূহ:" : "Key Ingredients:"}
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -803,7 +831,7 @@ export default function HomePage() {
                         return (
                           <span
                             key={idx}
-                            className="text-xs bg-[#FFF8F0] border border-amber-200 text-stone-700 px-2.5 py-1 rounded-lg"
+                            className="text-xs bg-parchment border border-amber-200 text-stone-700 px-2.5 py-1 rounded-lg"
                           >
                             {displayItem} ({displayQty})
                           </span>

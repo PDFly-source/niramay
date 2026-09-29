@@ -146,7 +146,7 @@ export const IngredientCheckerClient: React.FC<Props> = ({
             )}
             <Link
               href={`/symptoms/${symptom.slug}/results`}
-              className="mt-3.5 w-full inline-flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition shadow-xs"
+              className="mt-3.5 w-full inline-flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-onbrand text-xs font-bold transition shadow-xs"
             >
               <span>{isAs ? "উপচাৰসমূহ চাওক" : "View Ranked Results"}</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -243,7 +243,7 @@ export const IngredientCheckerClient: React.FC<Props> = ({
                     <div
                       className={`w-6 h-6 rounded-lg flex items-center justify-center transition-colors shrink-0 ${
                         isChecked
-                          ? "bg-amber-600 text-white"
+                          ? "bg-amber-600 text-onbrand"
                           : "border-2 border-stone-300"
                       }`}
                     >
@@ -268,7 +268,7 @@ export const IngredientCheckerClient: React.FC<Props> = ({
               />
               <button
                 type="submit"
-                className="inline-flex items-center gap-1 py-2 px-3 rounded-xl bg-stone-800 hover:bg-stone-900 text-white text-xs font-semibold transition"
+                className="inline-flex items-center gap-1 py-2 px-3 rounded-xl bg-night-soft hover:bg-night text-onbrand text-xs font-semibold transition"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>{isAs ? "যোগ কৰক" : "Add"}</span>

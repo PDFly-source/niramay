@@ -146,7 +146,7 @@ export default function LibraryPage() {
             onClick={() => setActiveFilter(tab.id)}
             className={`whitespace-nowrap px-4 py-2 rounded-2xl text-xs font-bold transition shrink-0 ${
               activeFilter === tab.id
-                ? "bg-amber-800 text-white shadow-xs"
+                ? "bg-amber-800 text-onbrand shadow-xs"
                 : "bg-white text-stone-700 border border-stone-200 hover:bg-amber-50"
             }`}
           >

@@ -127,7 +127,7 @@ export const PrintableFridgeCard: React.FC = () => {
               onClick={() => setLang("bilingual")}
               className={`px-3 py-1.5 rounded-lg font-bold transition ${
                 lang === "bilingual"
-                  ? "bg-amber-700 text-white shadow-xs"
+                  ? "bg-amber-700 text-onbrand shadow-xs"
                   : "text-stone-700 hover:text-stone-900"
               }`}
             >
@@ -137,7 +137,7 @@ export const PrintableFridgeCard: React.FC = () => {
               onClick={() => setLang("as")}
               className={`px-3 py-1.5 rounded-lg font-bold transition ${
                 lang === "as"
-                  ? "bg-amber-700 text-white shadow-xs"
+                  ? "bg-amber-700 text-onbrand shadow-xs"
                   : "text-stone-700 hover:text-stone-900"
               }`}
             >
@@ -147,7 +147,7 @@ export const PrintableFridgeCard: React.FC = () => {
               onClick={() => setLang("en")}
               className={`px-3 py-1.5 rounded-lg font-bold transition ${
                 lang === "en"
-                  ? "bg-amber-700 text-white shadow-xs"
+                  ? "bg-amber-700 text-onbrand shadow-xs"
                   : "text-stone-700 hover:text-stone-900"
               }`}
             >
@@ -158,7 +158,7 @@ export const PrintableFridgeCard: React.FC = () => {
 
         <button
           onClick={handlePrint}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-white shadow-md transition"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-onbrand shadow-md transition"
         >
           <Printer className="w-4 h-4" />
           <span>Print / Save PDF (ফ্ৰিজ কাৰ্ড প্ৰিণ্ট)</span>
@@ -187,7 +187,7 @@ export const PrintableFridgeCard: React.FC = () => {
           </div>
 
           <div className="text-right">
-            <span className="text-[10px] font-bold bg-stone-900 text-white px-2.5 py-1 rounded-md">
+            <span className="text-[10px] font-bold bg-stone-900 text-onbrand px-2.5 py-1 rounded-md">
               KITCHEN FRIDGE GUIDE
             </span>
             <div className="text-[10px] text-stone-500 mt-1 font-mono">
@@ -205,7 +205,7 @@ export const PrintableFridgeCard: React.FC = () => {
             >
               <div>
                 <div className="flex items-center gap-2 font-bold text-stone-900 border-b border-stone-200 pb-1 mb-1.5">
-                  <span className="w-5 h-5 rounded-full bg-stone-900 text-white font-mono text-[10px] flex items-center justify-center shrink-0">
+                  <span className="w-5 h-5 rounded-full bg-stone-900 text-onbrand font-mono text-[10px] flex items-center justify-center shrink-0">
                     {item.number}
                   </span>
                   <div>

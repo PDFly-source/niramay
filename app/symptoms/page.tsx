@@ -181,7 +181,7 @@ export default function SymptomsPage() {
 
         {/* Feature 1: Did You Mean Suggestion */}
         {didYouMean && (
-          <div className="mt-2.5 text-xs flex items-center gap-1.5 text-stone-600 animate-in fade-in">
+          <div className="mt-2.5 text-xs flex items-center gap-1.5 text-stone-600">
             <span className="text-amber-800 font-semibold">
               {isAs ? "আপুনি এইটো বিচাৰিছে নেকি?" : "Did you mean:"}
             </span>
@@ -205,7 +205,7 @@ export default function SymptomsPage() {
               onClick={() => setSelectedCategory(cat.id)}
               className={`whitespace-nowrap px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold transition shrink-0 flex items-center gap-2 cursor-pointer ${
                 isSelected
-                  ? "bg-amber-700 text-white shadow-sm ring-2 ring-amber-600/30"
+                  ? "bg-amber-700 text-onbrand shadow-sm ring-2 ring-amber-600/30"
                   : "bg-white text-stone-700 border border-stone-200 hover:border-amber-300 hover:bg-amber-50/50"
               }`}
             >
@@ -224,7 +224,7 @@ export default function SymptomsPage() {
 
       {/* Selected Category Header Banner (if filtered) */}
       {activeGroup && (
-        <div className="mb-6 p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex items-start gap-3 animate-in fade-in">
+        <div className="mb-6 p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex items-start gap-3">
           <div className="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5 font-bold">
             🌿
           </div>
@@ -258,7 +258,7 @@ export default function SymptomsPage() {
               setSearchTerm("");
               setSelectedCategory("all");
             }}
-            className="mt-4 px-4 py-2 rounded-xl bg-amber-700 text-white text-xs font-semibold hover:bg-amber-800 transition"
+            className="mt-4 px-4 py-2 rounded-xl bg-amber-700 text-onbrand text-xs font-semibold hover:bg-amber-800 transition"
           >
             {isAs ? "ফিল্টাৰ ৰিছেট কৰক" : "Reset Filters"}
           </button>
@@ -278,11 +278,11 @@ export default function SymptomsPage() {
               <Link
                 key={symptom.slug}
                 href={`/symptoms/${symptom.slug}`}
-                className="group relative bg-white hover:bg-[#FFFDF9] rounded-3xl p-6 border border-stone-200 hover:border-amber-500 shadow-2xs hover:shadow-xl transition-all duration-200 flex flex-col justify-between"
+                className="group relative bg-white hover:bg-cream rounded-3xl p-6 border border-stone-200 hover:border-amber-500 shadow-2xs hover:shadow-xl transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-amber-100 group-hover:bg-amber-600 text-amber-800 group-hover:text-white flex items-center justify-center transition-colors">
+                    <div className="w-12 h-12 rounded-2xl bg-amber-100 group-hover:bg-amber-600 text-amber-800 group-hover:text-onbrand flex items-center justify-center transition-colors">
                       <Icon className="w-6 h-6" />
                     </div>
                     <span className="text-xs font-bold text-amber-900 bg-amber-50 border border-amber-200/80 px-2.5 py-1 rounded-full">

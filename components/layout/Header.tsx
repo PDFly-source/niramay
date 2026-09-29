@@ -168,7 +168,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-amber-200/60 bg-[#FFFDF9]/95 backdrop-blur-md transition-all">
+      <header className="sticky top-0 z-40 w-full border-b border-amber-200/60 bg-cream/95 backdrop-blur-md transition-all">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between">
           {/* Brand Logo */}
           <Link
@@ -209,7 +209,7 @@ export const Header: React.FC = () => {
                   <Icon className={`w-3.5 h-3.5 ${isActive ? "text-amber-700" : "text-stone-500"}`} />
                   <span>{item.label}</span>
                   {item.badge !== null && (
-                    <span className="px-1.5 py-0.2 text-[10px] font-bold text-white bg-amber-600 rounded-full">
+                    <span className="px-1.5 py-0.2 text-[10px] font-bold text-onbrand bg-amber-600 rounded-full">
                       {item.badge}
                     </span>
                   )}
@@ -220,7 +220,7 @@ export const Header: React.FC = () => {
             {/* Niramay AI Assistant Trigger (Desktop) */}
             <button
               onClick={() => setAssistantOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shadow-xs transition ml-1"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-onbrand text-xs font-bold shadow-xs transition ml-1"
             >
               <Bot className="w-3.5 h-3.5 text-amber-200" />
               <span>Niramay AI</span>
@@ -257,7 +257,7 @@ export const Header: React.FC = () => {
                 onClick={() => handleLanguageSelect("as")}
                 className={`px-2 py-1 rounded-lg transition-all ${
                   currentMode === "as"
-                    ? "bg-emerald-700 text-white shadow-2xs font-black"
+                    ? "bg-emerald-700 text-onbrand shadow-2xs font-black"
                     : "text-stone-600 hover:text-stone-900"
                 }`}
                 title="অসমীয়া"
@@ -269,7 +269,7 @@ export const Header: React.FC = () => {
                 onClick={() => handleLanguageSelect("bilingual")}
                 className={`px-2 py-1 rounded-lg transition-all ${
                   currentMode === "bilingual"
-                    ? "bg-amber-700 text-white shadow-2xs font-black"
+                    ? "bg-amber-700 text-onbrand shadow-2xs font-black"
                     : "text-stone-600 hover:text-stone-900"
                 }`}
                 title="দ্বিভাষিক (Dual)"
@@ -290,6 +290,10 @@ export const Header: React.FC = () => {
             </button>
           </div>
         </div>
+        {/* Woven thread accent */}
+        <div aria-hidden="true" className="absolute bottom-0 inset-x-0">
+          <div className="gamosa-rule opacity-60" />
+        </div>
       </header>
 
       {/* Slide-out Navigation Drawer (Sheet) */}
@@ -302,9 +306,9 @@ export const Header: React.FC = () => {
           />
 
           {/* Drawer Panel */}
-          <div className="relative w-full max-w-sm sm:max-w-md bg-[#FFFDF9] h-full shadow-2xl flex flex-col justify-between border-l border-amber-200/80 z-10 overflow-hidden animate-in slide-in-from-right duration-300">
+          <div className="relative w-full max-w-sm sm:max-w-md bg-cream h-full shadow-2xl flex flex-col justify-between border-l border-amber-200/80 z-10 overflow-hidden animate-in slide-in-from-right duration-300">
             {/* Drawer Header */}
-            <div className="p-5 bg-gradient-to-r from-amber-800 to-emerald-950 text-white flex items-center justify-between shrink-0">
+            <div className="p-5 bg-gradient-to-r from-amber-800 to-emerald-950 text-onbrand flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <NiramayLogo size={36} />
                 <div>
@@ -319,7 +323,7 @@ export const Header: React.FC = () => {
 
               <button
                 onClick={() => setDrawerOpen(false)}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-onbrand flex items-center justify-center transition"
                 aria-label="Close menu"
               >
                 <X className="w-4 h-4" />
@@ -334,7 +338,7 @@ export const Header: React.FC = () => {
                   setDrawerOpen(false);
                   setAssistantOpen(true);
                 }}
-                className="w-full flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition transform active:scale-98"
+                className="w-full flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 text-onbrand font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition transform active:scale-98"
               >
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
@@ -391,7 +395,7 @@ export const Header: React.FC = () => {
                               </span>
                             )}
                             {(item as any).badge !== null && (item as any).badge !== undefined && (
-                              <span className="px-2 py-0.5 text-[10px] font-bold text-white bg-amber-600 rounded-full">
+                              <span className="px-2 py-0.5 text-[10px] font-bold text-onbrand bg-amber-600 rounded-full">
                                 {(item as any).badge}
                               </span>
                             )}
@@ -407,9 +411,9 @@ export const Header: React.FC = () => {
             {/* Pinned Bottom Drawer Footer: Emergency Quick-Access Row */}
             <div className="p-4 bg-stone-100 border-t border-amber-200 shrink-0 space-y-3">
               {/* Emergency Row Pinned at bottom of menu */}
-              <div className="bg-red-600 text-white rounded-2xl p-3 shadow-md border border-red-500 flex items-center justify-between gap-2">
+              <div className="bg-red-600 text-onbrand rounded-2xl p-3 shadow-md border border-red-500 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
-                  <Ambulance className="w-4 h-4 text-white shrink-0" />
+                  <Ambulance className="w-4 h-4 text-onbrand shrink-0" />
                   <div>
                     <div className="text-[11px] font-black tracking-tight leading-tight">
                       {isAs ? "জৰুৰীকালীন সহায়" : "Emergency Speed-Dial"}
@@ -430,7 +434,7 @@ export const Header: React.FC = () => {
                   </a>
                   <a
                     href="tel:112"
-                    className="px-2.5 py-1.5 rounded-lg bg-red-950 text-white font-black text-xs"
+                    className="px-2.5 py-1.5 rounded-lg bg-red-950 text-onbrand font-black text-xs"
                     title="National Emergency 112"
                   >
                     📞 112
@@ -445,7 +449,7 @@ export const Header: React.FC = () => {
                   <button
                     onClick={() => handleLanguageSelect("en")}
                     className={`px-2 py-1 rounded-md ${
-                      currentMode === "en" ? "bg-stone-900 text-white" : "bg-white text-stone-700"
+                      currentMode === "en" ? "bg-stone-900 text-onbrand" : "bg-white text-stone-700"
                     }`}
                   >
                     EN
@@ -453,7 +457,7 @@ export const Header: React.FC = () => {
                   <button
                     onClick={() => handleLanguageSelect("as")}
                     className={`px-2 py-1 rounded-md ${
-                      currentMode === "as" ? "bg-emerald-700 text-white" : "bg-white text-stone-700"
+                      currentMode === "as" ? "bg-emerald-700 text-onbrand" : "bg-white text-stone-700"
                     }`}
                   >
                     অসমীয়া
@@ -461,7 +465,7 @@ export const Header: React.FC = () => {
                   <button
                     onClick={() => handleLanguageSelect("bilingual")}
                     className={`px-2 py-1 rounded-md ${
-                      currentMode === "bilingual" ? "bg-amber-700 text-white" : "bg-white text-stone-700"
+                      currentMode === "bilingual" ? "bg-amber-700 text-onbrand" : "bg-white text-stone-700"
                     }`}
                   >
                     Dual

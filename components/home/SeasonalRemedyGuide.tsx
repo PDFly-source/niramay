@@ -212,7 +212,7 @@ export const SeasonalRemedyGuide: React.FC = () => {
               onClick={() => setActiveSeason(season)}
               className={`flex items-center gap-2 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition shrink-0 border ${
                 isSelected
-                  ? "bg-amber-700 text-white border-amber-800 shadow-md"
+                  ? "bg-amber-700 text-onbrand border-amber-800 shadow-md"
                   : "bg-white hover:bg-stone-50 text-stone-700 border-stone-200"
               }`}
             >
@@ -257,7 +257,7 @@ export const SeasonalRemedyGuide: React.FC = () => {
 
             <Link
               href={`/symptoms/${activeSeason.targetSymptomSlug}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-white shadow-xs transition"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-onbrand shadow-xs transition"
             >
               <span>{isAs ? "বতৰৰ উপচাৰসমূহ" : "Seasonal Remedies"}</span>
               <ArrowRight className="w-3.5 h-3.5" />

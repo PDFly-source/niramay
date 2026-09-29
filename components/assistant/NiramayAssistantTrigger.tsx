@@ -29,7 +29,7 @@ export const NiramayAssistantTrigger: React.FC = () => {
       <button
         type="button"
         onClick={() => setAssistantOpen(true)}
-        className="group relative flex items-center gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white rounded-2xl shadow-xl hover:shadow-2xl border border-amber-300/40 transition-all transform hover:-translate-y-0.5 active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus:ring-2 focus:ring-amber-500"
+        className="group relative flex items-center gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-onbrand rounded-2xl shadow-xl hover:shadow-2xl border border-amber-300/40 transition-all transform hover:-translate-y-0.5 active:scale-95 cursor-pointer touch-manipulation focus:outline-none focus:ring-2 focus:ring-amber-500"
         aria-label="Open Niramay AI Assistant"
       >
         <div className="w-7 h-7 rounded-xl bg-white/20 flex items-center justify-center shrink-0">

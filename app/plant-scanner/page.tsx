@@ -216,7 +216,7 @@ export default function PlantScannerPage() {
                 onClick={() => fileInputRef.current?.click()}
                 className="cursor-pointer border-2 border-dashed border-emerald-300 hover:border-emerald-500 bg-emerald-50/40 hover:bg-emerald-50/70 rounded-2xl p-8 text-center transition flex flex-col items-center justify-center gap-3 min-h-[260px]"
               >
-                <div className="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-600 text-onbrand flex items-center justify-center shadow-md">
                   <Camera className="w-7 h-7" />
                 </div>
                 <div className="space-y-1">
@@ -231,7 +231,7 @@ export default function PlantScannerPage() {
                 </div>
 
                 <div className="flex items-center gap-2 mt-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-700 text-onbrand text-xs font-bold rounded-xl shadow-xs">
                     <Camera className="w-3.5 h-3.5" />
                     <span>{isAs ? "কেমেৰা খোলক" : "Open Camera"}</span>
                   </span>
@@ -243,14 +243,14 @@ export default function PlantScannerPage() {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="relative rounded-2xl overflow-hidden border border-stone-200 aspect-4/3 bg-stone-900 flex items-center justify-center">
+                <div className="relative rounded-2xl overflow-hidden border border-stone-200 aspect-4/3 bg-night flex items-center justify-center">
                   <img
                     src={imagePreview}
                     alt="Captured Leaf"
                     className="max-h-full max-w-full object-contain"
                   />
                   {analyzing && (
-                    <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-xs flex flex-col items-center justify-center text-white gap-2">
+                    <div className="absolute inset-0 bg-night/60 backdrop-blur-xs flex flex-col items-center justify-center text-onbrand gap-2">
                       <RefreshCw className="w-8 h-8 animate-spin text-emerald-400" />
                       <span className="text-xs font-bold">
                         {isAs

@@ -53,7 +53,7 @@ export const OfflinePrepIndicator: React.FC = () => {
 
   return (
     <div className="fixed bottom-20 left-4 right-4 sm:left-auto sm:right-6 sm:w-96 z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
-      <div className="bg-stone-900/95 backdrop-blur-md text-white rounded-2xl p-4 shadow-2xl border border-stone-700">
+      <div className="bg-stone-900/95 backdrop-blur-md text-onbrand rounded-2xl p-4 shadow-2xl border border-stone-700">
         <div className="flex items-center gap-3">
           {isDone ? (
             <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">

@@ -83,7 +83,7 @@ export const RecipeShareCard: React.FC<Props> = ({
       <button
         onClick={handleGenerateAndShare}
         disabled={generating}
-        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white shadow-xs transition no-print"
+        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-onbrand shadow-xs transition no-print"
         title="Share recipe card to WhatsApp"
       >
         <Share2 className="w-4 h-4" />
@@ -99,7 +99,7 @@ export const RecipeShareCard: React.FC<Props> = ({
         <div
           ref={cardRef}
           style={{ width: "680px" }}
-          className="bg-[#FFFDF9] p-8 rounded-3xl border-4 border-amber-800/80 text-stone-900 font-sans shadow-none"
+          className="bg-cream p-8 rounded-3xl border-4 border-amber-800/80 text-stone-900 font-sans shadow-none"
         >
           {/* Card Header */}
           <div className="flex items-center justify-between pb-4 border-b-2 border-amber-200">
@@ -167,7 +167,7 @@ export const RecipeShareCard: React.FC<Props> = ({
                 const s = typeof step === "object" ? step.en : step;
                 return (
                   <div key={idx} className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-amber-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="w-5 h-5 rounded-full bg-amber-600 text-onbrand font-bold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
                       {idx + 1}
                     </span>
                     <span className="leading-snug">{s}</span>
@@ -244,7 +244,7 @@ export const RecipeShareCard: React.FC<Props> = ({
 
               <button
                 onClick={handleGenerateAndShare}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white shadow-xs transition"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-onbrand shadow-xs transition"
               >
                 <Share2 className="w-4 h-4" />
                 <span>Share to WhatsApp</span>

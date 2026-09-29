@@ -55,7 +55,7 @@ export const CareLogModal: React.FC<Props> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/70 backdrop-blur-xs animate-in fade-in">
       <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="p-5 bg-gradient-to-r from-amber-800 to-stone-900 text-white flex items-center justify-between shrink-0">
+        <div className="p-5 bg-gradient-to-r from-amber-800 to-stone-900 text-onbrand flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center font-bold">
               <FileText className="w-5 h-5 text-amber-300" />
@@ -72,7 +72,7 @@ export const CareLogModal: React.FC<Props> = ({
 
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition"
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-onbrand flex items-center justify-center transition"
           >
             <X className="w-4 h-4" />
           </button>
@@ -103,7 +103,7 @@ export const CareLogModal: React.FC<Props> = ({
                       onClick={() => setSelectedLogId(log.id)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-bold transition shrink-0 ${
                         activeLog.id === log.id
-                          ? "bg-amber-800 text-white shadow-2xs"
+                          ? "bg-amber-800 text-onbrand shadow-2xs"
                           : "bg-stone-100 text-stone-700 hover:bg-stone-200"
                       }`}
                     >
@@ -135,7 +135,7 @@ export const CareLogModal: React.FC<Props> = ({
                     );
                     generateDoctorSummaryPdf(activeLog);
                   }}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-white shadow-xs transition self-start sm:self-center"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-700 hover:bg-amber-800 text-onbrand shadow-xs transition self-start sm:self-center"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>{isAs ? "চিকিৎসকৰ বাবে PDF এক্সপোৰ্ট" : "Export Summary to Doctor (PDF)"}</span>
@@ -197,21 +197,21 @@ export const CareLogModal: React.FC<Props> = ({
                           <button
                             type="button"
                             onClick={() => handleStatusUpdate(d as 1 | 2 | 3, "better")}
-                            className="px-2 py-1 text-[10px] font-bold rounded-md bg-emerald-700 text-white hover:bg-emerald-800"
+                            className="px-2 py-1 text-[10px] font-bold rounded-md bg-emerald-700 text-onbrand hover:bg-emerald-800"
                           >
                             Better
                           </button>
                           <button
                             type="button"
                             onClick={() => handleStatusUpdate(d as 1 | 2 | 3, "same")}
-                            className="px-2 py-1 text-[10px] font-bold rounded-md bg-amber-600 text-white hover:bg-amber-700"
+                            className="px-2 py-1 text-[10px] font-bold rounded-md bg-amber-600 text-onbrand hover:bg-amber-700"
                           >
                             Same
                           </button>
                           <button
                             type="button"
                             onClick={() => handleStatusUpdate(d as 1 | 2 | 3, "worse")}
-                            className="px-2 py-1 text-[10px] font-bold rounded-md bg-red-600 text-white hover:bg-red-700"
+                            className="px-2 py-1 text-[10px] font-bold rounded-md bg-red-600 text-onbrand hover:bg-red-700"
                           >
                             Worse
                           </button>
