@@ -1,0 +1,6 @@
+{
+  "name": "Niramay — Traditional Kitchen Remedies Hub",
+  "description": "Authentic Assamese & Indian kitchen remedies (kadha, herbal teas, spice pastes) with age-group dosage safety, ingredient checker, and traditional wisdom.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
