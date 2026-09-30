@@ -76,7 +76,10 @@ export const metadata: Metadata = {
     title: "Niramay",
   },
   icons: {
-    icon: `${BASE_PATH}/icon-192.png`,
+    icon: [
+      { url: `${BASE_PATH}/favicon.ico`, sizes: "48x48" },
+      { url: `${BASE_PATH}/icon-192.png` },
+    ],
     apple: `${BASE_PATH}/apple-touch-icon.png`,
   },
   openGraph: {

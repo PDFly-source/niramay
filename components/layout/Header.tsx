@@ -195,7 +195,7 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Primary Nav Bar */}
-          <nav className="hidden xl:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1">
             {primaryDesktopLinks.map((item) => {
               const Icon = item.icon;
               const isActive = pathname.startsWith(item.href);
@@ -286,13 +286,13 @@ export const Header: React.FC = () => {
               onClick={() => setPaletteOpen(true)}
               aria-label={isAs ? "সন্ধান খোলক" : "Open quick search (Ctrl+K)"}
               aria-keyshortcuts="Control+K Meta+K"
-              className="hidden 2xl:inline-flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 hover:border-amber-300 px-2.5 h-10 text-stone-600 transition shrink-0"
+              className="hidden xl:inline-flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 hover:border-amber-300 h-10 text-stone-600 transition shrink-0 xl:px-2 2xl:px-2.5"
             >
-              <Search className="w-4 h-4 text-amber-700" />
-              <span className="text-xs font-semibold">
+              <Search className="w-4 h-4 text-amber-700" aria-hidden="true" />
+              <span className="hidden 2xl:inline text-xs font-semibold">
                 {isAs ? "সন্ধান" : "Search"}
               </span>
-              <kbd className="inline-flex items-center rounded-md border border-stone-300 bg-white px-1.5 py-0.5 text-[10px] font-mono text-stone-500">
+              <kbd className="hidden 2xl:inline-flex items-center rounded-md border border-stone-300 bg-white px-1.5 py-0.5 text-[10px] font-mono text-stone-500">
                 ⌘K
               </kbd>
             </button>
