@@ -4,9 +4,15 @@ Copyright (c) 2026 PDFly-source ("the project owner"). All rights reserved.
 
 ## 1. Ownership
 
-The original source code, content, and original project assets of Niramay
-("the project") are the property of the project owner. Copyright and all
-other rights in the original project material remain with the project owner.
+The project owner holds copyright and all other rights in Niramay's
+project-owned material: the original source code, original written content,
+the original organization and presentation of the material, and the
+project-owned branding and artwork.
+
+The underlying traditional home-remedy knowledge itself is folk knowledge of
+its communities and traditions and is not claimed as exclusively owned by
+Niramay; the project's rights cover its original expression — the code,
+writing, structure, and UI implementation — not the traditions themselves.
 
 ## 2. Public Visibility Is Not a License
 
@@ -31,9 +37,12 @@ permission from the project owner.
 The project owner retains full rights over their original material and may,
 at their sole discretion:
 
-- reuse, modify, and extend the original code;
-- incorporate it into other projects, including private and commercial ones;
-- redistribute it, license it, or commercialize it, in whole or in part;
+- modify and extend the original code;
+- reuse their original code in other projects, private or public, including
+  private or public forks of their own work and commercial projects;
+- create derivative versions;
+- redistribute, license (relicense), or commercialize it, in whole or in
+  part;
 - release current or future versions under different terms.
 
 ## 4. Use of the Deployed Web Application

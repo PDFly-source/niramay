@@ -15,7 +15,8 @@ including in:
 - private, closed-source projects;
 - other websites and applications;
 - derivative works of any kind;
-- future releases under different license terms.
+- private or public forks of their own work;
+- future releases under different license terms (relicensing).
 
 ## Not automatically allowed to third parties
 
@@ -33,8 +34,15 @@ repository does not imply any of these permissions.
 ## Third-party components
 
 This policy concerns the project owner's original material only.
-Third-party packages (React, Next.js, Tailwind CSS, and others) remain fully
-governed by their own licenses, which this policy does not restrict.
+Third-party components and assets remain governed by their respective
+licenses and are not covered by the project's proprietary ownership claim.
+(React, Next.js, Tailwind CSS, the bundled fonts, and the other packages
+listed in THIRD_PARTY_NOTICES.md are examples of such third-party material.)
+
+Copyright also does not extend to the underlying traditional home-remedy
+knowledge itself: it belongs to its communities and traditions. Niramay's
+proprietary protection covers its original code, writing, organization, UI
+implementation, and project-owned artwork only.
 
 ## A technical reality check
 

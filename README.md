@@ -93,15 +93,27 @@ Niramay is a fully static web app. There is **no backend server, no database, an
 
 ## Using Niramay
 
-You are free to:
+Anyone may:
 
 - visit the [live web application](https://pdfly-source.github.io/niramay/);
 - use its available features for their intended personal and educational purposes;
-- install Niramay as a PWA where your browser supports it.
+- install Niramay as a PWA where their browser supports it.
 
 Using the deployed application does **not** grant ownership of, or any
-source-code reuse rights in, the project. A public GitHub repository is not
+source-code reuse rights in, the project.
+
+**Source code.** The original Niramay source code is proprietary
+(All Rights Reserved) unless explicitly stated otherwise. The repository is
+publicly viewable, but public visibility does not make the source
+open-source, and viewing it does not grant permission to copy, redistribute,
+sublicense, or create derivative projects. A public GitHub repository is not
 the same thing as free source code — see [License](#license) and
+[REUSE_POLICY.md](REUSE_POLICY.md).
+
+**Owner rights.** The project owner may modify and reuse their own original
+code, create private or public forks of their own work, commercialize it,
+and relicense it in the future, subject to the licenses governing any
+third-party components or assets. Details: [LICENSE.md](LICENSE.md) and
 [REUSE_POLICY.md](REUSE_POLICY.md).
 
 ## Important Safety Notice
@@ -202,6 +214,22 @@ commercially reuse the Niramay source code. Niramay is available for use
 through the official deployed web application; third-party dependencies and
 assets remain subject to their respective licenses (see
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
+
+## Rights & Attribution
+
+- Niramay is publicly accessible, but **source visibility is not source-code
+  licensing** — the code may be read, not reused.
+- Third-party components retain their own licenses and are not claimed by
+  this project.
+- Because Niramay is a client-side app, browser-delivered code can always be
+  inspected with developer tools; the license governs permission, not
+  technical access. See [REUSE_POLICY.md](REUSE_POLICY.md).
+- Copyright applies to Niramay's original code, writing, organization, UI
+  implementation, and project-owned branding — not to the underlying
+  traditional home-remedy knowledge, which belongs to the communities and
+  traditions it comes from.
+- For licensing or reuse permissions, contact the project owner through
+  the [repository](https://github.com/PDFly-source/niramay).
 
 ## Credits
 
