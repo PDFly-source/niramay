@@ -30,6 +30,15 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/png",
         purpose: "any",
       },
+      {
+        // Official emblem centered with safe-zone padding — survives Android
+        // circle / squircle / rounded-square launcher masks (max painted
+        // radius 187.6px < 204.8px safe radius)
+        src: `${BASE_PATH}/icon-512-maskable.png`,
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
+      },
     ],
   };
 }
