@@ -91,6 +91,19 @@ Niramay is a fully static web app. There is **no backend server, no database, an
 - **Voice input is optional.** If you use voice, your browser's speech-recognition API requires microphone permission; you can decline and type instead. (Speech support depends on your browser.)
 - **Offline by default.** After the first visit, the PWA serves from cache.
 
+## Using Niramay
+
+You are free to:
+
+- visit the [live web application](https://pdfly-source.github.io/niramay/);
+- use its available features for their intended personal and educational purposes;
+- install Niramay as a PWA where your browser supports it.
+
+Using the deployed application does **not** grant ownership of, or any
+source-code reuse rights in, the project. A public GitHub repository is not
+the same thing as free source code — see [License](#license) and
+[REUSE_POLICY.md](REUSE_POLICY.md).
+
 ## Important Safety Notice
 
 > **Niramay provides educational information about traditional household practices and wellness knowledge. It is not a substitute for diagnosis, treatment, or professional medical advice.**
@@ -170,11 +183,25 @@ Visit the [live app](https://pdfly-source.github.io/niramay/) in a supported bro
 
 ## Contributing
 
-Issues and suggestions are welcome via the [issue tracker](https://github.com/PDFly-source/niramay/issues). Please keep reports factual and include steps to reproduce.
+Niramay is not an open-source project, so this section is not a call for code
+reuse. Suggestions and issue reports are welcome via the
+[issue tracker](https://github.com/PDFly-source/niramay/issues). Any
+contribution that might be accepted would require explicit permission and
+terms from the project owner — opening an issue does not grant source-code
+reuse rights. Please keep reports factual and include steps to reproduce.
 
 ## License
 
-**No license has been chosen yet.** Until a license file is added, the repository owner retains all rights and the code should not be treated as open-source, even though the repository and the live app are publicly accessible.
+Niramay is **not an open-source project**. Its original source code and
+original project assets are proprietary and remain under the control of the
+project owner, as stated in [LICENSE.md](LICENSE.md).
+
+The repository is publicly viewable, but public visibility does not grant
+permission to copy, modify, redistribute, repackage, sublicense, or
+commercially reuse the Niramay source code. Niramay is available for use
+through the official deployed web application; third-party dependencies and
+assets remain subject to their respective licenses (see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
 
 ## Credits
 

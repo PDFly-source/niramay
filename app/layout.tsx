@@ -1,3 +1,10 @@
+/**
+ * Niramay — Traditional Kitchen Remedies
+ * Copyright (c) 2026 PDFly-source. All rights reserved.
+ * Source code is proprietary — see LICENSE.md. Using the deployed
+ * web application is permitted; reuse of the source is not.
+ */
+
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Source_Sans_3, Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
