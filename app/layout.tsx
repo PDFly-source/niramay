@@ -30,6 +30,7 @@ import { SoundscapesPlayer } from "@/components/ambient/SoundscapesPlayer";
 import { BottomNavigation } from "@/components/layout/BottomNavigation";
 import { FloatingInstallBanner } from "@/components/pwa/FloatingInstallBanner";
 import { DisclaimerModal } from "@/components/DisclaimerModal";
+import { CommandPalette } from "@/components/command/CommandPalette";
 import { ThemeSync } from "@/components/layout/ThemeSync";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pdfly-source.github.io";
@@ -45,6 +46,9 @@ export const viewport: Viewport = {
   maximumScale: 5,
   // Enables env(safe-area-inset-*) on notch / gesture-bar devices
   viewportFit: "cover",
+  // Android Chrome: let the on-screen keyboard resize the layout viewport so
+  // dvh-based modals and bottom-anchored overlays reposition above it.
+  interactiveWidget: "resizes-content",
 };
 
 export const metadata: Metadata = {
@@ -114,6 +118,7 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${sourceSans3.variable} ${notoSerifBengali.variable}`}>
       <body className="min-h-screen flex flex-col bg-parchment text-ink font-sans selection:bg-amber-200 selection:text-amber-900 pb-[var(--niramay-content-inset)] transition-[padding-bottom] duration-300" suppressHydrationWarning>
         <DisclaimerModal />
+        <CommandPalette />
         <ThemeSync />
         <Header />
         <main className="flex-1 w-full">{children}</main>

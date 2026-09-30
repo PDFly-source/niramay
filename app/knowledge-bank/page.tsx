@@ -172,15 +172,15 @@ export default function KnowledgeBankPage() {
 
         {/* Category Filter Dropdown */}
         <div className="pt-3 border-t border-stone-100 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-stone-500" />
+          <div className="flex items-center gap-2 min-w-0">
+            <Filter className="w-4 h-4 text-stone-500 shrink-0" />
             <span className="text-xs font-bold text-stone-700">
               {isAs ? "লক্ষণৰ শ্ৰেণী:" : "Ailment Category:"}
             </span>
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="text-xs bg-stone-100 border border-stone-200 rounded-xl px-3 py-1.5 font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="min-w-0 max-w-[60vw] sm:max-w-xs truncate text-xs bg-stone-100 border border-stone-200 rounded-xl px-3 py-1.5 font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
               <option value="all">
                 {isAs ? "সকলো লক্ষণ" : "All Categories"} ({REMEDIES.length})

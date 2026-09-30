@@ -150,7 +150,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
         </div>
 
         {/* Remedy Header */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-stone-100">
+        <div className="flex flex-col flex-wrap md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-stone-100">
           <div className="space-y-2">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-3 py-1 rounded-full">
@@ -178,7 +178,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
           </div>
 
           {/* Action buttons (Print, Save, Share) */}
-          <div className="flex items-center gap-2 shrink-0 no-print">
+          <div className="flex flex-wrap items-center gap-2 no-print">
             <button
               onClick={() => toggleSaved(remedy.id)}
               className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold border transition ${

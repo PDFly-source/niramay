@@ -10,14 +10,13 @@ import { useMounted } from "@/hooks/useMounted";
 import { SpiceIcon } from "@/components/brand/SpiceIcon";
 import { extractString } from "@/lib/utils";
 import { getLocalizedText, UI_TRANSLATIONS } from "@/lib/i18n";
-import { searchRemedies, getDidYouMean } from "@/lib/search";
+import { CommandTrigger } from "@/components/command/CommandTrigger";
 import { InteractiveBodyMap } from "@/components/home/InteractiveBodyMap";
 import { SeasonalRemedyGuide } from "@/components/home/SeasonalRemedyGuide";
 import { SeasonalHealthRadar } from "@/components/home/SeasonalHealthRadar";
 import { ActiveTreatmentCourseWidget } from "@/components/home/ActiveTreatmentCourseWidget";
 import { EmergencySpeedDial } from "@/components/emergency/EmergencySpeedDial";
 import { Bot, Camera, FileText, Leaf, Calendar, Sprout, BookHeart,
-  Search,
   ArrowRight,
   ShieldCheck,
   CheckCircle2,
@@ -80,7 +79,6 @@ const COMMON_THIS_SEASON = [
 export default function HomePage() {
   const router = useRouter();
   const mounted = useMounted();
-  const [query, setQuery] = useState("");
   const [activeCategoryFilter, setActiveCategoryFilter] = useState("all");
   const { pantry, togglePantryItem, savedRemedyIds, languageMode, setAssistantOpen, completedHabitsByDate } = useNiramayStore();
 
@@ -89,9 +87,6 @@ export default function HomePage() {
   const isAs = currentMode === "as";
   const isBi = currentMode === "bilingual";
 
-  const didYouMean = React.useMemo(() => {
-    return getDidYouMean(query);
-  }, [query]);
 
   // Compute daily habit streak for hero badge
   const habitStreak = React.useMemo(() => {
@@ -139,27 +134,13 @@ export default function HomePage() {
 
   const activePantry = mounted ? pantry : defaultPantry;
 
-  // Filter symptoms based on search query and category
+  // Filter symptoms by selected category chip
   const filteredSymptoms = SYMPTOM_CATEGORIES.filter((cat) => {
     if (activeCategoryFilter !== "all" && cat.categoryId !== activeCategoryFilter) {
       return false;
     }
-    if (!query.trim()) return true;
-    const q = query.toLowerCase();
-    return (
-      cat.title.toLowerCase().includes(q) ||
-      cat.assameseTitle.toLowerCase().includes(q) ||
-      cat.description.toLowerCase().includes(q) ||
-      cat.commonSpices.some((s) => s.toLowerCase().includes(q))
-    );
+    return true;
   });
-
-  // Feature 1: Filter remedies directly matching query via Fuse.js
-  const matchingRemedies = React.useMemo(() => {
-    if (!query.trim()) return [];
-    const results = searchRemedies(query, { threshold: 0.42, limit: 4 });
-    return results.map((r) => r.remedy);
-  }, [query]);
 
   // 4 Featured remedies for the showcase
   const featuredRemedies = REMEDIES.filter((r) =>
@@ -257,91 +238,11 @@ export default function HomePage() {
 
             
             </div>
-            {/* Search column */}
+            {/* Search column — global command palette trigger */}
             <div className="lg:col-span-5 lg:pt-10 hero-rise hero-rise-2">
-            {/* Search Box */}
-            <div className="w-full mt-2 lg:mt-8">
-              <div className="relative flex items-center rounded-xl bg-white border border-amber-300 shadow-niramay-lg focus-within:border-amber-600 focus-within:ring-4 focus-within:ring-amber-500/20 transition-all">
-                <Search className="w-5 h-5 text-amber-700 ml-4 shrink-0" />
-                <input
-                  type="text"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder={
-                    isAs
-                      ? "ৰোগৰ লক্ষণ বা মছলাৰ নাম সন্ধান কৰক (যেনে- কাহ, অমলপিত্ত, আদা, তুলসী)..."
-                      : isEn
-                      ? "Search symptom, ailment, or spice (e.g. Cough, Acidity, Tulsi, Ginger)..."
-                      : "Search symptom, ailment, or spice / ৰোগ বা মছলা সন্ধান কৰক..."
-                  }
-                  className="w-full py-4 px-3 text-stone-900 placeholder:text-stone-400 bg-transparent text-sm sm:text-base focus:outline-none"
-                  aria-label="Search remedies or symptoms"
-                />
-                {query && (
-                  <button
-                    onClick={() => setQuery("")}
-                    className="mr-3 text-xs text-stone-400 hover:text-stone-700 bg-stone-100 px-2 py-1 rounded-md"
-                  >
-                    {isAs ? "মচক" : "Clear"}
-                  </button>
-                )}
+              <div className="w-full mt-2 lg:mt-8">
+                <CommandTrigger />
               </div>
-            </div>
-
-            
-            {/* Feature 1: Did You Mean Suggestion */}
-            {didYouMean && (
-              <div className="w-full mt-2 text-xs flex items-center justify-start gap-1.5 text-stone-600">
-                <span className="text-amber-800 font-semibold">
-                  {isAs ? "আপুনি এইটো বিচাৰিছে নেকি?" : "Did you mean:"}
-                </span>
-                <button
-                  onClick={() => setQuery(isAs ? didYouMean.as : didYouMean.en)}
-                  className="text-amber-800 underline font-bold hover:text-amber-950 cursor-pointer bg-white px-2.5 py-0.5 rounded-full border border-amber-300 shadow-2xs"
-                >
-                  {isAs ? didYouMean.as : didYouMean.en}
-                </button>
-              </div>
-            )}
-
-            
-            {/* Direct Remedy Search Results Dropdown */}
-            {Boolean(query.trim()) && matchingRemedies.length > 0 && (
-              <div className="w-full mt-3 bg-white rounded-2xl border border-amber-200 shadow-xl p-3 text-left">
-                <div className="text-[11px] font-semibold tracking-wider text-amber-800 px-2 py-1">
-                  {isAs ? "মিলা উপচাৰসমূহ" : "Matching Kitchen Remedies"} ({matchingRemedies.length})
-                </div>
-                <div className="divide-y divide-stone-100">
-                  {matchingRemedies.map((remedy) => {
-                    const rTitle = isAs
-                      ? remedy.name_assamese || extractString(remedy.name)
-                      : extractString(remedy.name);
-                    const rSecondary = isBi ? remedy.name_assamese : undefined;
-
-                    return (
-                      <Link
-                        key={remedy.id}
-                        href={`/remedy/${remedy.id}`}
-                        className="flex items-center justify-between p-3 hover:bg-amber-50/70 rounded-xl transition group"
-                      >
-                        <div>
-                          <div className="text-sm font-semibold text-stone-900 group-hover:text-amber-800">
-                            {rTitle}
-                          </div>
-                          <div className="text-xs text-stone-500 font-sans">
-                            {rSecondary ? `${rSecondary} • ` : ""}
-                            {getLocalizedText(remedy.symptom, currentMode, remedy.symptom_assamese)}
-                          </div>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-amber-700 group-hover:translate-x-1 transition" />
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            
             </div>
           </div>
           {/* Signature shortcuts */}

@@ -67,6 +67,7 @@ interface NiramayState {
   servingCount: number;
   isAssistantOpen: boolean;
   installBannerVisible: boolean;
+  isPaletteOpen: boolean;
   completedHabitsByDate: Record<string, string[]>;
 
   // New Feature 3: Dosha / Prakriti Profile
@@ -98,6 +99,7 @@ interface NiramayState {
   setServingCount: (count: number) => void;
   setAssistantOpen: (open: boolean) => void;
   setInstallBannerVisible: (visible: boolean) => void;
+  setPaletteOpen: (open: boolean) => void;
   toggleHabitForDate: (dateStr: string, habitId: string) => void;
 
   setDoshaProfile: (profile: string | null, scores?: DoshaScores) => void;
@@ -154,6 +156,7 @@ export const useNiramayStore = create<NiramayState>()(
       familyProfile: "adult",
       servingCount: 1,
       isAssistantOpen: false,
+      isPaletteOpen: false,
       installBannerVisible: false,
       completedHabitsByDate: {},
 
@@ -240,6 +243,10 @@ export const useNiramayStore = create<NiramayState>()(
 
       setAssistantOpen: (open: boolean) => {
         set({ isAssistantOpen: open });
+      },
+
+      setPaletteOpen: (open: boolean) => {
+        set({ isPaletteOpen: open });
       },
 
       setInstallBannerVisible: (visible: boolean) => {

@@ -9,6 +9,7 @@ import { PWAInstallButton } from "@/components/PWAInstallButton";
 import { useNiramayStore } from "@/lib/store";
 import { useMounted } from "@/hooks/useMounted";
 import {
+  Search,
   Bookmark,
   BookOpen,
   Layers,
@@ -49,7 +50,7 @@ interface NavSection {
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
-  const { savedRemedyIds, languageMode, setLanguageMode, setAssistantOpen } =
+  const { savedRemedyIds, languageMode, setLanguageMode, setAssistantOpen, setPaletteOpen } =
     useNiramayStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
   useBodyScrollLock(drawerOpen);
@@ -280,6 +281,22 @@ export const Header: React.FC = () => {
               </button>
             </div>
 
+            <button
+              type="button"
+              onClick={() => setPaletteOpen(true)}
+              aria-label={isAs ? "সন্ধান খোলক" : "Open quick search (Ctrl+K)"}
+              aria-keyshortcuts="Control+K Meta+K"
+              className="hidden 2xl:inline-flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 hover:border-amber-300 px-2.5 h-10 text-stone-600 transition shrink-0"
+            >
+              <Search className="w-4 h-4 text-amber-700" />
+              <span className="text-xs font-semibold">
+                {isAs ? "সন্ধান" : "Search"}
+              </span>
+              <kbd className="inline-flex items-center rounded-md border border-stone-300 bg-white px-1.5 py-0.5 text-[10px] font-mono text-stone-500">
+                ⌘K
+              </kbd>
+            </button>
+
             <PWAInstallButton variant="header" />
 
             {/* Hamburger / Drawer Trigger */}
@@ -334,6 +351,30 @@ export const Header: React.FC = () => {
 
             {/* Scrollable Navigation Groups */}
             <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-6">
+              {/* Pinned Global Search (Command Palette) */}
+              <button
+                onClick={() => {
+                  setDrawerOpen(false);
+                  setPaletteOpen(true);
+                }}
+                className="w-full flex items-center justify-between p-3.5 rounded-2xl bg-stone-50 border border-amber-200 text-stone-800 font-bold text-xs sm:text-sm shadow-2xs hover:border-amber-400 transition"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-amber-100 border border-amber-300 flex items-center justify-center">
+                    <Search className="w-4 h-4 text-amber-800" />
+                  </div>
+                  <div className="text-left">
+                    <div>{isAs ? "নিৰাময়ত সন্ধান কৰক" : "Search Niramay"}</div>
+                    <div className="text-[10px] text-stone-500 font-normal">
+                      {isAs ? "লক্ষণ, উপচাৰ, গছ, সঁজুলি" : "Symptoms, remedies, plants & tools"}
+                    </div>
+                  </div>
+                </div>
+                <span className="hidden sm:inline text-[10px] bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full font-mono font-black uppercase text-stone-500">
+                  Ctrl K
+                </span>
+              </button>
+
               {/* Pinned Niramay AI Assistant Button */}
               <button
                 onClick={() => {
