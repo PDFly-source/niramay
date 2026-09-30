@@ -122,5 +122,116 @@ check("search 'thanda' (roman cold) finds content", s4.length > 0, `${s4.length}
 const s5 = searchPalette("pet beya", "all", 5);
 check("search 'pet beya' finds content", s5.length > 0, `${s5.length} results`);
 
+
+// ===========================================================================
+// NIRAMAY 2.1 — HARDENING MATRIX
+// ===========================================================================
+
+console.log("\n=== 2.1 GOAL/THROAT + DIGESTION COVERAGE ===\n");
+
+for (const q of ["mor gola beya", "mur gola beya", "গলাৰ অস্বস্তি", "golar problem", "গলাৰ বিষ"]) {
+  const r = respondToQuery(q);
+  check(`'${q}' -> throat symptom`, r.kind === "symptom", `kind=${r.kind}`);
+}
+for (const q of ["what can I find for digestion", "digestion related remedies"]) {
+  const r = respondToQuery(q);
+  check(`'${q}' -> digestive knowledge`, r.kind === "symptom" && r.remedies.length > 0, `kind=${r.kind}`);
+}
+
+console.log("\n=== 2.1 NEW PLANT ENTITIES (verified data only) ===\n");
+
+for (const [q, label] of [["neem", "Neem"], ["aloe vera", "Aloe"], ["mint", "Mint"], ["cumin", "Cumin"], ["pudina", "Pudina"]]) {
+  const r = respondToQuery(q);
+  check(`'${q}' -> entity`, r.kind === "entity" && r.understandingEn.toLowerCase().includes(label.toLowerCase()), `kind=${r.kind}`);
+}
+
+console.log("\n=== 2.1 RED-FLAG SAFETY WINS OVER EVERYTHING ===\n");
+
+const rfEntity = respondToQuery("show ginger but I have severe bleeding");
+check("red flag beats entity intent", rfEntity.redFlag === true && rfEntity.kind === "symptom", `kind=${rfEntity.kind} rf=${rfEntity.redFlag}`);
+const rfNav = respondToQuery("open spice scanner, I have difficulty breathing");
+check("red flag beats nav intent", rfNav.redFlag === true && rfNav.kind === "symptom", `kind=${rfNav.kind}`);
+
+console.log("\n=== 2.1 FULL QUERY MATRIX (phase 20) ===\n");
+
+const expectEntity = ["show ginger", "what is ginger", "আদা দেখুওৱা", "ada dekhua", "show ada remedy"];
+for (const q of expectEntity) {
+  const r = respondToQuery(q);
+  check(`'${q}' -> ginger entity`, r.kind === "entity" && r.understandingEn.toLowerCase().includes("ginger"), `kind=${r.kind}`);
+}
+
+const expectSymptom = [
+  "stomach discomfort", "cold", "cough", "headache",
+  "মোৰ পেট বেয়া", "মূৰৰ বিষ", "কাহ", "ঠাণ্ডা",
+  "mor pet beya", "mur pet beya", "muror bish", "kakh", "thanda",
+  "petor problem ki ase", "cold hole ki korim",
+];
+for (const q of expectSymptom) {
+  const r = respondToQuery(q);
+  check(`'${q}' -> symptom knowledge`, r.kind === "symptom" && r.remedies.length > 0, `kind=${r.kind}`);
+}
+
+console.log("\n=== 2.1 TYPO TOLERANCE (phase 8) ===\n");
+
+for (const q of ["adaa", "gingerr", "pet bea", "gingerrr"]) {
+  const r = respondToQuery(q);
+  const ok = r.kind === "entity" || (r.kind === "symptom" && r.remedies.length > 0);
+  check(`typo '${q}' still resolves`, ok, `kind=${r.kind}`);
+}
+const typoOver = respondToQuery("xyzzyq");
+check("garbage does not over-match", typoOver.isLowConfidence === true || typoOver.kind === "unknown", `kind=${typoOver.kind}`);
+
+console.log("\n=== 2.1 UNKNOWN HONESTY (phase 20/21) ===\n");
+
+for (const q of ["bitcoin", "weather", "football"]) {
+  const r = respondToQuery(q);
+  check(`'${q}' -> honest unknown`, r.isLowConfidence === true && r.remedies.length === 0, `kind=${r.kind}`);
+  check(`'${q}' has Search Niramay action`, r.actions.some((a) => a.type === "OPEN_SEARCH"));
+  check(`'${q}' has Explore actions`, r.actions.some((a) => a.href === "/explore") && r.actions.some((a) => a.href === "/library"));
+}
+
+console.log("\n=== 2.1 CONFIDENCE + ASSAMESE UNICODE SAFETY ===\n");
+
+for (const q of ["আদা", "পেট", "মূৰৰ বিষ", "গলাৰ বিষ", "জ্বৰ"]) {
+  const r = respondToQuery(q);
+  check(`'${q}' resolves`, r.kind !== "unknown", `kind=${r.kind}`);
+  check(`'${q}' confidence set`, ["high", "medium", "low", "unknown"].includes(r.confidence));
+}
+const adaAs = respondToQuery("আদা");
+check("vowel signs preserved in matching", adaAs.kind === "entity" && adaAs.understandingAs.includes("আদা"));
+
+console.log("\n=== 2.1 ROUTE AUDIT — every AI action maps to a real route ===\n");
+
+import { existsSync } from "fs";
+import { join } from "path";
+import { NAV_INTENTS } from "../lib/ai/knowledge";
+
+function routeExists(href: string): boolean {
+  if (!href || href === "") return false;
+  const path = href.replace(/^\/+/, "");
+  if (path.includes("[")) return true; // dynamic segment -> checked below
+  return existsSync(join(__dirname, "..", "app", path, "page.tsx")) ||
+    existsSync(join(__dirname, "..", "app", path + ".tsx"));
+}
+
+for (const nav of NAV_INTENTS) {
+  check(`nav route ${nav.href} exists`, routeExists(nav.href));
+}
+// dynamic routes used by actions
+check("dynamic /remedy/[id] route exists", existsSync(join(__dirname, "..", "app", "remedy", "[id]", "page.tsx")));
+check("dynamic /symptoms/[slug] route exists", existsSync(join(__dirname, "..", "app", "symptoms", "[slug]", "page.tsx")));
+
+// every remedy/symptom action href from a broad query sweep uses real ids
+const sampleQueries = ["mor pet beya", "ginger", "kakh", "thanda", "neem"];
+for (const sq of sampleQueries) {
+  const r = respondToQuery(sq);
+  for (const a of r.actions) {
+    if (a.href.startsWith("/remedy/")) {
+      const id = a.href.replace("/remedy/", "");
+      check(`remedy id '${id}' exists in data`, REMEDIES.some((x) => x.id === id));
+    }
+  }
+}
+
 console.log(`\n=== RESULT: ${pass} passed, ${fail} failed ===\n`);
 process.exit(fail > 0 ? 1 : 0);

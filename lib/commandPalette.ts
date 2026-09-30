@@ -211,7 +211,12 @@ const TYPE_ORDER: Record<PaletteItem["type"], number> = {
   library: 5,
 };
 
-function scoreItem(item: PaletteItem, q: string): number {
+/**
+ * Tiered ranking (phase 2.1 #7):
+ * 0 exact title start -> 1 title contains -> 2 synonym/phonetic title ->
+ * 3 desc start/contains -> 4 synonym desc -> -1 no match.
+ */
+function scoreItem(item: PaletteItem, q: string, aliases: string[] = []): number {
   const tEn = item.titleEn.toLowerCase();
   const tAs = item.titleAs.toLowerCase();
   const dEn = item.descEn.toLowerCase();
@@ -219,9 +224,30 @@ function scoreItem(item: PaletteItem, q: string): number {
 
   if (tEn.startsWith(q) || tAs.startsWith(q)) return 0;
   if (tEn.includes(q) || tAs.includes(q)) return 1;
-  if (dEn.startsWith(q) || dAs.startsWith(q)) return 2;
-  if (dEn.includes(q) || dAs.includes(q)) return 3;
+  // synonym / phonetic alias tier (e.g. 'ada' -> ginger titles)
+  if (aliases.length > 0) {
+    if (aliases.some((a) => tEn.includes(a) || tAs.includes(a))) return 2;
+  }
+  if (dEn.startsWith(q) || dAs.startsWith(q)) return 3;
+  if (dEn.includes(q) || dAs.includes(q)) return 4;
+  if (aliases.length > 0) {
+    if (aliases.some((a) => dEn.includes(a) || dAs.includes(a))) return 5;
+  }
   return -1; // no match
+}
+
+/** Phonetic aliases of a query — the synonyms tier of the ranking. */
+function phoneticAliases(q: string): string[] {
+  const out = new Set<string>();
+  const tokens = q.split(/\s+/).filter(Boolean);
+  for (const tok of tokens) {
+    const list = PHONETIC_MAP[tok];
+    if (list) list.forEach((a) => out.add(a.toLowerCase()));
+    for (const [key, aliasList] of Object.entries(PHONETIC_MAP)) {
+      if (aliasList.some((a) => a.toLowerCase() === tok)) out.add(key);
+    }
+  }
+  return [...out];
 }
 
 /** Lightweight search across the corpus (EN + Assamese). */
@@ -264,9 +290,10 @@ export function searchPalette(
   }
 
   // Direct scoring first (exact > normalized > description)
+  const aliases = phoneticAliases(q);
   const direct = corpus
     .filter((i) => filter === "all" || i.type === filter)
-    .map((i) => ({ item: i, s: scoreItem(i, q) }))
+    .map((i) => ({ item: i, s: scoreItem(i, q, aliases) }))
     .filter((r) => r.s >= 0)
     .sort((a, b) => a.s - b.s || TYPE_ORDER[a.item.type] - TYPE_ORDER[b.item.type])
     .slice(0, limit)

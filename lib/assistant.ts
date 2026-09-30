@@ -37,10 +37,12 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     keywords: [
       // Romanized Assamese
       "pet", "pet tu", "petor", "pet bikh", "pet tu bikh", "petor bikh", "bikh hoi ase",
+      "digestion", "digestive", "digest", "pachon", "hajam", "pachan",
       "pet kamoroni", "pet kamurise", "pet jola", "pet phula", "pet gurgur", "pet kharap",
       "amashoy", "petor oshukh", "bhedailota", "loose motion", "diarrhea",
       // Assamese script
       "পেট", "পেটৰ", "পেটটো", "পেটৰ বিষ", "পেট বিষ", "পেট কামোৰণি", "পেট কামুৰিছে",
+      "পাচন", "পাচনতন্ত্ৰ",
       "পেট ফুলা", "পেটৰ অসুখ", "আমাশয়", "বদহজম", "ভেদাইলতা", "শৌচ",
       // English
       "stomach", "stomach pain", "stomach ache", "belly ache", "tummy ache",
@@ -104,8 +106,10 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
       // Romanized Assamese
       "dingi", "dhingi", "dingir", "dingi bikh", "dingi khachkhachani", "dingi dhora",
       "gola bikh", "tonsil", "khukhuri", "swallow bikh",
+      "gola", "golar", "golar bikh", "golar problem", "gola beya", "mur gola", "golar osukh",
       // Assamese script
       "ডিঙি", "ডিঙিৰ", "ডিঙিটো", "ডিঙিৰ বিষ", "ডিঙি খচখচনি", "টনচিল", "ডিঙি ফুলিছে",
+      "গলা", "গলাৰ", "গলাৰ বিষ", "গলাৰ অস্বস্তি", "গলা বেয়া",
       "ঢোক গিলিলে বিষ",
       // English
       "throat", "sore throat", "throat pain", "scratchy throat", "strep",
@@ -135,10 +139,11 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     symptomSlug: "common-cold",
     keywords: [
       // Romanized Assamese
-      "sardi", "chardi", "shordi", "thanda", "pani loga", "nak bondho",
+      "sardi", "chardi", "shordi", "thanda", "thandar", "pani loga", "nak bondho",
       "nakor pora pani", "hasi", "sneezing", "sinus", "runny nose",
       // Assamese script
       "চৰ্দি", "পানী লগা", "নাক বন্ধ", "নাকৰ পানী", "হাঁচি", "চাইনাছ", "ঠাণ্ডা লগা",
+      "ঠাণ্ডা",
       // English
       "cold", "common cold", "runny nose", "blocked nose", "nasal congestion",
       "sneezing", "sinusitis", "coryza"
@@ -178,6 +183,19 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     ],
   },
   {
+    id: "nausea",
+    canonicalEn: "Nausea & Vomiting Urge",
+    canonicalAs: "বমি বমি লাগা আৰু উকৰনি",
+    symptomSlug: "nausea",
+    keywords: [
+      "ugor", "ugar", "ugorkaria", "ugor lage", "ugor lagise", "bomi", "bomi lage",
+      "bomi bomi lage", "ukoroni", "ukoroni lage", "matoliya", "khai nupai",
+      "বমি", "বমি বমি লাগে", "বমি আহে", "উগাৰ", "উগাৰ লাগে", "উকৰনি", "উকৰনি লাগে", "মতলীয়া",
+      "nausea", "nauseous", "queasy", "vomiting urge", "feel like vomiting",
+      "motion sickness", "want to throw up"
+    ],
+  },
+  {
     id: "sleep_stress",
     canonicalEn: "Insomnia, Sleeplessness & Anxiety",
     canonicalAs: "টোপনি নোহোৱা আৰু মানসিক চিন্তা",
@@ -206,6 +224,56 @@ const SEVERE_KEYWORDS_EN = [
   "chest pressure", "chest pain", "fainting", "unconscious", "high fever",
   "continuous vomiting", "vomiting blood", "black stool", "toxic"
 ];
+
+/**
+ * Independent red-flag cue detection — used by the AI 2.1 engine BEFORE any
+ * intent/entity matching so safety always wins.
+ */
+export function detectRedFlagCues(raw: string): {
+  isRedFlag: boolean;
+  reason?: { en: string; as: string };
+} {
+  const clean = raw.trim().toLowerCase();
+  const hasSevereWordAs = SEVERE_KEYWORDS_AS.some((w) => raw.includes(w));
+  const hasSevereWordEn = SEVERE_KEYWORDS_EN.some((w) => clean.includes(w));
+
+  let daysCount: number | null = null;
+  const asDurMatch = raw.match(/([০-৯\d]+|এক|দুই|তিনি|চাৰি|পাঁচ|ছয়|সাত)\s*(দিন|সপ্তাহ)/);
+  if (asDurMatch) {
+    const rawNum = parseAssameseNumbers(asDurMatch[1]) || 1;
+    daysCount = asDurMatch[2].includes("সপ্তাহ") ? rawNum * 7 : rawNum;
+  } else {
+    const enDurMatch = clean.match(/(?:for|past|since|last)?\s*(\d+|one|two|three|four|five)\s*(days?|weeks?)/);
+    if (enDurMatch) {
+      let num = parseInt(enDurMatch[1], 10);
+      if (isNaN(num)) {
+        const wordMap: Record<string, number> = { one: 1, two: 2, three: 3, four: 4, five: 5 };
+        num = wordMap[enDurMatch[1]] || 1;
+      }
+      daysCount = enDurMatch[2].startsWith("week") ? num * 7 : num;
+    }
+  }
+
+  if (hasSevereWordAs || hasSevereWordEn) {
+    return {
+      isRedFlag: true,
+      reason: {
+        en: "Severe red-flag cue detected (intense pain, bleeding, or breathing distress).",
+        as: "গুৰুতৰ লক্ষণৰ ইংগিত ধৰা পৰিছে (অসহ্য বিষ, ৰক্তক্ষৰণ বা শ্বাসকষ্ট)।",
+      },
+    };
+  }
+  if ((daysCount ?? 0) > 3) {
+    return {
+      isRedFlag: true,
+      reason: {
+        en: `Symptoms have persisted for ${daysCount} days (>3). Home remedies are for acute mild relief; persistent symptoms require medical diagnosis.`,
+        as: `সমস্যাটো ৩ দিনতকেই অধিক সময় (${daysCount} দিন) ধৰি চলি আছে। ঘৰুৱা উপচাৰ কেৱল প্ৰাথমিক উপশমৰ বাবে; চিকিৎসকৰ পৰামৰ্শ অতি প্ৰয়োজনীয়।`,
+      },
+    };
+  }
+  return { isRedFlag: false };
+}
 
 export function parseAssameseNumbers(text: string): number | null {
   const map: Record<string, number> = {

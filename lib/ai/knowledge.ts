@@ -20,7 +20,8 @@ export type AIActionType =
   | "OPEN_TOOL"
   | "OPEN_PAGE"
   | "OPEN_CATEGORY"
-  | "OPEN_LIBRARY";
+  | "OPEN_LIBRARY"
+  | "OPEN_SEARCH";
 
 export interface AIAction {
   type: AIActionType;
@@ -370,6 +371,34 @@ export const PLANT_CONCEPTS: PlantConcept[] = [
     labelAs: "লঙ",
     terms: ["clove", "long", "loong", "লঙ", "lavanga"],
     remedySearchTerms: ["clove", "লঙ"],
+  },
+  {
+    id: "neem",
+    labelEn: "Neem (Nimu Gach)",
+    labelAs: "নিম গছ",
+    terms: ["neem", "nimu", "nim", "নিম", "নিম গছ", "indian lilac", "nimu gach"],
+    remedySearchTerms: ["neem", "নিম"],
+  },
+  {
+    id: "aloe-vera",
+    labelEn: "Ghritakumari (Aloe Vera)",
+    labelAs: "ঘৃতকুমাৰী / চালকুঁৱৰী",
+    terms: ["aloe", "aloe vera", "ghritakumari", "ghrita kumari", "sal kuwari", "চালকুঁৱৰী", "ঘৃতকুমাৰী", "kumari"],
+    remedySearchTerms: ["aloe", "aloe vera", "ঘৃতকুমাৰী"],
+  },
+  {
+    id: "mint",
+    labelEn: "Pudina (Field Mint)",
+    labelAs: "পদিনা",
+    terms: ["mint", "pudina", "podina", "পদিনা", "field mint", "pudinar"],
+    remedySearchTerms: ["mint", "pudina", "পদিনা"],
+  },
+  {
+    id: "cumin",
+    labelEn: "Jeera (Cumin)",
+    labelAs: "জিৰা",
+    terms: ["cumin", "jeera", "jira", "jira", "zira", "জিৰা", "jeerar"],
+    remedySearchTerms: ["cumin", "jeera", "জিৰা"],
   },
   {
     id: "cinnamon",

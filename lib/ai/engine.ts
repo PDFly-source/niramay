@@ -1,5 +1,6 @@
 import {
   analyzeUserQuery,
+  detectRedFlagCues,
   AssistantAnalysisResult,
 } from "@/lib/assistant";
 import { searchPalette } from "@/lib/commandPalette";
@@ -23,6 +24,7 @@ import { MedicinalPlant } from "@/lib/plantLibrary";
  */
 
 export type ResponseKind = "nav" | "entity" | "symptom" | "unknown";
+export type Confidence = "high" | "medium" | "low" | "unknown";
 
 export interface FollowUp {
   en: string;
@@ -33,6 +35,7 @@ export interface FollowUp {
 
 export interface NiramayAIResponse {
   kind: ResponseKind;
+  confidence: Confidence;
   /** Headline shown above the answer ("I understand you're asking about...") */
   understandingEn: string;
   understandingAs: string;
@@ -63,16 +66,20 @@ export interface NiramayAIResponse {
 
 /** Common Roman-Assamese spelling variants folded to canonical tokens. */
 const ROMAN_VARIANTS: Record<string, string> = {
-  bea: "beya", bia: "beya", bikh: "bish", bix: "bish",
+  bea: "beya", bia: "beya", beyar: "beya", bikh: "bish", bix: "bish", bis: "bish",
   mur: "mor", mo: "mor", hoise: "hoi", xai: "ase", hoi: "ase",
   korim: "koribo", koribo: "koribo", koribo_parim: "koribo",
   ase: "ase", asol: "ase", diha: "diha",
+  adaa: "ada", pett: "pet", zor: "jor", tuloxi: "tulsi", golaw: "golar",
+  dekhua: "dekhu", dekhaw: "dekhu", dekhok: "dekhu",
 };
 
 export function normalizeQuery(raw: string): string {
   let q = raw.trim().toLowerCase();
-  // remove punctuation except word chars and spaces
+  // remove punctuation except word chars, combining marks, and spaces
   q = q.replace(/[^\p{L}\p{M}\p{N}\s]/gu, " ");
+  // typo tolerance: collapse 3+ repeated ASCII letters ("gingerrr" -> "ginger")
+  q = q.replace(/([a-z])\1{2,}/g, "$1");
   // fold roman variants (word-boundary safe)
   q = q
     .split(/\s+/)
@@ -181,6 +188,34 @@ function detectPlantConcept(q: string): PlantConcept | null {
 // Follow-up helpers
 // ---------------------------------------------------------------------------
 
+function entityFollowUps(concept: { labelEn: string; id: string }, relatedSymptomLabel?: string): FollowUp[] {
+  const chips: FollowUp[] = [
+    {
+      en: `What about turmeric?`,
+      as: `হালধিৰ বিষয়ে কওক`,
+      query: concept.id === "turmeric" ? "ginger" : "turmeric",
+    },
+    {
+      en: "Show kitchen garden",
+      as: "পাকঘৰৰ বাৰী দেখুৱাওক",
+      query: "open kitchen garden",
+    },
+    {
+      en: "Show all remedies",
+      as: "সকলো উপচাৰ দেখুৱাওক",
+      query: "show all remedies",
+    },
+  ];
+  if (relatedSymptomLabel) {
+    chips.unshift({
+      en: `Remedies for ${relatedSymptomLabel}`,
+      as: `${relatedSymptomLabel}-ৰ উপচাৰ দেখুৱাওক`,
+      query: relatedSymptomLabel,
+    });
+  }
+  return chips.slice(0, 4);
+}
+
 const SYMPTOM_FOLLOWUPS: FollowUp[] = [
   { en: "Show kitchen remedies for digestion", as: "পাচনৰ বাবে ঘৰুৱা উপচাৰ দেখুৱাওক", query: "indigestion remedies" },
   { en: "What are the warning signs?", as: "সতৰ্ক লক্ষণসমূহ কি?", query: "when to see a doctor" },
@@ -207,11 +242,53 @@ const UNKNOWN_FOLLOWUPS: FollowUp[] = [
 export function respondToQuery(raw: string): NiramayAIResponse {
   const q = normalizeQuery(raw);
 
+  // --- 0. RED-FLAG SAFETY FIRST (phase 2.1 #3) -------------------------------
+  // Runs before nav/entity/intent so escalation is never buried under
+  // related content. No diagnosis; no treatment claims.
+  const redFlag = detectRedFlagCues(raw);
+  if (redFlag.isRedFlag) {
+    const analysis = analyzeUserQuery(raw);
+    return {
+      kind: "symptom",
+      confidence: analysis.isLowConfidence ? "medium" : "high",
+      understandingEn: "⚠️ Medical safety notice.",
+      understandingAs: "⚠️ চিকিৎসা সাৱধানবাণী।",
+      replyEn:
+        `${redFlag.reason?.en ?? "Please seek professional medical care."} ` +
+        `If symptoms are severe, persistent, or worsening, contact a doctor or emergency services before relying on home care.`,
+      replyAs:
+        `${redFlag.reason?.as ?? "অনুগ্ৰহ কৰি চিকিৎসকৰ পৰামৰ্শ লওক।"} ` +
+        `লক্ষণ গুৰুতৰ, দীৰ্ঘদিনীয়া বা বাঢ়ি গ'লে ঘৰুৱা যত্নৰ আগতেই চিকিৎসক বা আপতকালীন সেৱাৰ সৈতে যোগাযোগ কৰক।`,
+      actions: analysis.matchedSymptomSlugs[0]
+        ? [
+            {
+              type: "OPEN_SYMPTOM",
+              id: analysis.matchedSymptomSlugs[0],
+              href: `/symptoms/${analysis.matchedSymptomSlugs[0]}`,
+              labelEn: "Open Symptom Guide",
+              labelAs: "লক্ষণ সূচী খোলক",
+            },
+          ]
+        : [],
+      remedies: analysis.suggestedRemedies,
+      followUps: [
+        { en: "When to see a doctor", as: "কেতিয়া চিকিৎসকৰ ওচৰলৈ যাব", query: "when to see a doctor" },
+        { en: "Show all remedies", as: "সকলো উপচাৰ দেখুৱাওক", query: "show all remedies" },
+      ],
+      redFlag: true,
+      redFlagReason: redFlag.reason ?? {
+        en: "Severe symptom cues were detected.",
+        as: "গুৰুতৰ লক্ষণৰ ইংগিত পোৱা গৈছে।",
+      },
+    };
+  }
+
   // --- 1. Smart navigation layer --------------------------------------------
   const nav = detectNavIntent(q);
   if (nav) {
     return {
       kind: "nav",
+      confidence: "high",
       understandingEn: `Opening ${nav.titleEn}.`,
       understandingAs: `${nav.titleAs} খোলা হৈছে।`,
       replyEn: `${nav.descEn}. You can go there directly:`,
@@ -242,8 +319,16 @@ export function respondToQuery(raw: string): NiramayAIResponse {
       plant?.traditionalUses?.as?.slice(0, 3).join(" • ") ??
       "পৰম্পৰাগত পাকঘৰৰ প্ৰস্তুতি";
 
+    const relatedSymptomLabel = remedies[0]
+      ? String(
+          typeof remedies[0].symptom === "object"
+            ? (remedies[0].symptom as { en: string }).en
+            : remedies[0].symptom
+        )
+      : undefined;
     return {
       kind: "entity",
+      confidence: "high",
       understandingEn: `You're asking about ${concept.labelEn}.`,
       understandingAs: `আপুনি ${concept.labelAs}-ৰ বিষয়ে সুধিছে।`,
       replyEn:
@@ -260,7 +345,7 @@ export function respondToQuery(raw: string): NiramayAIResponse {
       plant: plant ?? undefined,
       plantCautionEn: plant?.caution?.en,
       plantCautionAs: plant?.caution?.as,
-      followUps: ENTITY_FOLLOWUPS,
+      followUps: entityFollowUps(concept, relatedSymptomLabel),
     };
   }
 
@@ -290,6 +375,7 @@ export function respondToQuery(raw: string): NiramayAIResponse {
 
     return {
       kind: "symptom",
+      confidence: analysis.isLowConfidence ? "low" : "medium",
       understandingEn:
         analysis.understoodSymptoms.length > 0
           ? `I understand you're asking about ${analysis.understoodSymptoms
@@ -320,6 +406,7 @@ export function respondToQuery(raw: string): NiramayAIResponse {
 
   return {
     kind: "unknown",
+    confidence: "unknown",
     understandingEn: "Nothing matched exactly.",
     understandingAs: "কোনো প্ৰত্যক্ষ মিল পোৱা নগ'ল।",
     replyEn:
@@ -330,19 +417,11 @@ export function respondToQuery(raw: string): NiramayAIResponse {
       paletteHits.length > 0
         ? "এই বিষয়ত এতিয়ালৈ কোনো পৰীক্ষিত তথ্য নাই, তথাপি নিৰাময়ত ইয়াৰ নিকটতম সমল আছে:"
         : "এই বিষয়ত নিৰাময়ৰ পৰীক্ষিত ভঁৰালত তথ্য নাই। অন্য বানান, অসমীয়া বা ৰোমান অসমীয়াত চেষ্টা কৰক।",
-    actions: paletteHits.slice(0, 3).map((i) => ({
-      type: (i.type === "remedy"
-        ? "OPEN_REMEDY"
-        : i.type === "symptom"
-          ? "OPEN_SYMPTOM"
-          : i.type === "plant"
-            ? "OPEN_PLANT"
-            : "OPEN_TOOL") as AIAction["type"],
-      id: i.id,
-      href: i.href,
-      labelEn: i.titleEn,
-      labelAs: i.titleAs,
-    })),
+    actions: [
+      { type: "OPEN_SEARCH", id: "palette", href: "", labelEn: "Search Niramay", labelAs: "নিৰাময় সন্ধান কৰক" },
+      { type: "OPEN_CATEGORY", id: "explore", href: "/explore", labelEn: "Explore Remedies", labelAs: "উপচাৰ চাওক" },
+      { type: "OPEN_LIBRARY", id: "library", href: "/library", labelEn: "Explore Plants", labelAs: "গছ-গছনি চাওক" },
+    ],
     remedies: [],
     followUps: UNKNOWN_FOLLOWUPS,
     isLowConfidence: true,

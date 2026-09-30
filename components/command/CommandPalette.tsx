@@ -73,6 +73,12 @@ export const CommandPalette: React.FC = () => {
   const isBi = currentMode === "bilingual";
 
   const [query, setQuery] = useState("");
+  /* Debounced mirror of `query` — avoids re-scanning the corpus every keystroke. */
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
+  useEffect(() => {
+    const t = window.setTimeout(() => setDebouncedQuery(query), 120);
+    return () => window.clearTimeout(t);
+  }, [query]);
   const [filter, setFilter] = useState<PaletteFilter>("all");
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -82,8 +88,8 @@ export const CommandPalette: React.FC = () => {
   useBodyScrollLock(isPaletteOpen);
 
   const results = React.useMemo(
-    () => searchPalette(query, filter, 30),
-    [query, filter]
+    () => searchPalette(debouncedQuery, filter, 30),
+    [debouncedQuery, filter]
   );
 
   /* Global shortcuts: Cmd/Ctrl+K toggles, "/" opens when not typing. */

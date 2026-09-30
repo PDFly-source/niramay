@@ -63,6 +63,7 @@ export const NiramayAssistantModal: React.FC = () => {
   const {
     isAssistantOpen,
     setAssistantOpen,
+    setPaletteOpen,
     languageMode,
     assistantPendingQuery,
     setAssistantPendingQuery,
@@ -87,42 +88,36 @@ export const NiramayAssistantModal: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [thinking, setThinking] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [speechSupported, setSpeechSupported] = useState(false);
   const [micLanguage, setMicLanguage] = useState<"as-IN" | "en-IN">("as-IN");
+  const [voiceStatus, setVoiceStatus] = useState<"idle" | "listening" | "denied" | "error">("idle");
+  const [showNewPill, setShowNewPill] = useState(false);
+  const streamRef = useRef<HTMLDivElement>(null);
+  const isNearBottomRef = useRef(true);
 
   const recognitionRef = useRef<any>(null);
   const chatBottomRef = useRef<HTMLDivElement>(null);
   const pendingHandledRef = useRef(false);
 
-  // Voice capability probe (unchanged behavior)
-  useEffect(() => {
-    if (typeof window === "undefined" || !("serviceWorker" in navigator)) {
-      // still probe speech below on client
-    }
-    const hasSpeech =
+  // Voice capability probe (lazy client-only init; modal renders only when open)
+  const [speechSupported] = useState(
+    () =>
       typeof window !== "undefined" &&
-      ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition);
-    setSpeechSupported(Boolean(hasSpeech));
+      Boolean((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)
+  );
+
+  // Smart scroll (phase 2.1 #13): track near-bottom in a ref via a scroll
+  // listener; the auto-scroll-vs-pill decision happens where messages are set.
+  useEffect(() => {
+    const el = streamRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      isNearBottomRef.current =
+        el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+      if (isNearBottomRef.current) setShowNewPill(false);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
   }, []);
-
-  // Auto-scroll on new messages / thinking
-  useEffect(() => {
-    chatBottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [messages, thinking]);
-
-  // Consume a quick-prompt queued from anywhere in the app (home hero, etc.)
-  useEffect(() => {
-    if (!isAssistantOpen || !assistantPendingQuery || pendingHandledRef.current) return;
-    pendingHandledRef.current = true;
-    const q = assistantPendingQuery;
-    setAssistantPendingQuery(null);
-    // wait one frame so the modal is mounted before sending
-    setTimeout(() => {
-      pendingHandledRef.current = false;
-      sendMessage(q);
-    }, 80);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAssistantOpen, assistantPendingQuery]);
 
   const handleStartListening = () => {
     const SpeechRecognition =
@@ -136,16 +131,28 @@ export const NiramayAssistantModal: React.FC = () => {
       setInput(transcript);
       setIsListening(false);
     };
-    recognition.onend = () => setIsListening(false);
-    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => {
+      setIsListening(false);
+      if (voiceStatus === "listening") setVoiceStatus("idle");
+    };
+    recognition.onerror = (event: any) => {
+      setIsListening(false);
+      if (event?.error === "not-allowed" || event?.error === "service-not-allowed") {
+        setVoiceStatus("denied");
+      } else {
+        setVoiceStatus("error");
+      }
+    };
     recognitionRef.current = recognition;
     setIsListening(true);
+    setVoiceStatus("listening");
     recognition.start();
   };
 
   const handleStopListening = () => {
     recognitionRef.current?.stop?.();
     setIsListening(false);
+    setVoiceStatus("idle");
   };
 
   const clearChat = () => setMessages([]);
@@ -165,6 +172,11 @@ export const NiramayAssistantModal: React.FC = () => {
     setInput("");
     setThinking(true);
 
+    // Smart scroll: user's own message always follows the stream.
+    setTimeout(() => {
+      chatBottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    }, 0);
+
     // Local engine compute — 100% on-device. The short delay only lets the
     // honest "searching archive" indicator render; the engine is synchronous.
     setTimeout(() => {
@@ -179,10 +191,65 @@ export const NiramayAssistantModal: React.FC = () => {
       };
       setMessages((prev) => [...prev, assistantMsg]);
       setThinking(false);
+      // Auto-scroll only if the user was already near the bottom;
+      // otherwise surface the "New response" pill.
+      if (isNearBottomRef.current) {
+        chatBottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      } else {
+        setShowNewPill(true);
+      }
     }, 550);
   };
 
+  // Consume a quick-prompt queued from anywhere in the app (home hero, etc.)
+  useEffect(() => {
+    if (!isAssistantOpen || !assistantPendingQuery || pendingHandledRef.current) return;
+    pendingHandledRef.current = true;
+    const q = assistantPendingQuery;
+    // wait one frame so the modal is mounted and the message list exists
+    setTimeout(() => {
+      setAssistantPendingQuery(null);
+      pendingHandledRef.current = false;
+      sendMessage(q);
+    }, 80);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAssistantOpen, assistantPendingQuery]);
+
   useBodyScrollLock(isAssistantOpen);
+
+  // Escape closes the dialog; Tab stays trapped inside it.
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (!isAssistantOpen) return;
+    const t = setTimeout(() => inputRef.current?.focus(), 60);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setAssistantOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const focusables = dialogRef.current?.querySelectorAll<HTMLElement>(
+        'button, input, a[href], [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isAssistantOpen, setAssistantOpen]);
 
   if (!isAssistantOpen) return null;
 
@@ -199,10 +266,11 @@ export const NiramayAssistantModal: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 8 }}
             transition={{ type: "spring", stiffness: 380, damping: 32 }}
-            className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-amber-200 flex flex-col niramay-modal-fit-85 overflow-hidden"
+            className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-amber-200 flex flex-col niramay-modal-fit-85 overflow-hidden relative"
             role="dialog"
             aria-modal="true"
             aria-label="Niramay AI assistant"
+            ref={dialogRef}
           >
             {/* Header */}
             <div className="px-5 py-4 bg-gradient-to-r from-amber-800 to-emerald-900 text-onbrand flex items-center justify-between shrink-0">
@@ -256,8 +324,29 @@ export const NiramayAssistantModal: React.FC = () => {
               </span>
             </div>
 
-            {/* Chat message stream */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
+            {/* New-response pill when reading older content */}
+            {showNewPill && (
+              <div className="absolute right-4 bottom-24 z-10">
+                <button
+                  type="button"
+                  onClick={() => {
+                    chatBottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+                    setShowNewPill(false);
+                  }}
+                  className="px-3 py-1.5 text-[11px] font-bold rounded-full bg-amber-700 text-onbrand shadow-lg hover:bg-amber-800 transition"
+                >
+                  {isAs ? "নতুন উত্তৰ ↓" : "New response ↓"}
+                </button>
+              </div>
+            )}
+            {/* Chat message stream (announced politely to screen readers) */}
+            <div
+              ref={streamRef}
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions"
+              className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4"
+            >
               {messages.length === 0 && !thinking && (
                 <div className="text-center py-8">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-100 border border-amber-200 mb-3">
@@ -307,7 +396,7 @@ export const NiramayAssistantModal: React.FC = () => {
                       {msg.text}
                     </div>
 
-                    {/* Health-safety escalation */}
+                    {/* Health-safety escalation — SAFETY FIRST, never buried */}
                     {msg.response?.redFlag && (
                       <div className="mt-3 p-3 bg-red-50 border-2 border-red-300 rounded-xl text-red-950 text-xs">
                         <div className="flex items-center gap-1.5 font-bold mb-1">
@@ -352,7 +441,7 @@ export const NiramayAssistantModal: React.FC = () => {
                       <div className="mt-4 pt-3 border-t border-stone-200/80 space-y-2">
                         <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase text-stone-500 tracking-wider">
                           <FlaskConical className="w-3 h-3" />
-                          <span>{isAs ? "পৰীক্ষিত বিধান:" : "Verified remedies:"}</span>
+                          <span>{isAs ? "নিৰাময়ৰ সমল:" : "Available Niramay content:"}</span>
                         </div>
                         <div className="grid grid-cols-1 gap-2">
                           {msg.response.remedies.map((remedy) => (
@@ -380,20 +469,40 @@ export const NiramayAssistantModal: React.FC = () => {
                       </div>
                     )}
 
-                    {/* Navigation actions — always real routes */}
+                    {/* Navigation actions — always real routes (NEXT STEPS) */}
                     {msg.response?.actions && msg.response.actions.length > 0 && (
-                      <div className="mt-3 flex flex-wrap gap-1.5">
-                        {msg.response.actions.map((action) => (
-                          <Link
-                            key={`${action.type}-${action.id}`}
-                            href={action.href}
-                            onClick={() => setAssistantOpen(false)}
-                            className="inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-bold bg-emerald-800 text-emerald-50 rounded-xl hover:bg-emerald-900 transition shadow-2xs"
-                          >
-                            <span>{isAs ? action.labelAs : action.labelEn}</span>
-                            <ChevronRight className="w-3 h-3" />
-                          </Link>
-                        ))}
+                      <div className="mt-3">
+                        <div className="text-[11px] font-bold uppercase text-stone-500 tracking-wider mb-2">
+                          {isAs ? "পৰৱৰ্তী পদক্ষেপ:" : "Next steps:"}
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {msg.response.actions.map((action) =>
+                            action.type === "OPEN_SEARCH" ? (
+                              <button
+                                key={`${action.type}-${action.id}`}
+                                type="button"
+                                onClick={() => {
+                                  setAssistantOpen(false);
+                                  setPaletteOpen(true);
+                                }}
+                                className="inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-bold bg-emerald-800 text-emerald-50 rounded-xl hover:bg-emerald-900 transition shadow-2xs"
+                              >
+                                <span>{isAs ? action.labelAs : action.labelEn}</span>
+                                <ChevronRight className="w-3 h-3" />
+                              </button>
+                            ) : (
+                              <Link
+                                key={`${action.type}-${action.id}`}
+                                href={action.href}
+                                onClick={() => setAssistantOpen(false)}
+                                className="inline-flex items-center gap-1 px-3 py-1.5 text-[11px] font-bold bg-emerald-800 text-emerald-50 rounded-xl hover:bg-emerald-900 transition shadow-2xs"
+                              >
+                                <span>{isAs ? action.labelAs : action.labelEn}</span>
+                                <ChevronRight className="w-3 h-3" />
+                              </Link>
+                            )
+                          )}
+                        </div>
                       </div>
                     )}
 
@@ -401,7 +510,7 @@ export const NiramayAssistantModal: React.FC = () => {
                     {msg.response?.followUps && msg.response.followUps.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-stone-200/80">
                         <div className="text-[11px] font-bold text-stone-600 mb-2">
-                          {isAs ? "পৰৱৰ্তী প্ৰশ্ন:" : "Next:"}
+                          {isAs ? "আৰু এইবোৰ সোধক:" : "You can also ask:"}
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {msg.response.followUps.map((fu) => (
@@ -495,12 +604,13 @@ export const NiramayAssistantModal: React.FC = () => {
                 )}
 
                 <input
+                  ref={inputRef}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={
                     isListening
-                      ? "Listening to voice input..."
+                      ? "Listening…"
                       : isAs
                       ? "লক্ষণ, উপচাৰ, গছ বা সঁজুলিৰ বিষয়ে সোধক…"
                       : "Ask in English, অসমীয়া, or Roman Assamese…"
@@ -519,6 +629,22 @@ export const NiramayAssistantModal: React.FC = () => {
                 </motion.button>
               </form>
 
+              {/* Voice status — honest graceful states */}
+              {voiceStatus === "denied" && (
+                <div className="mt-2 text-[10px] text-red-700 font-semibold px-1">
+                  {isAs ? "মাইক্ৰোফোনৰ অনুমতি প্ৰয়োজন।" : "Microphone permission is required."}
+                </div>
+              )}
+              {voiceStatus === "error" && (
+                <div className="mt-2 text-[10px] text-amber-800 font-semibold px-1">
+                  {isAs ? "কণ্ঠ ইনপুট ব্যৰ্থ হ'ল — আকৌ চেষ্টা কৰক বা টাইপ কৰক।" : "Voice input failed — try again or type instead."}
+                </div>
+              )}
+              {!speechSupported && (
+                <div className="mt-2 text-[10px] text-stone-400 font-medium px-1">
+                  {isAs ? "এই ব্ৰাউজাৰত কণ্ঠ ইনপুট সমৰ্থিত নহয় — টাইপ কৰি সোধক।" : "Voice input isn't supported on this browser — type instead."}
+                </div>
+              )}
               {/* Voice language switcher */}
               {speechSupported && (
                 <div className="flex items-center justify-between mt-2 text-[10px] text-stone-500 px-1">
