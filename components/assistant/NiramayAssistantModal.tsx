@@ -201,11 +201,11 @@ export const NiramayAssistantModal: React.FC = () => {
         {/* Header */}
         <div className="px-5 py-4 bg-gradient-to-r from-amber-800 to-emerald-900 text-onbrand flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <NiramayLogo size={40} className="ring-amber-300/40" />
+            <NiramayLogo size={56} variant="full" className="ring-amber-300/40" />
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-serif font-black text-base">
-                  Niramay AI Assistant
+                  AI Assistant
                 </span>
                 <span className="text-[10px] bg-emerald-500/30 text-emerald-200 font-bold px-2 py-0.5 rounded-full border border-emerald-400/30">
                   100% On-Device

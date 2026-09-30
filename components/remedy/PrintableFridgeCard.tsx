@@ -170,19 +170,9 @@ export const PrintableFridgeCard: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b-2 border-stone-800 mb-4">
           <div className="flex items-center gap-3">
-            <NiramayLogo size={42} />
-            <div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif font-black text-2xl tracking-tight text-stone-900">
-                  NIRAMAY
-                </span>
-                <span className="text-lg font-bold text-emerald-800">
-                  নিৰাময়
-                </span>
-              </div>
-              <div className="text-[11px] font-bold text-stone-600 tracking-wide uppercase">
-                Emergency Kitchen Remedy Quick-Reference Sheet (ফ্ৰিজ কাৰ্ড)
-              </div>
+            <NiramayLogo size={80} variant="full" />
+            <div className="text-[11px] font-bold text-stone-600 tracking-wide uppercase">
+              Emergency Kitchen Remedy Quick-Reference Sheet (ফ্ৰিজ কাৰ্ড)
             </div>
           </div>
 

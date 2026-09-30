@@ -332,10 +332,11 @@ export default function MenuPage() {
       <div className="bg-gradient-to-br from-amber-800 via-amber-900 to-emerald-950 text-onbrand rounded-3xl p-6 sm:p-8 shadow-xl mb-6 relative overflow-hidden">
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <NiramayLogo size={48} />
+            <h1 className="flex items-center gap-3">
+              <NiramayLogo size={84} variant="full" />
+            </h1>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl sm:text-2xl font-serif font-black">Niramay নিৰাময়</h1>
                 <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 px-2 py-0.5 rounded-full">
                   100% Offline
                 </span>

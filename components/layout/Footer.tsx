@@ -45,14 +45,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           {/* Brand block */}
           <div className="md:col-span-5 space-y-5">
-            <div className="space-y-1.5">
-              <NiramayLogo size={128} variant="full" />
-              <p className="text-xs font-semibold text-emerald-800">
-                {isAs
-                  ? "নিৰাময় — পৰম্পৰাগত পাকঘৰৰ চিকিৎসা"
-                  : "নিৰাময় — Traditional Kitchen Remedies"}
-              </p>
-            </div>
+            <NiramayLogo size={128} variant="full" />
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-md">
               {isAs
                 ? "“ঘৰৰ মছলাত, স্বস্তি নিৰাময়” — অসমীয়া আৰু ভাৰতীয় পৰম্পৰাগত পাকঘৰৰ চিকিৎসা জ্ঞান, বয়স অনুযায়ী মাত্ৰা আৰু বিপদ সংকেতৰ সৈতে।"

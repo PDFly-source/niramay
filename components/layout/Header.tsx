@@ -176,22 +176,14 @@ export const Header: React.FC = () => {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-xl p-1 shrink-0"
+            className="flex items-center group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-xl p-1 shrink-0"
+            aria-label="Niramay — Discover • Heal • Live Better"
           >
-            <NiramayLogo size={40} className="transition-transform group-hover:scale-105" />
-            <div className="flex flex-col">
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-lg sm:text-2xl font-serif font-black tracking-tight text-stone-900">
-                  Niramay
-                </span>
-                <span className="hidden sm:inline text-sm font-semibold text-emerald-800">
-                  নিৰাময়
-                </span>
-              </div>
-              <span className="text-[10px] text-amber-800 font-medium tracking-wide -mt-0.5 hidden xs:inline">
-                {isAs ? "ঘৰুৱা পাকঘৰৰ চিকিৎসা" : "Traditional Kitchen Remedies"}
-              </span>
-            </div>
+            <NiramayLogo
+              size={58}
+              variant="full"
+              className="transition-transform group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Primary Nav Bar */}
@@ -329,14 +321,9 @@ export const Header: React.FC = () => {
             {/* Drawer Header */}
             <div className="p-5 bg-gradient-to-r from-amber-800 to-emerald-950 text-onbrand flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
-                <NiramayLogo size={36} />
-                <div>
-                  <div className="font-serif font-black text-lg leading-tight">
-                    Niramay নিৰাময়
-                  </div>
-                  <div className="text-[10px] text-amber-200">
-                    {isAs ? "পৰম্পৰাগত জ্ঞান আৰু নিৰাময়" : "Navigation & Health Modules"}
-                  </div>
+                <NiramayLogo size={52} variant="full" />
+                <div className="text-[10px] text-amber-200 leading-tight">
+                  {isAs ? "পৰম্পৰাগত জ্ঞান আৰু নিৰাময়" : "Navigation & Health Modules"}
                 </div>
               </div>
 

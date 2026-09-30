@@ -106,19 +106,9 @@ export const RecipeShareCard: React.FC<Props> = ({
           {/* Card Header */}
           <div className="flex items-center justify-between pb-4 border-b-2 border-amber-200">
             <div className="flex items-center gap-3">
-              <NiramayLogo size={44} />
-              <div>
-                <div className="flex items-baseline gap-2">
-                  <span className="font-serif font-black text-2xl text-stone-900 tracking-tight">
-                    Niramay
-                  </span>
-                  <span className="text-base font-bold text-emerald-800">
-                    নিৰাময়
-                  </span>
-                </div>
-                <div className="text-[11px] font-medium text-amber-800 tracking-wide">
-                  Traditional Assamese Kitchen Remedy · পৰম্পৰাগত জ্ঞান
-                </div>
+              <NiramayLogo size={76} variant="full" />
+              <div className="text-[11px] font-medium text-amber-800 tracking-wide">
+                Traditional Assamese Kitchen Remedy · পৰম্পৰাগত জ্ঞান
               </div>
             </div>
             <div className="text-right">

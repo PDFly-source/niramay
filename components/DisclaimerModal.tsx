@@ -33,8 +33,8 @@ export const DisclaimerModal: React.FC = () => {
     >
       <div className="max-w-md w-full bg-cream rounded-3xl shadow-2xl border border-amber-200/80 overflow-hidden niramay-modal-fit-90 overflow-y-auto">
         <div className="px-6 pt-6 pb-2 flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <NiramayLogo size={40} />
+          <div className="flex items-center gap-4">
+            <NiramayLogo size={72} variant="full" />
             <div>
               <h2 className="text-lg font-serif font-black text-stone-900 leading-tight">
                 {isAs ? "নিৰাময়লৈ স্বাগতম" : "Welcome to Niramay"}

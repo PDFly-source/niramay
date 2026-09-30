@@ -140,11 +140,7 @@ export const RemedyDetailClient: React.FC<Props> = ({
         {/* Print Only Header Logo */}
         <div className="hidden print:flex items-center justify-between pb-4 mb-6 border-b border-stone-300">
           <div className="flex items-center gap-2">
-            <NiramayLogo size={36} />
-            <div>
-              <span className="font-serif font-bold text-lg">Niramay</span>
-              <span className="text-xs ml-2 text-stone-600">নিৰাময়</span>
-            </div>
+            <NiramayLogo size={64} variant="full" />
           </div>
           <span className="text-xs text-stone-500">Traditional Kitchen Remedy Card</span>
         </div>
