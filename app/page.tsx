@@ -80,7 +80,7 @@ export default function HomePage() {
   const router = useRouter();
   const mounted = useMounted();
   const [activeCategoryFilter, setActiveCategoryFilter] = useState("all");
-  const { pantry, togglePantryItem, savedRemedyIds, languageMode, setAssistantOpen, completedHabitsByDate } = useNiramayStore();
+  const { pantry, togglePantryItem, savedRemedyIds, languageMode, setAssistantOpen, setAssistantPendingQuery, completedHabitsByDate } = useNiramayStore();
 
   const currentMode = mounted ? languageMode : "bilingual";
   const isEn = currentMode === "en";
@@ -290,7 +290,7 @@ export default function HomePage() {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-200/90 hover:bg-amber-300 text-amber-950 text-xs font-bold transition shadow-2xs border border-amber-300 cursor-pointer touch-manipulation"
               >
                 <Bot className="w-3.5 h-3.5 text-amber-800" />
-                <span>{isAs ? "নিৰাময় এআই সহায়ক" : "Niramay AI"}</span>
+                <span>Niramay AI</span>
               </button>
 
               <Link
@@ -335,6 +335,33 @@ export default function HomePage() {
             </div>
 
             
+            {/* Niramay AI 2.0 quick prompts — each runs a real local query */}
+            <div className="w-full mt-5">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900 mb-2">
+                <Bot className="w-3.5 h-3.5" />
+                <span>{isAs ? "নিৰাময় এআই-ক সোধক:" : "Ask Niramay AI:"}</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  { as: "মোৰ পেট বেয়া", en: "I have an upset stomach", q: "mor pet beya" },
+                  { as: "আদা কেনেকৈ ব্যৱহাৰ কৰা হয়?", en: "What is ginger used for?", q: "What is ginger used for?" },
+                  { as: "চৰ্দিৰ বাবে উপচাৰ দেখুৱাওক", en: "Show me remedies for cold", q: "Show me remedies for cold" },
+                  { as: "মছলা বাকচ স্কেনাৰ খোলক", en: "Open Spice Box Scanner", q: "open spice scanner" },
+                ].map((qp) => (
+                  <button
+                    key={qp.q}
+                    type="button"
+                    onClick={() => {
+                      setAssistantPendingQuery(qp.q);
+                      setAssistantOpen(true);
+                    }}
+                    className="px-3 py-1.5 rounded-xl bg-white/90 hover:bg-amber-100 border border-amber-200 text-stone-700 hover:text-amber-900 text-[11px] font-semibold transition shadow-2xs cursor-pointer touch-manipulation"
+                  >
+                    {isAs ? qp.as : qp.en}
+                  </button>
+                ))}
+              </div>
+            </div>
           {/* Most Searched / Common This Season Curated Section */}
             <div className="w-full mt-8">
               <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900 mb-2.5">

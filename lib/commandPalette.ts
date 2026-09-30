@@ -4,6 +4,7 @@ import {
 import { SYMPTOM_CATEGORIES } from "@/lib/data/symptoms";
 import { ASSAMESE_MEDICINAL_PLANTS } from "@/lib/plantLibrary";
 import { extractString } from "@/lib/utils";
+import { PHONETIC_MAP } from "@/lib/search";
 
 /**
  * Global command palette corpus — the single source of truth for
@@ -224,6 +225,28 @@ function scoreItem(item: PaletteItem, q: string): number {
 }
 
 /** Lightweight search across the corpus (EN + Assamese). */
+/**
+ * Expands a query with phonetic aliases so Roman-Assamese queries
+ * ("ada", "kaha", "jor") discover Assamese-script and English content.
+ */
+function expandQuery(q: string): string[] {
+  const variants = [q];
+  const tokens = q.split(/\s+/).filter(Boolean);
+  for (const tok of tokens) {
+    const aliases = PHONETIC_MAP[tok];
+    if (aliases) {
+      variants.push(aliases.join(" "));
+    }
+    // reverse: query token is an alias of some key -> include the key
+    for (const [key, aliasList] of Object.entries(PHONETIC_MAP)) {
+      if (aliasList.some((a) => a.toLowerCase() === tok)) {
+        variants.push(key);
+      }
+    }
+  }
+  return [...new Set(variants.filter(Boolean))];
+}
+
 export function searchPalette(
   query: string,
   filter: PaletteFilter,
@@ -240,11 +263,51 @@ export function searchPalette(
     ].slice(0, limit);
   }
 
-  return corpus
+  // Direct scoring first (exact > normalized > description)
+  const direct = corpus
     .filter((i) => filter === "all" || i.type === filter)
     .map((i) => ({ item: i, s: scoreItem(i, q) }))
     .filter((r) => r.s >= 0)
     .sort((a, b) => a.s - b.s || TYPE_ORDER[a.item.type] - TYPE_ORDER[b.item.type])
+    .slice(0, limit)
+    .map((r) => r.item);
+  if (direct.length > 0) return direct;
+
+  // Fallback 1: phonetic / transliteration expansion ("ada" -> ginger content)
+  const seen = new Set(direct.map((i) => i.id));
+  const phonetic: PaletteItem[] = [];
+  for (const variant of expandQuery(q).slice(1)) {
+    for (const item of corpus) {
+      if (filter !== "all" && item.type !== filter) continue;
+      if (seen.has(item.id)) continue;
+      if (scoreItem(item, variant) >= 0) {
+        seen.add(item.id);
+        phonetic.push(item);
+        if (phonetic.length >= limit) break;
+      }
+    }
+    if (phonetic.length >= limit) break;
+  }
+  if (phonetic.length > 0) return phonetic;
+
+  // Fallback 2: fuzzy containment — tokens OR their phonetic aliases may
+  // appear in the item text; at least half the token groups must match.
+  const tokens = q.split(/\s+/).filter((t) => t.length >= 3);
+  if (tokens.length === 0) return [];
+  const tokenGroups = tokens.map((t) => {
+    const aliases = PHONETIC_MAP[t] ?? [];
+    return [t, ...aliases.map((x) => x.toLowerCase())];
+  });
+  const threshold = Math.ceil(tokenGroups.length / 2);
+  return corpus
+    .filter((i) => filter === "all" || i.type === filter)
+    .map((i) => {
+      const hay = `${i.titleEn} ${i.titleAs} ${i.descEn} ${i.descAs}`.toLowerCase();
+      const score = tokenGroups.filter((g) => g.some((t) => hay.includes(t))).length;
+      return { item: i, score };
+    })
+    .filter((r) => r.score >= threshold)
+    .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((r) => r.item);
 }

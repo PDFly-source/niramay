@@ -5,6 +5,8 @@ import { extractString } from "@/lib/utils";
 
 export interface AssistantAnalysisResult {
   understoodSymptoms: { en: string; as: string }[];
+  /** Real symptom-route slugs of the matched canonical categories (AI 2.0) */
+  matchedSymptomSlugs: string[];
   durationDetected?: { days: number; textEn: string; textAs: string };
   isRedFlagSeverity: boolean;
   redFlagReason?: { en: string; as: string };
@@ -84,7 +86,7 @@ export const CANONICAL_SYMPTOMS: CanonicalSymptomCategory[] = [
     symptomSlug: "cough-dry",
     keywords: [
       // Romanized Assamese
-      "kaha", "kaah", "kahi", "kah", "kahi thoka", "koph", "buku koph", "khok",
+      "kaha", "kaah", "kahi", "kah", "kakh", "kakhh", "kahi thoka", "koph", "buku koph", "khok",
       "sukan kah", "dry cough", "coughing", "chest congestion",
       // Assamese script
       "কাহ", "কাঁহ", "কাহি", "কাহ হৈছে", "শুকান কাহ", "কফ", "বুকুৰ কফ", "কাহৰ খচখচনি",
@@ -332,6 +334,7 @@ export function analyzeUserQuery(query: string): AssistantAnalysisResult {
     en: c.canonicalEn,
     as: c.canonicalAs,
   }));
+  const matchedSymptomSlugs = matchedCategories.map((c) => c.symptomSlug);
 
   let replyEn = "";
   let replyAs = "";
@@ -367,6 +370,7 @@ export function analyzeUserQuery(query: string): AssistantAnalysisResult {
 
   return {
     understoodSymptoms,
+    matchedSymptomSlugs,
     durationDetected: daysCount
       ? { days: daysCount, textEn: durationEn, textAs: durationAs }
       : undefined,

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { motion, MotionConfig } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useNiramayStore } from "@/lib/store";
@@ -185,7 +186,11 @@ export const CommandPalette: React.FC = () => {
       />
 
       {/* Palette surface */}
-      <div
+      <MotionConfig reducedMotion="user">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98, y: 8 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 420, damping: 34 }}
         className="
           relative mx-auto mt-[max(4vh,1.5rem)] w-[min(92vw,38rem)]
           flex flex-col overflow-hidden rounded-2xl
@@ -342,7 +347,8 @@ export const CommandPalette: React.FC = () => {
             {isAs ? "বন্ধ কৰক" : "close"}
           </span>
         </div>
-      </div>
+      </motion.div>
+      </MotionConfig>
     </div>
   );
 };

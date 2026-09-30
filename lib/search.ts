@@ -20,10 +20,12 @@ export interface SearchableRemedyItem {
 }
 
 // Common phonetic and cross-script mapping for Assamese & English traditional medical queries
-const PHONETIC_MAP: Record<string, string[]> = {
+export const PHONETIC_MAP: Record<string, string[]> = {
   kaha: ["cough", "কাহ", "কাঁহ", "khachkhachi"],
   cough: ["কাহ", "কাঁহ", "ডিঙি", "throat"],
   sardi: ["cold", "চৰ্দি", "জ্বৰ", "fever"],
+  thanda: ["cold", "চৰ্দি", "ঠাণ্ডা", "ঠাণ্ডা লগা"],
+  dingi: ["ডিঙি", "ডিঙিৰ বিষ", "sore throat", "throat"],
   cold: ["চৰ্দি", "কাহ", "জ্বৰ", "sardi"],
   jwor: ["fever", "জ্বৰ"],
   fever: ["জ্বৰ", "গাৰ উত্তাপ"],

@@ -98,6 +98,9 @@ interface NiramayState {
   setFamilyProfile: (profile: FamilyProfileType) => void;
   setServingCount: (count: number) => void;
   setAssistantOpen: (open: boolean) => void;
+  /** AI 2.0: quick-prompt queue — set before opening the assistant */
+  assistantPendingQuery: string | null;
+  setAssistantPendingQuery: (q: string | null) => void;
   setInstallBannerVisible: (visible: boolean) => void;
   setPaletteOpen: (open: boolean) => void;
   toggleHabitForDate: (dateStr: string, habitId: string) => void;
@@ -156,6 +159,7 @@ export const useNiramayStore = create<NiramayState>()(
       familyProfile: "adult",
       servingCount: 1,
       isAssistantOpen: false,
+      assistantPendingQuery: null,
       isPaletteOpen: false,
       installBannerVisible: false,
       completedHabitsByDate: {},
@@ -243,6 +247,10 @@ export const useNiramayStore = create<NiramayState>()(
 
       setAssistantOpen: (open: boolean) => {
         set({ isAssistantOpen: open });
+      },
+
+      setAssistantPendingQuery: (q: string | null) => {
+        set({ assistantPendingQuery: q });
       },
 
       setPaletteOpen: (open: boolean) => {
