@@ -113,10 +113,13 @@ export const CommandPalette: React.FC = () => {
   useEffect(() => {
     if (isPaletteOpen) {
       restoreFocusRef.current = document.activeElement as HTMLElement | null;
-      setQuery("");
-      setFilter("all");
-      setActiveIndex(0);
-      const t = window.setTimeout(() => inputRef.current?.focus(), 30);
+      const t = window.setTimeout(() => {
+        // reset + focus asynchronously (once open), so no sync state cascade
+        setQuery("");
+        setFilter("all");
+        setActiveIndex(0);
+        inputRef.current?.focus();
+      }, 30);
       return () => window.clearTimeout(t);
     }
     const el = restoreFocusRef.current;
@@ -125,10 +128,6 @@ export const CommandPalette: React.FC = () => {
       try { el.focus({ preventScroll: true }); } catch { /* noop */ }
     }
   }, [isPaletteOpen]);
-
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [query, filter]);
 
   const close = React.useCallback(() => setPaletteOpen(false), [setPaletteOpen]);
 
@@ -216,7 +215,7 @@ export const CommandPalette: React.FC = () => {
             aria-controls="palette-results"
             aria-label={isAs ? "সন্ধান কৰক" : "Search Niramay"}
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => { setQuery(e.target.value); setActiveIndex(0); }}
             placeholder={
               isAs
                 ? "লক্ষণ, উপচাৰ, গছ, সঁজুলি সন্ধান কৰক…"
@@ -242,7 +241,7 @@ export const CommandPalette: React.FC = () => {
             return (
               <button
                 key={f.id}
-                onClick={() => setFilter(f.id)}
+                onClick={() => { setFilter(f.id); setActiveIndex(0); }}
                 aria-pressed={active}
                 className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-bold border transition ${
                   active

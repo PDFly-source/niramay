@@ -19,13 +19,13 @@ export const CommandTrigger: React.FC<{ className?: string }> = ({
   const currentMode = mounted ? languageMode : "bilingual";
   const isAs = currentMode === "as";
 
-  const [isMac, setIsMac] = React.useState(false);
-  React.useEffect(() => {
-    setIsMac(
+  /* Lazy client-only probe — the trigger renders identically before mount
+     because the keyboard hint is desktop-only decoration. */
+  const [isMac] = React.useState(
+    () =>
       typeof navigator !== "undefined" &&
-        /mac|iphone|ipad/i.test(navigator.platform || navigator.userAgent)
-    );
-  }, []);
+      /mac|iphone|ipad/i.test(navigator.platform || navigator.userAgent)
+  );
 
   return (
     <button
