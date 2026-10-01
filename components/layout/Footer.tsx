@@ -137,11 +137,11 @@ export const Footer: React.FC = () => {
         {/* Final brand signature — typography only, no logo (lockup already
             lives in the header / in-app brand surfaces). */}
         <div className="mt-14 pt-10 border-t border-amber-300/40 flex flex-col items-center text-center gap-2.5">
-          <p className="font-serif text-lg sm:text-xl font-bold tracking-tight text-ink">
+          <p className="font-serif text-[21px] sm:text-2xl font-bold tracking-tight text-ink">
             Niramay
           </p>
-          <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
-            Traditional • Local • Private
+          <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-amber-700 whitespace-nowrap">
+            DISCOVER • HEAL • LIVE BETTER
           </p>
           <p className="text-xs text-stone-500 mt-2">
             Crafted &amp; Developed by <span className="font-semibold text-stone-600">PKD</span>
