@@ -6,15 +6,15 @@ const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 interface NiramayLogoProps {
   size?: number;
   /**
-   * emblem — square mark-only crop of the official artwork (mortar & pestle
-   *          with tulsi, turmeric and black pepper), for compact/icon-class
-   *          contexts (header, buttons, favicon-class surfaces, print/share
-   *          card headers). Never includes the wordmark or tagline — those
-   *          are illegible at these sizes.
-   * full    — the complete official lockup image (mark + "NIRAMAY" wordmark
-   *          + "DISCOVER • HEAL • LIVE BETTER" tagline, baked into a single
-   *          artwork file). Use only where there is genuine vertical room
-   *          for it to render legibly (e.g. the footer brand column).
+   * BOTH variants now carry the COMPLETE official artwork (symbol + "NIRAMAY"
+   * wordmark + "DISCOVER • HEAL • LIVE BETTER" tagline), per the Phase 3
+   * mandate: no symbol-only assets, no selective extraction of the mark.
+   *   emblem — square 512px complete-artwork image for compact contexts
+   *           (header, buttons, favicon-class surfaces). At small sizes the
+   *           wordmark/tagline are present but not legible — an accepted,
+   *           documented limitation of the complete-lockup mandate.
+   *   full   — the same complete lockup image, rendered larger (e.g. the
+   *           footer brand column) where the full composition stays legible.
    */
   variant?: "emblem" | "full";
   /** Extra classes for the emblem image (ring/medallion tweaks). Ignored for variant="full". */

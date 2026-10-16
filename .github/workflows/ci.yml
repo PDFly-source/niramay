@@ -34,6 +34,9 @@ jobs:
       - name: AI engine tests (115 checks)
         run: npm run test:ai
 
+      - name: Branding regression gate (complete official artwork)
+        run: npm run test:branding
+
       - name: Production build (includes type checking)
         env:
           NEXT_PUBLIC_BASE_PATH: /niramay
