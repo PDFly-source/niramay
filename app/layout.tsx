@@ -39,6 +39,7 @@ import { FloatingInstallBanner } from "@/components/pwa/FloatingInstallBanner";
 import { DisclaimerModal } from "@/components/DisclaimerModal";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { ThemeSync } from "@/components/layout/ThemeSync";
+import { BrandSplash } from '@/components/brand/BrandSplash';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pdfly-source.github.io";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -127,6 +128,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${sourceSans3.variable} ${notoSerifBengali.variable}`}>
       <body className="min-h-screen flex flex-col bg-parchment text-ink font-sans selection:bg-amber-200 selection:text-amber-900 pb-[var(--niramay-content-inset)] transition-[padding-bottom] duration-300" suppressHydrationWarning>
+      <BrandSplash />
         <DisclaimerModal />
         <CommandPalette />
         <ThemeSync />
