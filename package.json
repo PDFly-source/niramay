@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "clean": "next clean",
     "test:ai": "tsx scripts/test-ai-engine.ts",
-    "test:branding": "tsx scripts/verify-branding.ts"
+    "test:branding": "tsx scripts/verify-branding.ts",
+    "test:splash": "tsx scripts/test-brand-splash.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",

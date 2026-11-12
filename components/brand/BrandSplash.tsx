@@ -7,6 +7,47 @@ export interface BrandSplashProps {
   onComplete?: () => void;
 }
 
+// Base path injected by CI when the site is served from GitHub Pages (empty in
+// dev). Every static asset in the site is prefixed with it (see NiramayLogo);
+// this component used to hard-code root-absolute paths, which 404 under
+// /niramay and render as broken-image placeholders.
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/** Splash artwork URLs, resolved against the deployed base path. */
+export const splashAssets = (basePath: string = BASE_PATH) => ({
+  mark: `${basePath}/brand/splash/mark.jpg`,
+  wordmark: `${basePath}/brand/splash/wordmark.jpg`,
+});
+
+type NativeBridgeWindow = {
+  AppMintlyNative?: { isNativeApp?: () => unknown } | null;
+};
+
+/**
+ * True when this page is running inside the AppMintly Android wrapper, which
+ * draws its own native launch splash (NiramaySplashView). That surface is the
+ * only splash the app is meant to show, so the web splash must not exist there
+ * at all.
+ *
+ * The bridge is injected with addJavascriptInterface() before the WebView
+ * loads any URL, so it is already present when this module is evaluated - the
+ * check therefore runs before the first React render and cannot flash.
+ */
+export const isNativeShell = (win?: NativeBridgeWindow | null): boolean => {
+  const target = win ?? (typeof window !== "undefined" ? (window as unknown as NativeBridgeWindow) : null);
+  try {
+    const bridge = target?.AppMintlyNative;
+    if (!bridge || typeof bridge.isNativeApp !== "function") return false;
+    return bridge.isNativeApp() === true;
+  } catch {
+    // A throwing or partial bridge must never break the web splash.
+    return false;
+  }
+};
+
+// Evaluated at module load, before any render of this component.
+const NATIVE_SHELL_AT_LOAD = isNativeShell();
+
 const CSS = `
 .bs-root{position:fixed;inset:0;z-index:9999;overflow:hidden;isolation:isolate;transition:opacity .4s ease}
 .bs-root.is-fading{opacity:0}
@@ -114,6 +155,8 @@ export const BrandSplash: React.FC<BrandSplashProps> = ({ autoDismissMs = 2800, 
       seen = true;
     }
     if (seen) return;
+    // Never in the Android wrapper: the native NiramaySplashView is the splash.
+    if (NATIVE_SHELL_AT_LOAD || isNativeShell()) return;
     const t = setTimeout(() => setVisible(true), 0);
     return () => clearTimeout(t);
   }, []);
@@ -145,12 +188,24 @@ export const BrandSplash: React.FC<BrandSplashProps> = ({ autoDismissMs = 2800, 
         <div className="bs-gl bs-cc" /><span className="bs-gd" style={{left:"22%",top:"70%"}} /><span className="bs-gd" style={{left:"74%",top:"62%",animationDelay:".9s"}} /><span className="bs-gd" style={{left:"40%",top:"78%",animationDelay:"1.7s"}} /><span className="bs-gd" style={{left:"62%",top:"74%",animationDelay:"2.4s"}} /><span className="bs-gd" style={{left:"14%",top:"50%",animationDelay:"1.2s"}} /><span className="bs-gd" style={{left:"84%",top:"44%",animationDelay:"2.1s"}} />
         <div className="bs-ctr">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="bs-mk" src="/brand/splash/mark.jpg" alt="" width={150} height={150} />
+          <img className="bs-mk" src={splashAssets().mark} alt="" width={150} height={150} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="bs-tx" src="/brand/splash/wordmark.jpg" alt="Niramay" width={195} height={48} />
+          <img className="bs-tx" src={splashAssets().wordmark} alt="Niramay" width={195} height={48} />
         </div>
         
       </div>
     </>
   );
+};
+
+/**
+ * Mount point used by the root layout. Inside the Android wrapper this renders
+ * nothing at all - BrandSplash is never mounted, so no second splash, no
+ * broken-image fallback and no fade can occur ahead of the real app screen.
+ */
+export const BrandSplashMount: React.FC<BrandSplashProps> = (props) => {
+  // Synchronous during the first client render, so the decision is made before
+  // BrandSplash is ever created.
+  if (isNativeShell()) return null;
+  return <BrandSplash {...props} />;
 };
