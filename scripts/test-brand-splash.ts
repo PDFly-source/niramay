@@ -60,11 +60,17 @@ const deployed = splashAssets("/niramay");
 check("mark resolves under the deployed base path", deployed.mark === "/niramay/brand/splash/mark.jpg");
 check("wordmark resolves under the deployed base path", deployed.wordmark === "/niramay/brand/splash/wordmark.jpg");
 check("dev base path has no doubled slash", !splashAssets("").mark.includes("//"));
+// The default must follow the configured base path: "/brand/..." only when the
+// site is served from the domain root (dev), "/niramay/brand/..." when deployed.
+const configuredBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const defaults = splashAssets();
-check("default asset paths carry no root-absolute /brand/splash", !/^\/brand\/splash\//.test(defaults.mark) && !/^\/brand\/splash\//.test(defaults.wordmark));
+check(
+  "default asset paths follow the configured base path",
+  defaults.mark === `${configuredBase}/brand/splash/mark.jpg` &&
+    defaults.wordmark === `${configuredBase}/brand/splash/wordmark.jpg`,
+);
 
 // --- integration: the layout mounts the gated wrapper -----------------------
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs") as typeof import("fs");
 const layout = fs.readFileSync("app/layout.tsx", "utf8");
 check("layout imports BrandSplashMount", layout.includes("BrandSplashMount"));
